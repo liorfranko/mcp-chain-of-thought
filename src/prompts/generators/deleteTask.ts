@@ -43,7 +43,7 @@ export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
   // Handle case where task is already completed
   if (isTaskCompleted) {
     const completedTemplate = loadPromptFromTemplate(
-      "deleteTask/taskCompleted.md"
+      "deleteTask/completed.md"
     );
     return generatePrompt(completedTemplate, {
       taskId,
@@ -52,7 +52,7 @@ export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
   }
 
   // Handle case of successful or failed deletion
-  const resultTemplate = loadPromptFromTemplate("deleteTask/result.md");
+  const resultTemplate = loadPromptFromTemplate("deleteTask/success.md");
   let prompt = generatePrompt(resultTemplate, {
     taskId,
     taskName: task?.name || "",

@@ -79,17 +79,6 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
     });
   }
 
-  // Process task analysis result if available
-  let analysisResultPrompt = "";
-  if (task.analysisResult) {
-    const analysisResultTemplate = loadPromptFromTemplate(
-      "getTaskDetail/analysisResult.md"
-    );
-    analysisResultPrompt = generatePrompt(analysisResultTemplate, {
-      analysisResult: task.analysisResult,
-    });
-  }
-
   // Process task notes if available
   let notesPrompt = "";
   if (task.notes) {
@@ -102,7 +91,7 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
   // Process task summary if completed
   let summaryPrompt = "";
   if (task.completedAt && task.summary) {
-    const summaryTemplate = loadPromptFromTemplate("getTaskDetail/complatedSummary.md");
+    const summaryTemplate = loadPromptFromTemplate("getTaskDetail/completedSummary.md");
     summaryPrompt = generatePrompt(summaryTemplate, {
       summary: task.summary || "*No completion summary*",
     });
@@ -121,7 +110,6 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
     notesTemplate: notesPrompt,
     implementationGuideTemplate: implementationGuidePrompt,
     verificationCriteriaTemplate: verificationCriteriaPrompt,
-    analysisResultTemplate: analysisResultPrompt,
     summaryTemplate: summaryPrompt,
     filesTemplate: filesContentPrompt,
   });
