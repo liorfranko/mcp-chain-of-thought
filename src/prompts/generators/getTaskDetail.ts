@@ -40,7 +40,7 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
   // If task not found, show task not found message
   if (!task) {
     const notFoundTemplate = loadPromptFromTemplate(
-      "getTaskDetail/taskNotFound.md"
+      "getTaskDetail/notFound.md"
     );
     return generatePrompt(notFoundTemplate, {
       taskId,
@@ -49,7 +49,7 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
 
   // Process task files if available
   let filesContentPrompt = "";
-  const filesTemplate = loadPromptFromTemplate("getTaskDetail/files.md");
+  const filesTemplate = loadPromptFromTemplate("getTaskDetail/relatedFiles.md"); // Moved this line
   
   if (relatedFilesSummary) {
     filesContentPrompt = generatePrompt(filesTemplate, {
@@ -102,7 +102,7 @@ export function getTaskDetailPrompt(params: GetTaskDetailPromptParams): string {
   // Process task summary if completed
   let summaryPrompt = "";
   if (task.completedAt && task.summary) {
-    const summaryTemplate = loadPromptFromTemplate("getTaskDetail/summary.md");
+    const summaryTemplate = loadPromptFromTemplate("getTaskDetail/complatedSummary.md");
     summaryPrompt = generatePrompt(summaryTemplate, {
       summary: task.summary || "*No completion summary*",
     });

@@ -646,6 +646,7 @@ export async function executeTask({
           }`,
         },
       ],
+      isError: true,
     };
   }
 }
@@ -1190,6 +1191,7 @@ export async function getTaskDetail({
           text: errorPrompt,
         },
       ],
+      isError: true,
     };
   }
 }
