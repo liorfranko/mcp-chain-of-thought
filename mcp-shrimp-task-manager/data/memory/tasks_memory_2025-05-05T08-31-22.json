@@ -1,0 +1,66 @@
+{
+  "tasks": [
+    {
+      "id": "bcf6c665-5b3d-4f93-8935-0244e08288bb",
+      "name": "List Generator Files",
+      "description": "List all TypeScript generator files in the `src/prompts/generators` directory.",
+      "status": "Completed",
+      "dependencies": [],
+      "createdAt": "2025-05-05T08:16:52.624Z",
+      "updatedAt": "2025-05-05T08:17:40.449Z",
+      "implementationGuide": "Use `list_dir` or a similar mechanism to get a list of all files ending with `.ts` in `src/prompts/generators`. Store this list for the next task.",
+      "verificationCriteria": "A complete list of `.ts` files within the specified directory is obtained.",
+      "analysisResult": "The plan involves listing TypeScript files in `src/prompts/generators`, then iterating through each file. For each file (`toolName.ts`), its content will be read to find all string arguments passed to the `loadPromptFromTemplate` function. For each argument (`'dirName/fileName.md'`), two checks are performed: 1. Ensure `dirName` matches the `toolName` derived from the filename. 2. Ensure the corresponding template file `src/prompts/templates_en/dirName/fileName.md` exists. Any mismatches in directory names or non-existent template files will be logged. Finally, a summary report of all discrepancies will be generated.",
+      "completedAt": "2025-05-05T08:17:40.448Z",
+      "summary": "Successfully listed all .ts files in src/prompts/generators using the list_dir tool."
+    },
+    {
+      "id": "26b35fd1-57bb-462e-a52a-95a5e1c0d5bc",
+      "name": "Verify Template References",
+      "description": "For each generator file identified in the previous task, verify that all calls to `loadPromptFromTemplate` reference valid and correctly named template files within `src/prompts/templates_en`.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "bcf6c665-5b3d-4f93-8935-0244e08288bb"
+        }
+      ],
+      "createdAt": "2025-05-05T08:16:52.624Z",
+      "updatedAt": "2025-05-05T08:21:53.970Z",
+      "relatedFiles": [
+        {
+          "path": "src/prompts/generators",
+          "type": "REFERENCE",
+          "description": "Directory containing the generator files to check."
+        },
+        {
+          "path": "src/prompts/templates_en",
+          "type": "REFERENCE",
+          "description": "Base directory containing the Markdown templates."
+        }
+      ],
+      "implementationGuide": "```pseudocode\nfunction verifyGeneratorTemplates(generatorFiles):\n  errors = []\n  for each file `toolName.ts` in generatorFiles:\n    content = readFile(`src/prompts/generators/${toolName}.ts`)\n    templateCalls = findLoadPromptCalls(content) // Extract args from loadPromptFromTemplate\n    for each templatePath (e.g., 'dirName/fileName.md') in templateCalls:\n      expectedDir = toolName\n      actualDir = parseDirectory(templatePath)\n      if actualDir != expectedDir:\n        errors.append(f\"Mismatch: {toolName}.ts references dir {actualDir} instead of {expectedDir}\")\n      \n      fullTemplatePath = `src/prompts/templates_en/${templatePath}`\n      if not fileExists(fullTemplatePath):\n        errors.append(f\"Missing: {toolName}.ts references non-existent template {fullTemplatePath}\")\n  return errors\n\n// Helper functions assumed: readFile, findLoadPromptCalls, parseDirectory, fileExists\n```\nIterate through the list from Task 1. For each file, read it, find `loadPromptFromTemplate` calls using regex or AST parsing. Extract the path argument. Check if the first part of the path matches the tool name (filename without `.ts`). Check if the full path exists under `src/prompts/templates_en`. Collect all errors.",
+      "verificationCriteria": "All generator files are checked. A list of errors (mismatched directory names or missing files) is produced. If the list is empty, all references are valid.",
+      "analysisResult": "The plan involves listing TypeScript files in `src/prompts/generators`, then iterating through each file. For each file (`toolName.ts`), its content will be read to find all string arguments passed to the `loadPromptFromTemplate` function. For each argument (`'dirName/fileName.md'`), two checks are performed: 1. Ensure `dirName` matches the `toolName` derived from the filename. 2. Ensure the corresponding template file `src/prompts/templates_en/dirName/fileName.md` exists. Any mismatches in directory names or non-existent template files will be logged. Finally, a summary report of all discrepancies will be generated.",
+      "completedAt": "2025-05-05T08:21:53.966Z",
+      "summary": "Verified all generator files in `src/prompts/generators`. Found the following discrepancies:\n1. `deleteTask.ts`: References `taskCompleted.md` (found `completed.md`), references non-existent `result.md`.\n2. `getTaskDetail.ts`: References non-existent `analysisResult.md`, references `complatedSummary.md` (typo exists in file).\n3. `processThought.ts`: References `complatedThought.md` (typo exists in file)."
+    },
+    {
+      "id": "898346ef-7141-4d5a-90fc-7f9c09acb83c",
+      "name": "Report Verification Results",
+      "description": "Report the findings from the verification task. If errors were found, list them clearly. Otherwise, confirm that all template references are correct.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "26b35fd1-57bb-462e-a52a-95a5e1c0d5bc"
+        }
+      ],
+      "createdAt": "2025-05-05T08:16:52.624Z",
+      "updatedAt": "2025-05-05T08:25:52.551Z",
+      "implementationGuide": "Based on the output (list of errors) from the 'Verify Template References' task, generate a final report. If the list is empty, report success. If not empty, list each error found.",
+      "verificationCriteria": "A report is generated summarizing the verification results, either confirming success or listing all found errors.",
+      "analysisResult": "The plan involves listing TypeScript files in `src/prompts/generators`, then iterating through each file. For each file (`toolName.ts`), its content will be read to find all string arguments passed to the `loadPromptFromTemplate` function. For each argument (`'dirName/fileName.md'`), two checks are performed: 1. Ensure `dirName` matches the `toolName` derived from the filename. 2. Ensure the corresponding template file `src/prompts/templates_en/dirName/fileName.md` exists. Any mismatches in directory names or non-existent template files will be logged. Finally, a summary report of all discrepancies will be generated.",
+      "completedAt": "2025-05-05T08:25:52.548Z",
+      "summary": "Generated a report detailing the findings from the template reference verification. The report lists missing files, filename mismatches, and typos found in references within `deleteTask.ts`, `getTaskDetail.ts`, and `processThought.ts`."
+    }
+  ]
+}

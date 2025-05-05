@@ -1,6 +1,6 @@
 /**
- * deleteTask prompt 生成器
- * 負責將模板和參數組合成最終的 prompt
+ * deleteTask prompt generator
+ * Responsible for combining templates and parameters into the final prompt
  */
 
 import {
@@ -11,49 +11,56 @@ import {
 import { Task } from "../../types/index.js";
 
 /**
- * deleteTask prompt 參數介面
+ * deleteTask prompt parameter interface
  */
 export interface DeleteTaskPromptParams {
   taskId: string;
   task?: Task;
+  isTaskCompleted?: boolean;
+  isSuccess?: boolean;
   success?: boolean;
   message?: string;
-  isTaskCompleted?: boolean;
+  error?: string;
+  taskNotFound?: boolean;
 }
 
 /**
- * 獲取 deleteTask 的完整 prompt
- * @param params prompt 參數
- * @returns 生成的 prompt
+ * Get the complete deleteTask prompt
+ * @param params prompt parameters
+ * @returns generated prompt
  */
 export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
-  const { taskId, task, success, message, isTaskCompleted } = params;
+  const { taskId, task, isTaskCompleted, isSuccess, success, error, taskNotFound, message } = params;
 
-  // 處理任務不存在的情況
-  if (!task) {
+  // Handle case where task doesn't exist
+  if (taskNotFound) {
     const notFoundTemplate = loadPromptFromTemplate("deleteTask/notFound.md");
     return generatePrompt(notFoundTemplate, {
       taskId,
     });
   }
 
-  // 處理任務已完成的情況
+  // Handle case where task is already completed
   if (isTaskCompleted) {
-    const completedTemplate = loadPromptFromTemplate("deleteTask/completed.md");
+    const completedTemplate = loadPromptFromTemplate(
+      "deleteTask/completed.md"
+    );
     return generatePrompt(completedTemplate, {
-      taskId: task.id,
-      taskName: task.name,
+      taskId,
+      taskName: task?.name || "",
     });
   }
 
-  // 處理刪除成功或失敗的情況
-  const responseTitle = success ? "Success" : "Failure";
-  const indexTemplate = loadPromptFromTemplate("deleteTask/index.md");
-  const prompt = generatePrompt(indexTemplate, {
-    responseTitle,
-    message,
+  // Handle case of successful or failed deletion
+  const resultTemplate = loadPromptFromTemplate("deleteTask/success.md");
+  let prompt = generatePrompt(resultTemplate, {
+    taskId,
+    taskName: task?.name || "",
+    isSuccess: isSuccess || success || false,
+    error: error || "",
+    message: message || "",
   });
 
-  // 載入可能的自定義 prompt
+  // Load possible custom prompt
   return loadPrompt(prompt, "DELETE_TASK");
 }

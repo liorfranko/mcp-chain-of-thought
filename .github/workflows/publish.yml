@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - "v*" # 只有 push tag 才會觸發
+      - "v*" # Only triggered when pushing tags
 
 jobs:
   release:

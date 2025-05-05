@@ -23,7 +23,7 @@ export function getProcessThoughtPrompt(
     nextThoughtNeeded = loadPromptFromTemplate("processThought/moreThought.md");
   } else {
     nextThoughtNeeded = loadPromptFromTemplate(
-      "processThought/complatedThought.md"
+      "processThought/completedThought.md"
     );
   }
 

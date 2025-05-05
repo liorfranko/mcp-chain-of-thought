@@ -1,6 +1,6 @@
 /**
- * updateTaskContent prompt 生成器
- * 負責將模板和參數組合成最終的 prompt
+ * updateTaskContent prompt generator
+ * Responsible for combining templates and parameters into the final prompt
  */
 
 import {
@@ -11,7 +11,7 @@ import {
 import { Task, RelatedFile } from "../../types/index.js";
 
 /**
- * updateTaskContent prompt 參數介面
+ * updateTaskContent prompt parameter interface
  */
 export interface UpdateTaskContentPromptParams {
   taskId: string;
@@ -24,9 +24,9 @@ export interface UpdateTaskContentPromptParams {
 }
 
 /**
- * 獲取 updateTaskContent 的完整 prompt
- * @param params prompt 參數
- * @returns 生成的 prompt
+ * Get the complete updateTaskContent prompt
+ * @param params prompt parameters
+ * @returns generated prompt
  */
 export function getUpdateTaskContentPrompt(
   params: UpdateTaskContentPromptParams
@@ -41,7 +41,7 @@ export function getUpdateTaskContentPrompt(
     updatedTask,
   } = params;
 
-  // 處理任務不存在的情況
+  // Handle case where task doesn't exist
   if (!task) {
     const notFoundTemplate = loadPromptFromTemplate(
       "updateTaskContent/notFound.md"
@@ -51,7 +51,7 @@ export function getUpdateTaskContentPrompt(
     });
   }
 
-  // 處理驗證錯誤的情況
+  // Handle validation error case
   if (validationError) {
     const validationTemplate = loadPromptFromTemplate(
       "updateTaskContent/validation.md"
@@ -61,7 +61,7 @@ export function getUpdateTaskContentPrompt(
     });
   }
 
-  // 處理空更新的情況
+  // Handle empty update case
   if (emptyUpdate) {
     const emptyUpdateTemplate = loadPromptFromTemplate(
       "updateTaskContent/emptyUpdate.md"
@@ -69,24 +69,24 @@ export function getUpdateTaskContentPrompt(
     return generatePrompt(emptyUpdateTemplate, {});
   }
 
-  // 處理更新成功或失敗的情況
+  // Handle successful or failed update case
   const responseTitle = success ? "Success" : "Failure";
   let content = message || "";
 
-  // 更新成功且有更新後的任務詳情
+  // Success update with updated task details
   if (success && updatedTask) {
     const successTemplate = loadPromptFromTemplate(
       "updateTaskContent/success.md"
     );
 
-    // 編合相關文件信息
+    // Compile related files information
     let filesContent = "";
     if (updatedTask.relatedFiles && updatedTask.relatedFiles.length > 0) {
       const fileDetailsTemplate = loadPromptFromTemplate(
         "updateTaskContent/fileDetails.md"
       );
 
-      // 按文件類型分組
+      // Group files by type
       const filesByType = updatedTask.relatedFiles.reduce((acc, file) => {
         if (!acc[file.type]) {
           acc[file.type] = [];
@@ -95,7 +95,7 @@ export function getUpdateTaskContentPrompt(
         return acc;
       }, {} as Record<string, RelatedFile[]>);
 
-      // 為每種文件類型生成內容
+      // Generate content for each file type
       for (const [type, files] of Object.entries(filesByType)) {
         const filesList = files.map((file) => `\`${file.path}\``).join(", ");
         filesContent += generatePrompt(fileDetailsTemplate, {
@@ -106,7 +106,7 @@ export function getUpdateTaskContentPrompt(
       }
     }
 
-    // 處理任務備註
+    // Process task notes
     const taskNotesPrefix = "- **Notes:** ";
     const taskNotes = updatedTask.notes
       ? `${taskNotesPrefix}${
@@ -116,7 +116,7 @@ export function getUpdateTaskContentPrompt(
         }\n`
       : "";
 
-    // 生成成功更新的詳細信息
+    // Generate detailed information for successful update
     content += generatePrompt(successTemplate, {
       taskName: updatedTask.name,
       taskDescription:
@@ -136,6 +136,6 @@ export function getUpdateTaskContentPrompt(
     message: content,
   });
 
-  // 載入可能的自定義 prompt
+  // Load possible custom prompt
   return loadPrompt(prompt, "UPDATE_TASK_CONTENT");
 }

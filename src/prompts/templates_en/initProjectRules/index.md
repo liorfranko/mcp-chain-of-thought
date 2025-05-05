@@ -16,7 +16,7 @@ Please use the "process_thought" tool to consider the following questions
 **Mandatory Requirements:**
 
 - The completed specification must enable the AI Agent to immediately understand which files must be referenced or modified
-- Clearly indicate multi-file 联动 modification requirements (e.g., modifying README.md requires simultaneous modification of /docs/zh/README.md)
+- Clearly indicate multi-file synchronized modification requirements (e.g., modifying README.md requires simultaneous modification of related files)
 - Use imperative language to define rules, avoiding explanatory content
 - Do not explain project functionality, but rather how to modify or add features
 - Provide examples of what can and cannot be done
