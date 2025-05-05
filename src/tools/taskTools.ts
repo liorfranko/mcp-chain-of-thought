@@ -28,7 +28,7 @@ import {
   generateTaskSummary,
 } from "../utils/summaryExtractor.js";
 import { loadTaskRelatedFiles } from "../utils/fileLoader.js";
-// 導入prompt生成器
+// Import prompt generators
 import {
   getPlanTaskPrompt,
   getAnalyzeTaskPrompt,
@@ -45,23 +45,23 @@ import {
   getUpdateTaskContentPrompt,
 } from "../prompts/index.js";
 
-// 開始規劃工具
+// Task planning tool
 export const planTaskSchema = z.object({
   description: z
     .string()
     .min(10, {
-      message: "任務描述不能少於10個字符，請提供更詳細的描述以確保任務目標明確",
+      message: "Task description cannot be less than 10 characters, please provide a more detailed description to ensure clear task objectives",
     })
-    .describe("完整詳細的任務問題描述，應包含任務目標、背景及預期成果"),
+    .describe("Complete detailed task problem description, should include task objectives, background and expected outcomes"),
   requirements: z
     .string()
     .optional()
-    .describe("任務的特定技術要求、業務約束條件或品質標準（選填）"),
+    .describe("Specific technical requirements, business constraints or quality standards for the task (optional)"),
   existingTasksReference: z
     .boolean()
     .optional()
     .default(false)
-    .describe("是否參考現有任務作為規劃基礎，用於任務調整和延續性規劃"),
+    .describe("Whether to reference existing tasks as a planning basis, used for task adjustment and continuity planning"),
 });
 
 export async function planTask({
@@ -69,23 +69,23 @@ export async function planTask({
   requirements,
   existingTasksReference = false,
 }: z.infer<typeof planTaskSchema>) {
-  // 獲取基礎目錄路徑
+  // Get base directory path
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const PROJECT_ROOT = path.resolve(__dirname, "../..");
   const DATA_DIR = process.env.DATA_DIR || path.join(PROJECT_ROOT, "data");
   const MEMORY_DIR = path.join(DATA_DIR, "memory");
 
-  // 準備所需參數
+  // Prepare required parameters
   let completedTasks: Task[] = [];
   let pendingTasks: Task[] = [];
 
-  // 當 existingTasksReference 為 true 時，從數據庫中載入所有任務作為參考
+  // When existingTasksReference is true, load all tasks from the database as reference
   if (existingTasksReference) {
     try {
       const allTasks = await getAllTasks();
 
-      // 將任務分為已完成和未完成兩類
+      // Split tasks into completed and pending categories
       completedTasks = allTasks.filter(
         (task) => task.status === TaskStatus.COMPLETED
       );
@@ -95,7 +95,7 @@ export async function planTask({
     } catch (error) {}
   }
 
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getPlanTaskPrompt({
     description,
     requirements,
@@ -115,29 +115,29 @@ export async function planTask({
   };
 }
 
-// 分析問題工具
+// Task analysis tool
 export const analyzeTaskSchema = z.object({
   summary: z
     .string()
     .min(10, {
-      message: "任務摘要不能少於10個字符，請提供更詳細的描述以確保任務目標明確",
+      message: "Task summary cannot be less than 10 characters, please provide a more detailed description to ensure clear task objectives",
     })
     .describe(
-      "結構化的任務摘要，包含任務目標、範圍與關鍵技術挑戰，最少10個字符"
+      "Structured task summary including task objectives, scope and key technical challenges, minimum 10 characters"
     ),
   initialConcept: z
     .string()
     .min(50, {
       message:
-        "初步解答構想不能少於50個字符，請提供更詳細的內容確保技術方案清晰",
+        "Initial solution concept cannot be less than 50 characters, please provide more detailed content to ensure the technical solution is clear",
     })
     .describe(
-      "最少50個字符的初步解答構想，包含技術方案、架構設計和實施策略，如果需要提供程式碼請使用 pseudocode 格式且僅提供高級邏輯流程和關鍵步驟避免完整代碼"
+      "At least 50 characters of initial solution concept, including technical solution, architectural design and implementation strategy, if code is needed use pseudocode format and only provide high-level logic flow and key steps avoiding complete code"
     ),
   previousAnalysis: z
     .string()
     .optional()
-    .describe("前次迭代的分析結果，用於持續改進方案（僅在重新分析時需提供）"),
+    .describe("Analysis results from previous iterations, used for continuous improvement of solutions (only required for reanalysis)"),
 });
 
 export async function analyzeTask({
@@ -145,7 +145,7 @@ export async function analyzeTask({
   initialConcept,
   previousAnalysis,
 }: z.infer<typeof analyzeTaskSchema>) {
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getAnalyzeTaskPrompt({
     summary,
     initialConcept,
@@ -162,21 +162,21 @@ export async function analyzeTask({
   };
 }
 
-// 反思構想工具
+// Reflection tool
 export const reflectTaskSchema = z.object({
   summary: z
     .string()
     .min(10, {
-      message: "任務摘要不能少於10個字符，請提供更詳細的描述以確保任務目標明確",
+      message: "Task summary cannot be less than 10 characters, please provide a more detailed description to ensure clear task objectives",
     })
-    .describe("結構化的任務摘要，保持與分析階段一致以確保連續性"),
+    .describe("Structured task summary, keeping consistent with the analysis phase to ensure continuity"),
   analysis: z
     .string()
     .min(100, {
-      message: "技術分析內容不夠詳盡，請提供完整的技術分析和實施方案",
+      message: "Technical analysis content is not detailed enough, please provide complete technical analysis and implementation plan",
     })
     .describe(
-      "完整詳盡的技術分析結果，包括所有技術細節、依賴組件和實施方案，如果需要提供程式碼請使用 pseudocode 格式且僅提供高級邏輯流程和關鍵步驟避免完整代碼"
+      "Comprehensive technical analysis results, including all technical details, dependent components and implementation plans, if code is needed use pseudocode format and only provide high-level logic flow and key steps avoiding complete code"
     ),
 });
 
@@ -184,7 +184,7 @@ export async function reflectTask({
   summary,
   analysis,
 }: z.infer<typeof reflectTaskSchema>) {
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getReflectTaskPrompt({
     summary,
     analysis,
@@ -200,12 +200,12 @@ export async function reflectTask({
   };
 }
 
-// 拆分任務工具
+// Task splitting tool
 export const splitTasksSchema = z.object({
   updateMode: z
     .enum(["append", "overwrite", "selective", "clearAllTasks"])
     .describe(
-      "任務更新模式選擇：'append'(保留所有現有任務並添加新任務)、'overwrite'(清除所有未完成任務並完全替換，保留已完成任務)、'selective'(智能更新：根據任務名稱匹配更新現有任務，保留不在列表中的任務，推薦用於任務微調)、'clearAllTasks'(清除所有任務並創建備份)。\n預設為'clearAllTasks'模式，只有用戶要求變更或修改計劃內容才使用其他模式"
+      "Task update mode selection: 'append' (preserve all existing tasks and add new tasks), 'overwrite' (clear all unfinished tasks and completely replace, preserve completed tasks), 'selective' (intelligent update: match and update existing tasks by name, preserve tasks not in the list, recommended for minor task adjustments), 'clearAllTasks' (clear all tasks and create a backup).\nDefault is 'clearAllTasks' mode, only use other modes when the user requests changes or modifications to the plan content"
     ),
   tasks: z
     .array(
@@ -213,86 +213,84 @@ export const splitTasksSchema = z.object({
         name: z
           .string()
           .max(100, {
-            message: "任務名稱過長，請限制在100個字符以內",
+            message: "Task name too long, please limit to 100 characters",
           })
-          .describe("簡潔明確的任務名稱，應能清晰表達任務目的"),
+          .describe("Brief and clear task name, should be able to express the purpose of the task"),
         description: z
           .string()
           .min(10, {
-            message: "任務描述過短，請提供更詳細的內容以確保理解",
+            message: "Task description too short, please provide more detailed content to ensure understanding",
           })
-          .describe("詳細的任務描述，包含實施要點、技術細節和驗收標準"),
+          .describe("Detailed task description, including implementation points, technical details and acceptance standards"),
         implementationGuide: z
           .string()
           .describe(
-            "此特定任務的具體實現方法和步驟，請參考之前的分析結果提供精簡pseudocode"
+            "Specific implementation method and steps for this task, please refer to previous analysis results and provide simplified pseudocode"
           ),
         dependencies: z
           .array(z.string())
           .optional()
           .describe(
-            "此任務依賴的前置任務ID或任務名稱列表，支持兩種引用方式，名稱引用更直觀，是一個字串陣列"
+            "List of previous task IDs or task names this task depends on, supports two referencing methods, name referencing is more intuitive, and is a string array"
           ),
         notes: z
           .string()
           .optional()
-          .describe("補充說明、特殊處理要求或實施建議（選填）"),
+          .describe("Supplementary notes, special processing requirements or implementation suggestions (optional)"),
         relatedFiles: z
           .array(
             z.object({
               path: z
                 .string()
                 .min(1, {
-                  message: "文件路徑不能為空",
+                  message: "File path cannot be empty",
                 })
-                .describe("文件路徑，可以是相對於項目根目錄的路徑或絕對路徑"),
+                .describe("File path, can be a path relative to the project root directory or an absolute path"),
               type: z
                 .nativeEnum(RelatedFileType)
                 .describe(
-                  "文件類型 (TO_MODIFY: 待修改, REFERENCE: 參考資料, CREATE: 待建立, DEPENDENCY: 依賴文件, OTHER: 其他)"
+                  "File type (TO_MODIFY: to be modified, REFERENCE: reference material, CREATE: to be created, DEPENDENCY: dependency file, OTHER: other)"
                 ),
               description: z
                 .string()
                 .min(1, {
-                  message: "文件描述不能為空",
+                  message: "File description cannot be empty",
                 })
-                .describe("文件描述，用於說明文件的用途和內容"),
+                .describe("File description, used to explain the purpose and content of the file"),
               lineStart: z
                 .number()
                 .int()
                 .positive()
                 .optional()
-                .describe("相關代碼區塊的起始行（選填）"),
+                .describe("Starting line of the relevant code block (optional)"),
               lineEnd: z
                 .number()
                 .int()
                 .positive()
                 .optional()
-                .describe("相關代碼區塊的結束行（選填）"),
+                .describe("Ending line of the relevant code block (optional)"),
             })
           )
           .optional()
           .describe(
-            "與任務相關的文件列表，用於記錄與任務相關的代碼文件、參考資料、要建立的文件等（選填）"
+            "List of files related to the task, used to record code files, reference materials, files to be created, etc. related to the task (optional)"
           ),
         verificationCriteria: z
           .string()
           .optional()
-          .describe("此特定任務的驗證標準和檢驗方法"),
+          .describe("Verification criteria and inspection methods for this specific task"),
       })
     )
     .min(1, {
-      message: "請至少提供一個任務",
+      message: "Please provide at least one task",
     })
     .describe(
-      "結構化的任務清單，每個任務應保持原子性且有明確的完成標準，避免過於簡單的任務，簡單修改可與其他任務整合，避免任務過多"
+      "Structured task list, each task should be atomic and have a clear completion standard, avoid overly simple tasks, simple modifications can be integrated with other tasks, avoid too many tasks"
     ),
   globalAnalysisResult: z
     .string()
     .optional()
-    .describe(
-      "全局分析結果：來自 reflect_task 的完整分析結果，適用於所有任務的通用部分"
-    ),
+    .describe("Global analysis result: complete analysis result from reflect_task, applicable to the common parts of all tasks"),
 });
 
 export async function splitTasks({
@@ -301,7 +299,7 @@ export async function splitTasks({
   globalAnalysisResult,
 }: z.infer<typeof splitTasksSchema>) {
   try {
-    // 檢查 tasks 裡面的 name 是否有重複
+    // Check if there are duplicate names in the tasks
     const nameSet = new Set();
     for (const task of tasks) {
       if (nameSet.has(task.name)) {
@@ -309,7 +307,7 @@ export async function splitTasks({
           content: [
             {
               type: "text" as const,
-              text: "tasks 參數中存在重複的任務名稱，請確保每個任務名稱是唯一的",
+              text: "Duplicate task names exist in the tasks parameter, please ensure that each task name is unique",
             },
           ],
         };
@@ -317,14 +315,14 @@ export async function splitTasks({
       nameSet.add(task.name);
     }
 
-    // 根據不同的更新模式處理任務
+    // Process tasks based on different update modes
     let message = "";
     let actionSuccess = true;
     let backupFile = null;
     let createdTasks: Task[] = [];
     let allTasks: Task[] = [];
 
-    // 將任務資料轉換為符合batchCreateOrUpdateTasks的格式
+    // Convert task data to the format required for batchCreateOrUpdateTasks
     const convertedTasks = tasks.map((task) => ({
       name: task.name,
       description: task.description,
@@ -341,7 +339,7 @@ export async function splitTasks({
       })),
     }));
 
-    // 處理 clearAllTasks 模式
+    // Process clearAllTasks mode
     if (updateMode === "clearAllTasks") {
       const clearResult = await modelClearAllTasks();
 
@@ -350,16 +348,16 @@ export async function splitTasks({
         backupFile = clearResult.backupFile;
 
         try {
-          // 清空任務後再創建新任務
+          // Clear tasks and then create new tasks
           createdTasks = await batchCreateOrUpdateTasks(
             convertedTasks,
             "append",
             globalAnalysisResult
           );
-          message += `\n成功創建了 ${createdTasks.length} 個新任務。`;
+          message += `\nSuccessfully created ${createdTasks.length} new tasks.`;
         } catch (error) {
           actionSuccess = false;
-          message += `\n創建新任務時發生錯誤: ${
+          message += `\nError occurred when creating new tasks: ${
             error instanceof Error ? error.message : String(error)
           }`;
         }
@@ -368,7 +366,7 @@ export async function splitTasks({
         message = clearResult.message;
       }
     } else {
-      // 對於其他模式，直接使用 batchCreateOrUpdateTasks
+      // For other modes, directly use batchCreateOrUpdateTasks
       try {
         createdTasks = await batchCreateOrUpdateTasks(
           convertedTasks,
@@ -376,34 +374,34 @@ export async function splitTasks({
           globalAnalysisResult
         );
 
-        // 根據不同的更新模式生成消息
+        // Generate messages based on different update modes
         switch (updateMode) {
           case "append":
-            message = `成功追加了 ${createdTasks.length} 個新任務。`;
+            message = `Successfully appended ${createdTasks.length} new tasks.`;
             break;
           case "overwrite":
-            message = `成功清除未完成任務並創建了 ${createdTasks.length} 個新任務。`;
+            message = `Successfully cleared unfinished tasks and created ${createdTasks.length} new tasks.`;
             break;
           case "selective":
-            message = `成功選擇性更新/創建了 ${createdTasks.length} 個任務。`;
+            message = `Successfully selectively updated/created ${createdTasks.length} tasks.`;
             break;
         }
       } catch (error) {
         actionSuccess = false;
-        message = `任務創建失敗：${
+        message = `Task creation failed: ${
           error instanceof Error ? error.message : String(error)
         }`;
       }
     }
 
-    // 獲取所有任務用於顯示依賴關係
+    // Get all tasks for displaying dependency relationships
     try {
       allTasks = await getAllTasks();
     } catch (error) {
-      allTasks = [...createdTasks]; // 如果獲取失敗，至少使用剛創建的任務
+      allTasks = [...createdTasks]; // If retrieval fails, use just created tasks
     }
 
-    // 使用prompt生成器獲取最終prompt
+    // Use prompt generator to get the final prompt
     const prompt = getSplitTasksPrompt({
       updateMode,
       createdTasks,
@@ -431,7 +429,7 @@ export async function splitTasks({
         {
           type: "text" as const,
           text:
-            "執行任務拆分時發生錯誤: " +
+            "Error occurred when executing task splitting: " +
             (error instanceof Error ? error.message : String(error)),
         },
       ],
@@ -442,10 +440,10 @@ export async function splitTasks({
 export const listTasksSchema = z.object({
   status: z
     .enum(["all", "pending", "in_progress", "completed"])
-    .describe("要列出的任務狀態，可選擇 'all' 列出所有任務，或指定具體狀態"),
+    .describe("Task status to list, can choose 'all' to list all tasks, or specify specific status"),
 });
 
-// 列出任務工具
+// List tasks tool
 export async function listTasks({ status }: z.infer<typeof listTasksSchema>) {
   const tasks = await getAllTasks();
   let filteredTasks = tasks;
@@ -474,9 +472,9 @@ export async function listTasks({ status }: z.infer<typeof listTasksSchema>) {
       content: [
         {
           type: "text" as const,
-          text: `## 系統通知\n\n目前系統中沒有${
-            status === "all" ? "任何" : `任何 ${status} 的`
-          }任務。請查詢其他狀態任務或先使用「split_tasks」工具創建任務結構，再進行後續操作。`,
+          text: `## System Notification\n\nCurrently, there are no ${
+            status === "all" ? "any" : `any ${status} `
+          }tasks in the system. Please query other status tasks or first use the "split_tasks" tool to create task structure, then proceed with subsequent operations.`,
         },
       ],
     };
@@ -490,7 +488,7 @@ export async function listTasks({ status }: z.infer<typeof listTasksSchema>) {
     return acc;
   }, {} as Record<string, typeof tasks>);
 
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getListTasksPrompt({
     status,
     tasks: tasksByStatus,
@@ -507,82 +505,82 @@ export async function listTasks({ status }: z.infer<typeof listTasksSchema>) {
   };
 }
 
-// 執行任務工具
+// Execute task tool
 export const executeTaskSchema = z.object({
   taskId: z
     .string()
     .uuid({
-      message: "任務ID必須是有效的UUID格式",
+      message: "Task ID must be a valid UUID format",
     })
-    .describe("待執行任務的唯一標識符，必須是系統中存在的有效任務ID"),
+    .describe("Unique identifier of the task to execute, must be an existing valid task ID in the system"),
 });
 
 export async function executeTask({
   taskId,
 }: z.infer<typeof executeTaskSchema>) {
   try {
-    // 檢查任務是否存在
+    // Check if the task exists
     const task = await getTaskById(taskId);
     if (!task) {
       return {
         content: [
           {
             type: "text" as const,
-            text: `找不到ID為 \`${taskId}\` 的任務。請確認ID是否正確。`,
+            text: `Task with ID \`${taskId}\` not found. Please confirm if the ID is correct.`,
           },
         ],
       };
     }
 
-    // 檢查任務是否可以執行（依賴任務都已完成）
+    // Check if the task can be executed (all dependencies are completed)
     const executionCheck = await canExecuteTask(taskId);
     if (!executionCheck.canExecute) {
       const blockedByTasksText =
         executionCheck.blockedBy && executionCheck.blockedBy.length > 0
-          ? `被以下未完成的依賴任務阻擋: ${executionCheck.blockedBy.join(", ")}`
-          : "無法確定阻擋原因";
+          ? `Blocked by the following unfinished dependency tasks: ${executionCheck.blockedBy.join(", ")}`
+          : "Unable to determine blocking reason";
 
       return {
         content: [
           {
             type: "text" as const,
-            text: `任務 "${task.name}" (ID: \`${taskId}\`) 目前無法執行。${blockedByTasksText}`,
+            text: `Task "${task.name}" (ID: \`${taskId}\`) cannot be executed at this time. ${blockedByTasksText}`,
           },
         ],
       };
     }
 
-    // 如果任務已經標記為「進行中」，提示用戶
+    // If the task is already marked as "in progress", prompt the user
     if (task.status === TaskStatus.IN_PROGRESS) {
       return {
         content: [
           {
             type: "text" as const,
-            text: `任務 "${task.name}" (ID: \`${taskId}\`) 已經處於進行中狀態。`,
+            text: `Task "${task.name}" (ID: \`${taskId}\`) is already in progress.`,
           },
         ],
       };
     }
 
-    // 如果任務已經標記為「已完成」，提示用戶
+    // If the task is already marked as "completed", prompt the user
     if (task.status === TaskStatus.COMPLETED) {
       return {
         content: [
           {
             type: "text" as const,
-            text: `任務 "${task.name}" (ID: \`${taskId}\`) 已經標記為完成。如需重新執行，請先使用 delete_task 刪除該任務並重新創建。`,
+            text: `Task "${task.name}" (ID: \`${taskId}\`) has been marked as completed. If you need to execute it again, please delete the task and recreate it first.`,
           },
         ],
       };
     }
 
-    // 更新任務狀態為「進行中」
+    // Update task status to "in progress"
     await updateTaskStatus(taskId, TaskStatus.IN_PROGRESS);
 
-    // 評估任務複雜度
+    // Assess task complexity
     const complexityResult = await assessTaskComplexity(taskId);
 
-    // 將複雜度結果轉換為適當的格式
+    // Convert complexity result to appropriate format
     const complexityAssessment = complexityResult
       ? {
           level: complexityResult.level,
@@ -594,7 +592,7 @@ export async function executeTask({
         }
       : undefined;
 
-    // 獲取依賴任務，用於顯示完成摘要
+    // Get dependency tasks, for displaying completion summary
     const dependencyTasks: Task[] = [];
     if (task.dependencies && task.dependencies.length > 0) {
       for (const dep of task.dependencies) {
@@ -605,7 +603,7 @@ export async function executeTask({
       }
     }
 
-    // 加載任務相關的文件內容
+    // Load task-related file content
     let relatedFilesSummary = "";
     if (task.relatedFiles && task.relatedFiles.length > 0) {
       try {
@@ -622,7 +620,7 @@ export async function executeTask({
       }
     }
 
-    // 使用prompt生成器獲取最終prompt
+    // Use prompt generator to get the final prompt
     const prompt = getExecuteTaskPrompt({
       task,
       complexityAssessment,
@@ -643,7 +641,7 @@ export async function executeTask({
       content: [
         {
           type: "text" as const,
-          text: `執行任務時發生錯誤: ${
+          text: `Error occurred when executing task: ${
             error instanceof Error ? error.message : String(error)
           }`,
         },
@@ -652,12 +650,12 @@ export async function executeTask({
   }
 }
 
-// 檢驗任務工具
+// Verify task tool
 export const verifyTaskSchema = z.object({
   taskId: z
     .string()
-    .uuid({ message: "任務ID格式無效，請提供有效的UUID格式" })
-    .describe("待驗證任務的唯一標識符，必須是系統中存在的有效任務ID"),
+    .uuid({ message: "Invalid task ID format, please provide a valid UUID format" })
+    .describe("Unique identifier of the task to verify, must be an existing valid task ID in the system"),
 });
 
 export async function verifyTask({ taskId }: z.infer<typeof verifyTaskSchema>) {
@@ -668,7 +666,7 @@ export async function verifyTask({ taskId }: z.infer<typeof verifyTaskSchema>) {
       content: [
         {
           type: "text" as const,
-          text: `## 系統錯誤\n\n找不到ID為 \`${taskId}\` 的任務。請使用「list_tasks」工具確認有效的任務ID後再試。`,
+          text: `## System Error\n\nTask with ID \`${taskId}\` not found. Please use the "list_tasks" tool to confirm a valid task ID before trying again.`,
         },
       ],
       isError: true,
@@ -680,14 +678,14 @@ export async function verifyTask({ taskId }: z.infer<typeof verifyTaskSchema>) {
       content: [
         {
           type: "text" as const,
-          text: `## 狀態錯誤\n\n任務 "${task.name}" (ID: \`${task.id}\`) 當前狀態為 "${task.status}"，不處於進行中狀態，無法進行檢驗。\n\n只有狀態為「進行中」的任務才能進行檢驗。請先使用「execute_task」工具開始任務執行。`,
+          text: `## Status Error\n\nTask "${task.name}" (ID: \`${task.id}\`) current status is "${task.status}", not in progress state, cannot be verified.\n\nOnly tasks in "in progress" state can be verified. Please use the "execute_task" tool to start task execution first.`,
         },
       ],
       isError: true,
     };
   }
 
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getVerifyTaskPrompt({ task });
 
   return {
@@ -700,22 +698,22 @@ export async function verifyTask({ taskId }: z.infer<typeof verifyTaskSchema>) {
   };
 }
 
-// 完成任務工具
+// Complete task tool
 export const completeTaskSchema = z.object({
   taskId: z
     .string()
-    .uuid({ message: "任務ID格式無效，請提供有效的UUID格式" })
+    .uuid({ message: "Invalid task ID format, please provide a valid UUID format" })
     .describe(
-      "待標記為完成的任務唯一標識符，必須是狀態為「進行中」的有效任務ID"
+      "Unique identifier of the task to mark as completed, must be a valid unfinished task ID in the status of \"in progress\""
     ),
   summary: z
     .string()
     .min(30, {
-      message: "任務摘要太簡短，請提供更詳細的完成報告，包含實施結果和主要決策",
+      message: "Task summary too short, please provide a more detailed completion report, including implementation results and main decisions",
     })
     .optional()
     .describe(
-      "任務完成摘要，簡潔描述實施結果和重要決策（選填，如未提供將自動生成）"
+      "Task completion summary, concise description of implementation results and important decisions (optional, will be automatically generated if not provided)"
     ),
 });
 
@@ -730,7 +728,7 @@ export async function completeTask({
       content: [
         {
           type: "text" as const,
-          text: `## 系統錯誤\n\n找不到ID為 \`${taskId}\` 的任務。請使用「list_tasks」工具確認有效的任務ID後再試。`,
+          text: `## System Error\n\nTask with ID \`${taskId}\` not found. Please use the "list_tasks" tool to confirm a valid task ID before trying again.`,
         },
       ],
       isError: true,
@@ -742,25 +740,25 @@ export async function completeTask({
       content: [
         {
           type: "text" as const,
-          text: `## 狀態錯誤\n\n任務 "${task.name}" (ID: \`${task.id}\`) 當前狀態為 "${task.status}"，不是進行中狀態，無法標記為完成。\n\n只有狀態為「進行中」的任務才能標記為完成。請先使用「execute_task」工具開始任務執行。`,
+          text: `## Status Error\n\nTask "${task.name}" (ID: \`${task.id}\`) current status is "${task.status}", not in progress state, cannot mark as completed.\n\nOnly tasks in "in progress" state can be marked as completed. Please use the "execute_task" tool to start task execution first.`,
         },
       ],
       isError: true,
     };
   }
 
-  // 處理摘要信息
+  // Process summary information
   let taskSummary = summary;
   if (!taskSummary) {
-    // 自動生成摘要
+    // Automatically generate summary
     taskSummary = generateTaskSummary(task.name, task.description);
   }
 
-  // 更新任務狀態為已完成，並添加摘要
+  // Update task status to completed and add summary
   await updateTaskStatus(taskId, TaskStatus.COMPLETED);
   await updateTaskSummary(taskId, taskSummary);
 
-  // 使用prompt生成器獲取最終prompt
+  // Use prompt generator to get the final prompt
   const prompt = getCompleteTaskPrompt({
     task,
     completionTime: new Date().toISOString(),
@@ -776,12 +774,12 @@ export async function completeTask({
   };
 }
 
-// 刪除任務工具
+// Delete task tool
 export const deleteTaskSchema = z.object({
   taskId: z
     .string()
-    .uuid({ message: "任務ID格式無效，請提供有效的UUID格式" })
-    .describe("待刪除任務的唯一標識符，必須是系統中存在且未完成的任務ID"),
+    .uuid({ message: "Invalid task ID format, please provide a valid UUID format" })
+    .describe("Unique identifier of the task to delete, must be an existing unfinished task ID in the system"),
 });
 
 export async function deleteTask({ taskId }: z.infer<typeof deleteTaskSchema>) {
@@ -829,21 +827,21 @@ export async function deleteTask({ taskId }: z.infer<typeof deleteTaskSchema>) {
   };
 }
 
-// 清除所有任務工具
+// Clear all tasks tool
 export const clearAllTasksSchema = z.object({
   confirm: z
     .boolean()
     .refine((val) => val === true, {
       message:
-        "必須明確確認清除操作，請將 confirm 參數設置為 true 以確認此危險操作",
+        "Must clearly confirm the clear operation, please set the confirm parameter to true to confirm this dangerous operation",
     })
-    .describe("確認刪除所有未完成的任務（此操作不可逆）"),
+    .describe("Confirm to delete all unfinished tasks (this operation is irreversible)"),
 });
 
 export async function clearAllTasks({
   confirm,
 }: z.infer<typeof clearAllTasksSchema>) {
-  // 安全檢查：如果沒有確認，則拒絕操作
+  // Security check: If not confirmed, refuse operation
   if (!confirm) {
     return {
       content: [
@@ -855,7 +853,7 @@ export async function clearAllTasks({
     };
   }
 
-  // 檢查是否真的有任務需要清除
+  // Check if there are really tasks to clear
   const allTasks = await getAllTasks();
   if (allTasks.length === 0) {
     return {
@@ -868,7 +866,7 @@ export async function clearAllTasks({
     };
   }
 
-  // 執行清除操作
+  // Execute clear operation
   const result = await modelClearAllTasks();
 
   return {
@@ -886,58 +884,58 @@ export async function clearAllTasks({
   };
 }
 
-// 更新任務內容工具
+// Update task content tool
 export const updateTaskContentSchema = z.object({
   taskId: z
     .string()
-    .uuid({ message: "任務ID格式無效，請提供有效的UUID格式" })
-    .describe("待更新任務的唯一標識符，必須是系統中存在且未完成的任務ID"),
-  name: z.string().optional().describe("任務的新名稱（選填）"),
-  description: z.string().optional().describe("任務的新描述內容（選填）"),
-  notes: z.string().optional().describe("任務的新補充說明（選填）"),
+    .uuid({ message: "Invalid task ID format, please provide a valid UUID format" })
+    .describe("Unique identifier of the task to update, must be an existing and unfinished task ID in the system"),
+  name: z.string().optional().describe("New name for the task (optional)"),
+  description: z.string().optional().describe("New description content for the task (optional)"),
+  notes: z.string().optional().describe("New supplementary notes for the task (optional)"),
   dependencies: z
     .array(z.string())
     .optional()
-    .describe("任務的新依賴關係（選填）"),
+    .describe("New dependency relationships for the task (optional)"),
   relatedFiles: z
     .array(
       z.object({
         path: z
           .string()
-          .min(1, { message: "文件路徑不能為空，請提供有效的文件路徑" })
-          .describe("文件路徑，可以是相對於項目根目錄的路徑或絕對路徑"),
+          .min(1, { message: "File path cannot be empty, please provide a valid file path" })
+          .describe("File path, can be a path relative to the project root directory or an absolute path"),
         type: z
           .nativeEnum(RelatedFileType)
           .describe(
-            "文件與任務的關係類型 (TO_MODIFY, REFERENCE, CREATE, DEPENDENCY, OTHER)"
+            "Relationship type between the file and task (TO_MODIFY, REFERENCE, CREATE, DEPENDENCY, OTHER)"
           ),
-        description: z.string().optional().describe("文件的補充描述（選填）"),
+        description: z.string().optional().describe("Supplementary description of the file (optional)"),
         lineStart: z
           .number()
           .int()
           .positive()
           .optional()
-          .describe("相關代碼區塊的起始行（選填）"),
+          .describe("Starting line of the relevant code block (optional)"),
         lineEnd: z
           .number()
           .int()
           .positive()
           .optional()
-          .describe("相關代碼區塊的結束行（選填）"),
+          .describe("Ending line of the relevant code block (optional)"),
       })
     )
     .optional()
     .describe(
-      "與任務相關的文件列表，用於記錄與任務相關的代碼文件、參考資料、要建立的檔案等（選填）"
+      "List of files related to the task, used to record code files, reference materials, files to be created, etc. related to the task (optional)"
     ),
   implementationGuide: z
     .string()
     .optional()
-    .describe("任務的新實現指南（選填）"),
+    .describe("New implementation guide for the task (optional)"),
   verificationCriteria: z
     .string()
     .optional()
-    .describe("任務的新驗證標準（選填）"),
+    .describe("New verification criteria for the task (optional)"),
 });
 
 export async function updateTaskContent({
@@ -964,7 +962,7 @@ export async function updateTaskContent({
               text: getUpdateTaskContentPrompt({
                 taskId,
                 validationError:
-                  "行號設置無效：必須同時設置起始行和結束行，且起始行必須小於結束行",
+                  "Invalid line number settings: must set both start and end lines, and the start line must be less than the end line",
               }),
             },
           ],
@@ -997,7 +995,7 @@ export async function updateTaskContent({
     };
   }
 
-  // 獲取任務以檢查它是否存在
+  // Get the task to check if it exists
   const task = await getTaskById(taskId);
 
   if (!task) {
@@ -1014,19 +1012,19 @@ export async function updateTaskContent({
     };
   }
 
-  // 記錄要更新的任務和內容
-  let updateSummary = `準備更新任務：${task.name} (ID: ${task.id})`;
-  if (name) updateSummary += `，新名稱：${name}`;
-  if (description) updateSummary += `，更新描述`;
-  if (notes) updateSummary += `，更新注記`;
+  // Record the task and content to be updated
+  let updateSummary = `Preparing to update task: ${task.name} (ID: ${task.id})`;
+  if (name) updateSummary += `, new name: ${name}`;
+  if (description) updateSummary += `, update description`;
+  if (notes) updateSummary += `, update notes`;
   if (relatedFiles)
-    updateSummary += `，更新相關文件 (${relatedFiles.length} 個)`;
+    updateSummary += `, update related files (${relatedFiles.length})`;
   if (dependencies)
-    updateSummary += `，更新依賴關係 (${dependencies.length} 個)`;
-  if (implementationGuide) updateSummary += `，更新實現指南`;
-  if (verificationCriteria) updateSummary += `，更新驗證標準`;
+    updateSummary += `, update dependencies (${dependencies.length})`;
+  if (implementationGuide) updateSummary += `, update implementation guide`;
+  if (verificationCriteria) updateSummary += `, update verification criteria`;
 
-  // 執行更新操作
+  // Execute the update operation
   const result = await modelUpdateTaskContent(taskId, {
     name,
     description,
@@ -1054,26 +1052,26 @@ export async function updateTaskContent({
   };
 }
 
-// 查詢任務工具
+// Query task tool
 export const queryTaskSchema = z.object({
   query: z
     .string()
     .min(1, {
-      message: "查詢內容不能為空，請提供任務ID或搜尋關鍵字",
+      message: "Query content cannot be empty, please provide task ID or search keywords",
     })
-    .describe("搜尋查詢文字，可以是任務ID或多個關鍵字（空格分隔）"),
+    .describe("Search query text, can be task ID or multiple keywords (space separated)"),
   isId: z
     .boolean()
     .optional()
     .default(false)
-    .describe("指定是否為ID查詢模式，默認為否（關鍵字模式）"),
+    .describe("Specify whether it's ID query mode, default is no (keyword mode)"),
   page: z
     .number()
     .int()
     .positive()
     .optional()
     .default(1)
-    .describe("分頁頁碼，默認為第1頁"),
+    .describe("Page number, default is page 1"),
   pageSize: z
     .number()
     .int()
@@ -1082,7 +1080,7 @@ export const queryTaskSchema = z.object({
     .max(20)
     .optional()
     .default(5)
-    .describe("每頁顯示的任務數量，默認為5筆，最大20筆"),
+    .describe("Number of tasks to display per page, default is 5, maximum 20"),
 });
 
 export async function queryTask({
@@ -1092,10 +1090,10 @@ export async function queryTask({
   pageSize = 3,
 }: z.infer<typeof queryTaskSchema>) {
   try {
-    // 使用系統指令搜尋函數
+    // Use system command search function
     const results = await searchTasksWithCommand(query, isId, page, pageSize);
 
-    // 使用prompt生成器獲取最終prompt
+    // Use prompt generator to get the final prompt
     const prompt = getQueryTaskPrompt({
       query,
       isId,
@@ -1119,7 +1117,7 @@ export async function queryTask({
       content: [
         {
           type: "text" as const,
-          text: `## 系統錯誤\n\n查詢任務時發生錯誤: ${
+          text: `## System Error\n\nError occurred when querying tasks: ${
             error instanceof Error ? error.message : String(error)
           }`,
         },
@@ -1129,42 +1127,42 @@ export async function queryTask({
   }
 }
 
-// 取得完整任務詳情的參數
+// Get complete task detail parameter
 export const getTaskDetailSchema = z.object({
   taskId: z
     .string()
     .min(1, {
-      message: "任務ID不能為空，請提供有效的任務ID",
+      message: "Task ID cannot be empty, please provide a valid task ID",
     })
-    .describe("欲檢視詳情的任務ID"),
+    .describe("Task ID to view details"),
 });
 
-// 取得任務完整詳情
+// Get complete task detail
 export async function getTaskDetail({
   taskId,
 }: z.infer<typeof getTaskDetailSchema>) {
   try {
-    // 使用 searchTasksWithCommand 替代 getTaskById，實現記憶區任務搜索
-    // 設置 isId 為 true，表示按 ID 搜索；頁碼為 1，每頁大小為 1
+    // Use searchTasksWithCommand instead of getTaskById to implement memory area task search
+    // Set isId to true to search by ID; page number is 1, page size is 1
     const result = await searchTasksWithCommand(taskId, true, 1, 1);
 
-    // 檢查是否找到任務
+    // Check if the task is found
     if (result.tasks.length === 0) {
       return {
         content: [
           {
             type: "text" as const,
-            text: `## 錯誤\n\n找不到ID為 \`${taskId}\` 的任務。請確認任務ID是否正確。`,
+            text: `## Error\n\nTask with ID \`${taskId}\` not found. Please confirm if the task ID is correct.`,
           },
         ],
         isError: true,
       };
     }
 
-    // 獲取找到的任務（第一個也是唯一的一個）
+    // Get the found task (the first and only one)
     const task = result.tasks[0];
 
-    // 使用prompt生成器獲取最終prompt
+    // Use prompt generator to get the final prompt
     const prompt = getGetTaskDetailPrompt({
       taskId,
       task,
@@ -1179,7 +1177,7 @@ export async function getTaskDetail({
       ],
     };
   } catch (error) {
-    // 使用prompt生成器獲取錯誤訊息
+    // Use prompt generator to get error message
     const errorPrompt = getGetTaskDetailPrompt({
       taskId,
       error: error instanceof Error ? error.message : String(error),

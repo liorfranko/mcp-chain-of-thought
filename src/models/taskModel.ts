@@ -897,40 +897,40 @@ export async function searchTasksWithCommand(
   };
 }
 
-// 根據平台生成適當的搜尋命令
+// Generate appropriate search command based on platform
 function generateSearchCommand(
   query: string,
   isId: boolean,
   memoryDir: string
 ): string {
-  // 安全地轉義用戶輸入
+  // Safely escape user input
   const safeQuery = escapeShellArg(query);
   const keywords = safeQuery.split(/\s+/).filter((k) => k.length > 0);
 
-  // 檢測操作系統類型
+  // Detect operating system type
   const isWindows = process.platform === "win32";
 
   if (isWindows) {
-    // Windows環境，使用findstr命令
+    // Windows environment, use findstr command
     if (isId) {
-      // ID搜尋
+      // ID search
       return `findstr /s /i /c:"${safeQuery}" "${memoryDir}\\*.json"`;
     } else if (keywords.length === 1) {
-      // 單一關鍵字
+      // Single keyword
       return `findstr /s /i /c:"${safeQuery}" "${memoryDir}\\*.json"`;
     } else {
-      // 多關鍵字搜尋 - Windows中使用PowerShell
+      // Multiple keyword search - Use PowerShell in Windows
       const keywordPatterns = keywords.map((k) => `'${k}'`).join(" -and ");
       return `powershell -Command "Get-ChildItem -Path '${memoryDir}' -Filter *.json -Recurse | Select-String -Pattern ${keywordPatterns} | ForEach-Object { $_.Path }"`;
     }
   } else {
-    // Unix/Linux/MacOS環境，使用grep命令
+    // Unix/Linux/MacOS environment, use grep command
     if (isId) {
       return `grep -r --include="*.json" "${safeQuery}" "${memoryDir}"`;
     } else if (keywords.length === 1) {
       return `grep -r --include="*.json" "${safeQuery}" "${memoryDir}"`;
     } else {
-      // 多關鍵字用管道連接多個grep命令
+      // Multiple keywords connected with pipe for multiple grep commands
       const firstKeyword = escapeShellArg(keywords[0]);
       const otherKeywords = keywords.slice(1).map((k) => escapeShellArg(k));
 
@@ -944,18 +944,18 @@ function generateSearchCommand(
 }
 
 /**
- * 安全地轉義shell參數，防止命令注入
+ * Safely escape shell parameters to prevent command injection
  */
 function escapeShellArg(arg: string): string {
   if (!arg) return "";
 
-  // 移除所有控制字符和特殊字符
+  // Remove all control characters and special characters
   return arg
-    .replace(/[\x00-\x1F\x7F]/g, "") // 控制字符
-    .replace(/[&;`$"'<>|]/g, ""); // Shell 特殊字符
+    .replace(/[\x00-\x1F\x7F]/g, "") // Control characters
+    .replace(/[&;`$"'<>|]/g, ""); // Shell special characters
 }
 
-// 過濾當前任務列表
+// Filter current tasks
 function filterCurrentTasks(
   tasks: Task[],
   query: string,

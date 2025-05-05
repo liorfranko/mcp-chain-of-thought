@@ -2,41 +2,41 @@ import { z } from "zod";
 import { getInitProjectRulesPrompt } from "../prompts/index.js";
 import { getRulesFilePath, ensureRulesFileExists } from "../utils/pathUtils.js";
 
-// 定義schema
+// Define schema
 export const initProjectRulesSchema = z.object({});
 
 /**
- * 初始化專案規範工具函數
- * 提供建立規範文件的指導
+ * Initialize project rules tool function
+ * Provides guidance for creating specification documents
  */
 export async function initProjectRules() {
   try {
-    // 從生成器獲取提示詞
+    // Get prompts from generator
     const promptContent = getInitProjectRulesPrompt();
 
-    // 確保 DATA_DIR 目錄中存在 rules.md 文件
+    // Ensure rules.md file exists in the DATA_DIR directory
     await ensureRulesFileExists();
 
-    // 輸出規則文件的路徑，幫助用戶找到文件
+    // Output the path to the rules file to help users find it
     const rulesPath = getRulesFilePath();
 
-    // 返回成功響應
+    // Return success response
     return {
       content: [
         {
           type: "text" as const,
-          text: promptContent + `\n\n規則文件將位於: ${rulesPath}`,
+          text: promptContent + `\n\nRules file will be located at: ${rulesPath}`,
         },
       ],
     };
   } catch (error) {
-    // 錯誤處理
-    const errorMessage = error instanceof Error ? error.message : "未知錯誤";
+    // Error handling
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return {
       content: [
         {
           type: "text" as const,
-          text: `初始化專案規範時發生錯誤: ${errorMessage}`,
+          text: `Error initializing project rules: ${errorMessage}`,
         },
       ],
     };

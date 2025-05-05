@@ -1,6 +1,6 @@
 /**
- * planTask prompt 生成器
- * 負責將模板和參數組合成最終的 prompt
+ * planTask prompt generator
+ * Responsible for combining templates and parameters into the final prompt
  */
 
 import {
@@ -12,7 +12,7 @@ import { getRulesFilePath } from "../../utils/pathUtils.js";
 import { Task, TaskDependency } from "../../types/index.js";
 
 /**
- * planTask prompt 參數介面
+ * planTask prompt parameter interface
  */
 export interface PlanTaskPromptParams {
   description: string;
@@ -24,9 +24,9 @@ export interface PlanTaskPromptParams {
 }
 
 /**
- * 獲取 planTask 的完整 prompt
- * @param params prompt 參數
- * @returns 生成的 prompt
+ * Get the complete planTask prompt
+ * @param params prompt parameters
+ * @returns generated prompt
  */
 export function getPlanTaskPrompt(params: PlanTaskPromptParams): string {
   let tasksContent = "";
@@ -36,21 +36,21 @@ export function getPlanTaskPrompt(params: PlanTaskPromptParams): string {
     params.pendingTasks
   ) {
     const allTasks = [...params.completedTasks, ...params.pendingTasks];
-    // 如果存在任務，則添加相關資訊
+    // If tasks exist, add related information
     if (allTasks.length > 0) {
       let completeTasksContent = "no completed tasks";
 
-      // 處理已完成任務
+      // Process completed tasks
       if (params.completedTasks.length > 0) {
         completeTasksContent = "";
-        // 最多顯示10個已完成任務，避免提示詞過長
+        // Show at most 10 completed tasks to avoid prompt being too long
         const tasksToShow =
           params.completedTasks.length > 10
             ? params.completedTasks.slice(0, 10)
             : params.completedTasks;
 
         tasksToShow.forEach((task, index) => {
-          // 產生完成時間資訊 (如果有)
+          // Generate completion time information (if available)
           const completedTimeText = task.completedAt
             ? `   - completedAt：${task.completedAt.toLocaleString()}\n`
             : "";
@@ -62,20 +62,20 @@ export function getPlanTaskPrompt(params: PlanTaskPromptParams): string {
               ? task.description.substring(0, 100) + "..."
               : task.description
           }\n${completedTimeText}`;
-          // 如果不是最後一個任務，添加換行
+          // If not the last task, add a line break
           if (index < tasksToShow.length - 1) {
             completeTasksContent += "\n\n";
           }
         });
 
-        // 如果有更多任務，顯示提示
+        // If there are more tasks, show a hint
         if (params.completedTasks.length > 10) {
-          completeTasksContent += `\n\n*（僅顯示前10個，共 ${params.completedTasks.length} 個）*\n`;
+          completeTasksContent += `\n\n*（Only showing first 10 of ${params.completedTasks.length} tasks）*\n`;
         }
       }
 
       let unfinishedTasksContent = "no pending tasks";
-      // 處理未完成任務
+      // Process pending tasks
       if (params.pendingTasks && params.pendingTasks.length > 0) {
         unfinishedTasksContent = "";
 
@@ -95,7 +95,7 @@ export function getPlanTaskPrompt(params: PlanTaskPromptParams): string {
               : task.description
           }\n   - status：${task.status}\n${dependenciesText}`;
 
-          // 如果不是最後一個任務，添加換行
+          // If not the last task, add a line break
           if (index < (params.pendingTasks?.length ?? 0) - 1) {
             unfinishedTasksContent += "\n\n";
           }
@@ -127,6 +127,6 @@ export function getPlanTaskPrompt(params: PlanTaskPromptParams): string {
     thoughtTemplate: thoughtTemplate,
   });
 
-  // 載入可能的自定義 prompt
+  // Load possible custom prompt
   return loadPrompt(prompt, "PLAN_TASK");
 }
