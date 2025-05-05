@@ -4,7 +4,7 @@
 
 ## Overview
 
-The Shrimp Task Manager system allows users to customize the guiding content (prompts) for various tool functions through environment variables. This provides a high degree of flexibility, enabling you to adjust the behavior of the AI assistant according to specific requirements without modifying the code. There are two customization methods:
+The Chain of Thought system allows users to customize the guiding content (prompts) for various tool functions through environment variables. This provides a high degree of flexibility, enabling you to adjust the behavior of the AI assistant according to specific requirements without modifying the code. There are two customization methods:
 
 1. **Override Mode**: Completely replace the original prompt
 2. **Append Mode**: Add new content to the existing prompt
@@ -58,9 +58,9 @@ You can also set environment variables directly in the Cursor IDE's `mcp.json` c
 ```json
 {
   "mcpServers": {
-    "mcp-shrimp-task-manager": {
+    "mcp-chain-of-thought": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-chain-of-thought/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data",
         "MCP_PROMPT_PLAN_TASK": "Custom task planning prompt",

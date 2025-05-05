@@ -16,19 +16,19 @@
 - [📄 License](#license)
 - [🤖 Recommended Models](#recommended)
 
-# MCP Shrimp Task Manager
+# MCP Chain of Thought
 
-[![Shrimp Task Manager Demo](/docs/yt.png)](https://www.youtube.com/watch?v=Arzu0lV09so)
+[![Chain of Thought Demo](/docs/yt.png)](https://www.youtube.com/watch?v=Arzu0lV09so)
 
-[![smithery badge](https://smithery.ai/badge/@cjo4m06/mcp-shrimp-task-manager)](https://smithery.ai/server/@cjo4m06/mcp-shrimp-task-manager)
+[![smithery badge](https://smithery.ai/badge/@liorfranko/mcp-chain-of-thought)](https://smithery.ai/server/@liorfranko/mcp-chain-of-thought)
 
 > 🚀 An intelligent task management system based on Model Context Protocol (MCP), providing an efficient programming workflow framework for AI Agents.
 
-<a href="https://glama.ai/mcp/servers/@cjo4m06/mcp-shrimp-task-manager">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@cjo4m06/mcp-shrimp-task-manager/badge" alt="Shrimp Task Manager MCP server" />
+<a href="https://glama.ai/mcp/servers/@liorfranko/mcp-chain-of-thought">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@liorfranko/mcp-chain-of-thought/badge" alt="Chain of Thought MCP server" />
 </a>
 
-Shrimp Task Manager guides Agents through structured workflows for systematic programming, enhancing task memory management mechanisms, and effectively avoiding redundant and repetitive coding work.
+Chain of Thought guides Agents through structured workflows for systematic programming, enhancing task memory management mechanisms, and effectively avoiding redundant and repetitive coding work.
 
 ## ✨ <a id="features1"></a>Features
 
@@ -46,11 +46,11 @@ Shrimp Task Manager guides Agents through structured workflows for systematic pr
 
 ## 🧭 <a id="usage-guide"></a>Usage Guide
 
-Shrimp Task Manager offers a structured approach to AI-assisted programming through guided workflows and systematic task management.
+Chain of Thought offers a structured approach to AI-assisted programming through guided workflows and systematic task management.
 
-### What is Shrimp?
+### What is Chain of Thought?
 
-Shrimp is essentially a prompt template that guides AI Agents to better understand and work with your project. It uses a series of prompts to ensure the Agent aligns closely with your project's specific needs and conventions.
+Chain of Thought is essentially a prompt template that guides AI Agents to better understand and work with your project. It uses a series of prompts to ensure the Agent aligns closely with your project's specific needs and conventions.
 
 ### First-Time Setup
 
@@ -62,7 +62,7 @@ To develop or update features, use the command "plan task [your description]". T
 
 ### Feedback Mechanism
 
-During the planning process, Shrimp guides the Agent through multiple steps of thinking. You can review this process and provide feedback if you feel it's heading in the wrong direction. Simply interrupt and share your perspective - the Agent will incorporate your feedback and continue the planning process.
+During the planning process, Chain of Thought guides the Agent through multiple steps of thinking. You can review this process and provide feedback if you feel it's heading in the wrong direction. Simply interrupt and share your perspective - the Agent will incorporate your feedback and continue the planning process.
 
 ### Task Execution
 
@@ -82,7 +82,7 @@ You can customize system prompts by setting the `TEMPLATES_USE` environment vari
 
 ## 🧠 <a id="task-memory-function"></a>Task Memory Function
 
-Shrimp Task Manager has long-term memory capabilities, automatically saving task execution history and providing reference experiences when planning new tasks.
+Chain of Thought has long-term memory capabilities, automatically saving task execution history and providing reference experiences when planning new tasks.
 
 ### Key Features
 
@@ -146,10 +146,10 @@ This tool is particularly valuable when your codebase expands or undergoes signi
 
 ### Installing via Smithery
 
-To install Shrimp Task Manager for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@cjo4m06/mcp-shrimp-task-manager):
+To install Chain of Thought for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@liorfranko/mcp-chain-of-thought):
 
 ```bash
-npx -y @smithery/cli install @cjo4m06/mcp-shrimp-task-manager --client claude
+npx -y @smithery/cli install @liorfranko/mcp-chain-of-thought --client claude
 ```
 
 ### Manual Installation
@@ -164,11 +164,11 @@ npm run build
 
 ## 🔌 <a id="clients"></a>Using with MCP-Compatible Clients
 
-Shrimp Task Manager can be used with any client that supports the Model Context Protocol, such as Cursor IDE.
+Chain of Thought can be used with any client that supports the Model Context Protocol, such as Cursor IDE.
 
 ### Configuration in Cursor IDE
 
-Shrimp Task Manager offers two configuration methods: global configuration and project-specific configuration.
+Chain of Thought offers two configuration methods: global configuration and project-specific configuration.
 
 #### Global Configuration
 
@@ -178,9 +178,9 @@ Shrimp Task Manager offers two configuration methods: global configuration and p
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "chain-of-thought": {
       "command": "node",
-      "args": ["/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/mcp-chain-of-thought/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
@@ -196,11 +196,11 @@ or
 
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "chain-of-thought": {
       "command": "npx",
-      "args": ["-y", "mcp-shrimp-task-manager"],
+      "args": ["-y", "mcp-chain-of-thought"],
       "env": {
-        "DATA_DIR": "/mcp-shrimp-task-manager/data",
+        "DATA_DIR": "/mcp-chain-of-thought/data",
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
         "ENABLE_GUI": "false"
@@ -210,7 +210,7 @@ or
 }
 ```
 
-> ⚠️ Please replace `/mcp-shrimp-task-manager` with your actual path.
+> ⚠️ Please replace `/mcp-chain-of-thought` with your actual path.
 
 #### Project-Specific Configuration
 
@@ -222,9 +222,9 @@ You can also set up dedicated configurations for each project to use independent
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "chain-of-thought": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-chain-of-thought/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
@@ -240,9 +240,9 @@ or
 
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "chain-of-thought": {
       "command": "npx",
-      "args": ["-y", "mcp-shrimp-task-manager"],
+      "args": ["-y", "mcp-chain-of-thought"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
@@ -256,7 +256,7 @@ or
 
 ### ⚠️ Important Configuration Notes
 
-The **DATA_DIR parameter** is the directory where Shrimp Task Manager stores task data, conversation logs, and other information. Setting this parameter correctly is crucial for the normal operation of the system. This parameter must use an **absolute path**; using a relative path may cause the system to incorrectly locate the data directory, resulting in data loss or function failure.
+The **DATA_DIR parameter** is the directory where Chain of Thought stores task data, conversation logs, and other information. Setting this parameter correctly is crucial for the normal operation of the system. This parameter must use an **absolute path**; using a relative path may cause the system to incorrectly locate the data directory, resulting in data loss or function failure.
 
 > **Warning**: Using relative paths may cause the following issues:
 >
@@ -267,14 +267,14 @@ The **DATA_DIR parameter** is the directory where Shrimp Task Manager stores tas
 
 ### 🔧 Environment Variable Configuration
 
-Shrimp Task Manager supports customizing prompt behavior through environment variables, allowing you to fine-tune AI assistant responses without modifying code. You can set these variables in the configuration or through an `.env` file:
+Chain of Thought supports customizing prompt behavior through environment variables, allowing you to fine-tune AI assistant responses without modifying code. You can set these variables in the configuration or through an `.env` file:
 
 ```json
 {
   "mcpServers": {
-    "shrimp-task-manager": {
+    "chain-of-thought": {
       "command": "node",
-      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-chain-of-thought/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data",
         "MCP_PROMPT_PLAN_TASK": "Custom planning guidance...",
@@ -379,4 +379,4 @@ Due to differences in training methods and understanding capabilities across mod
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=cjo4m06/mcp-shrimp-task-manager&type=Timeline)](https://www.star-history.com/#cjo4m06/mcp-shrimp-task-manager&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=liorfranko/mcp-chain-of-thought&type=Timeline)](https://www.star-history.com/#liorfranko/mcp-chain-of-thought&Timeline)

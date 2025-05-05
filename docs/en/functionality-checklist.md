@@ -1,8 +1,8 @@
 [English](../en/functionality-checklist.md)
 
-# Shrimp Task Manager - Functionality Implementation Checklist
+# Chain of Thought - Functionality Implementation Checklist
 
-This document lists all the tools, functions, parameter structures, and features actually implemented in the Shrimp Task Manager system. This checklist serves as a reference baseline for documentation review.
+This document lists all the tools, functions, parameter structures, and features actually implemented in the Chain of Thought system. This checklist serves as a reference baseline for documentation review.
 
 ## Type Definitions and Enumerations
 
@@ -325,7 +325,7 @@ This document lists all the tools, functions, parameter structures, and features
 
 ## Task Memory Feature
 
-The Task Memory feature is an important characteristic of the Shrimp Task Manager, giving the system long-term memory capabilities to save, query, and utilize past task execution experiences.
+The Task Memory feature is an important characteristic of the Chain of Thought system, giving the system long-term memory capabilities to save, query, and utilize past task execution experiences.
 
 ### Core Implementation
 
