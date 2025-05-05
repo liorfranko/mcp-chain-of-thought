@@ -1,5 +1,3 @@
-[English](README.md)
-
 # MCP Chain of Thought
 
 [![Chain of Thought Demo](/docs/yt.png)](https://www.youtube.com/watch?v=Arzu0lV09so)
