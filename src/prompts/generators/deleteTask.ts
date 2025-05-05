@@ -16,8 +16,10 @@ import { Task } from "../../types/index.js";
 export interface DeleteTaskPromptParams {
   taskId: string;
   task?: Task;
-  isCompleted?: boolean;
+  isTaskCompleted?: boolean;
   isSuccess?: boolean;
+  success?: boolean;
+  message?: string;
   error?: string;
   taskNotFound?: boolean;
 }
@@ -28,7 +30,7 @@ export interface DeleteTaskPromptParams {
  * @returns generated prompt
  */
 export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
-  const { taskId, task, isCompleted, isSuccess, error, taskNotFound } = params;
+  const { taskId, task, isTaskCompleted, isSuccess, success, error, taskNotFound, message } = params;
 
   // Handle case where task doesn't exist
   if (taskNotFound) {
@@ -39,7 +41,7 @@ export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
   }
 
   // Handle case where task is already completed
-  if (isCompleted) {
+  if (isTaskCompleted) {
     const completedTemplate = loadPromptFromTemplate(
       "deleteTask/taskCompleted.md"
     );
@@ -54,8 +56,9 @@ export function getDeleteTaskPrompt(params: DeleteTaskPromptParams): string {
   let prompt = generatePrompt(resultTemplate, {
     taskId,
     taskName: task?.name || "",
-    isSuccess: isSuccess || false,
+    isSuccess: isSuccess || success || false,
     error: error || "",
+    message: message || "",
   });
 
   // Load possible custom prompt

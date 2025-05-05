@@ -16,6 +16,7 @@ import { Task } from "../../types/index.js";
 export interface CompleteTaskPromptParams {
   task: Task;
   summary?: string;
+  completionTime?: string;
 }
 
 /**

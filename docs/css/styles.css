@@ -1,6 +1,6 @@
-/* MCP Shrimp Task Manager 網站樣式 */
+/* MCP Shrimp Task Manager Website Styles */
 
-/* 全局變量 */
+/* Global Variables */
 :root {
   --primary-color: #3b82f6;
   --primary-dark: #2563eb;
@@ -19,18 +19,18 @@
   --solution-purple: #8b5cf6;
 }
 
-/* 全局樣式 */
+/* Global Styles */
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden; /* 防止水平溢出 */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 body {
   line-height: 1.6;
-  overflow-x: hidden; /* 防止水平溢出 */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-/* 自定義動畫 */
+/* Custom Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -87,7 +87,7 @@ body {
   }
 }
 
-/* 導航欄樣式 */
+/* Navigation Bar Styles */
 header nav img {
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -129,7 +129,7 @@ header nav a:hover::after {
   max-height: 500px;
 }
 
-/* 英雄區樣式 */
+/* Hero Section Styles */
 #hero {
   position: relative;
   overflow: hidden;
@@ -181,7 +181,7 @@ header nav a:hover::after {
   animation-fill-mode: forwards;
 }
 
-/* 痛點與解決方案區樣式 */
+/* Pain Points and Solutions Section Styles */
 #pain-points .shadow-lg {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -248,7 +248,7 @@ header nav a:hover::after {
   background-color: var(--solution-purple);
 }
 
-/* 按鈕樣式 */
+/* Button Styles */
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -303,7 +303,7 @@ header nav a:hover::after {
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* 卡片樣式 */
+/* Card Styles */
 .card {
   background-color: white;
   border-radius: 0.5rem;
@@ -316,7 +316,7 @@ header nav a:hover::after {
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* 代碼區塊樣式增強 */
+/* Code Block Styles Enhancement */
 pre[class*="language-"] {
   border-radius: 0.5rem;
   margin: 1.5rem 0;
@@ -329,7 +329,7 @@ pre[class*="language-"]:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* 響應式調整 - 手機端 (<768px) */
+/* Responsive Adjustments - Mobile (<768px) */
 @media (max-width: 767px) {
   h1 {
     font-size: 1.875rem;
@@ -376,7 +376,7 @@ pre[class*="language-"]:hover {
   }
 }
 
-/* 平板端 (768px-1024px) */
+/* Tablet (768px-1024px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   h1 {
     font-size: 2.25rem;
@@ -399,7 +399,7 @@ pre[class*="language-"]:hover {
   }
 }
 
-/* 低性能設備動畫降級 */
+/* Animation Downgrade for Low Performance Devices */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -411,7 +411,7 @@ pre[class*="language-"]:hover {
   }
 }
 
-/* 輔助類 */
+/* Helper Classes */
 .text-gradient {
   background: linear-gradient(
     90deg,
@@ -443,7 +443,7 @@ pre[class*="language-"]:hover {
   );
 }
 
-/* GitHub圖標 */
+/* GitHub Icon */
 header nav a[href*="github"] svg {
   transition: transform 0.3s ease;
 }
@@ -452,7 +452,7 @@ header nav a[href*="github"]:hover svg {
   transform: rotate(10deg);
 }
 
-/* 自定義滾動條 */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -470,7 +470,7 @@ header nav a[href*="github"]:hover svg {
   background: var(--gray-dark);
 }
 
-/* 功能卡片樣式 */
+/* Feature Card Styles */
 #features .rounded-lg {
   position: relative;
   overflow: hidden;
@@ -526,7 +526,7 @@ header nav a[href*="github"]:hover svg {
   width: 100%;
 }
 
-/* 根據顏色設置不同顏色光暈 */
+/* Set different colored halos based on color */
 #features .bg-indigo-50 {
   box-shadow: 0 0 0 transparent;
   transition: box-shadow 0.3s ease;
@@ -581,7 +581,7 @@ header nav a[href*="github"]:hover svg {
   box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
 }
 
-/* 工作流程區域樣式 */
+/* Workflow Area Styles */
 #workflow {
   position: relative;
   overflow: hidden;
@@ -599,7 +599,7 @@ header nav a[href*="github"]:hover svg {
   pointer-events: none;
 }
 
-/* 桌面版時間軸樣式 */
+/* Desktop Timeline Styles */
 .workflow-step {
   display: flex;
   flex-direction: column;
@@ -632,7 +632,7 @@ header nav a[href*="github"]:hover svg {
   transform: translateY(-2px);
 }
 
-/* 移動版時間軸樣式 */
+/* Mobile Timeline Styles */
 .workflow-icon-mobile {
   width: 48px;
   height: 48px;
@@ -656,7 +656,7 @@ header nav a[href*="github"]:hover svg {
   }
 }
 
-/* 步驟詳情彈窗樣式 */
+/* Step Details Modal Styles */
 #workflow-detail-modal {
   transition: opacity 0.3s ease;
 }
@@ -687,7 +687,7 @@ header nav a[href*="github"]:hover svg {
   width: 100%;
 }
 
-/* 安裝與配置區樣式 */
+/* Installation and Configuration Section Styles */
 #installation .install-tab-btn {
   transition: all 0.3s ease;
   color: var(--gray-dark);
@@ -713,11 +713,11 @@ header nav a[href*="github"]:hover svg {
   transform: scale(1.2);
 }
 
-/* 命令行介面樣式 */
+/* Command Line Interface Styles */
 .mockup-code {
   font-family: "Fira Code", monospace;
-  background-color: #1a202c; /* 深色背景 */
-  color: #e2e8f0; /* 亮色文本 */
+  background-color: #1a202c; /* Dark background */
+  color: #e2e8f0; /* Light text */
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -758,7 +758,7 @@ header nav a[href*="github"]:hover svg {
   transform: translateY(-2px);
 }
 
-/* Cursor IDE 配置選項卡 */
+/* Cursor IDE Configuration Tabs */
 .cursor-tab-btn {
   transition: all 0.3s ease;
   background-color: #f3f4f6;
@@ -770,7 +770,7 @@ header nav a[href*="github"]:hover svg {
   border-color: var(--primary-color);
 }
 
-/* 安裝卡片樣式 */
+/* Installation Card Styles */
 #installation .grid > div {
   transition: all 0.3s ease;
   background-size: 200% 200%;
@@ -838,7 +838,7 @@ header nav a[href*="github"]:hover svg {
   }
 }
 
-/* CTA與資源區樣式 */
+/* CTA and Resources Section Styles */
 #cta {
   position: relative;
   overflow: hidden;
@@ -856,7 +856,7 @@ header nav a[href*="github"]:hover svg {
   pointer-events: none;
 }
 
-/* CTA按鈕增強 */
+/* CTA Button Enhancement */
 .btn-lg {
   padding: 0.875rem 1.75rem;
   display: flex;
@@ -871,7 +871,7 @@ header nav a[href*="github"]:hover svg {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* 資源卡片樣式 */
+/* Resource Card Styles */
 .resource-card {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
@@ -916,39 +916,15 @@ header nav a[href*="github"]:hover svg {
   opacity: 1;
 }
 
-/* 使用統計卡片 */
-#cta .text-center {
+/* Usage Statistics Cards */
+.stats-card {
   transition: all 0.3s ease;
+  border-radius: 0.75rem;
   overflow: hidden;
-}
-
-#cta .text-center:hover {
-  transform: translateY(-5px);
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-#cta .text-3xl {
   position: relative;
-  display: inline-block;
 }
 
-#cta .text-3xl::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-#cta .text-center:hover .text-3xl::after {
-  width: 80%;
-}
-
-/* 頁腳樣式 */
+/* Footer Styles */
 footer {
   position: relative;
   overflow: hidden;
@@ -1013,7 +989,7 @@ footer ul li:hover {
   }
 }
 
-/* 語言切換按鈕 */
+/* Language Switcher Buttons */
 .language-switcher {
   display: flex;
   align-items: center;
@@ -1047,7 +1023,7 @@ footer ul li:hover {
   border-color: var(--primary-color);
 }
 
-/* 在移動設備上調整語言切換按鈕 */
+/* Adjust Language Switcher Buttons on Mobile Devices */
 @media (max-width: 767px) {
   .language-switcher {
     margin: 0.5rem 0;
@@ -1059,4 +1035,36 @@ footer ul li:hover {
     padding: 0.4rem 0.75rem;
     font-size: 0.9rem;
   }
+}
+
+/* Usage Statistics Cards */
+#cta .text-center {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+#cta .text-center:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+#cta .text-3xl {
+  position: relative;
+  display: inline-block;
+}
+
+#cta .text-3xl::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+#cta .text-center:hover .text-3xl::after {
+  width: 80%;
 }

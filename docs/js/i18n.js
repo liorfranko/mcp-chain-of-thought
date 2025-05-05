@@ -1,5 +1,5 @@
-// i18n.js - 多語系支援功能
-// 翻譯資料結構
+// i18n.js - Multilingual Support Functionality
+// Translation Data Structure
 const i18n = {
   "zh-TW": {
     // 導航欄
@@ -255,14 +255,14 @@ const i18n = {
       "遇到問題？查看我們的常見問題解答，或在 GitHub 上提交問題。",
     "faq.view-faq-link": "查看常見問題 →",
     "installation.cursor.mcp-servers": "to/your/project/.cursor/mcp.jsonn",
-    "task.planner.prompt": `你是一個專業的任務規劃專家，你必須與用戶進行交互，分析用戶的需求，並收集專案相關資訊，最終使用 「plan_task」 建立任務，當任務建立完成後必須總結摘要，並告知用戶使用「TaskExecutor」模式進行任務執行。
-你必須專心於任務規劃禁止使用 「execute_task」 來執行任務，
+    "task.planner.prompt": `你是一個專業的任務規劃專家，你必須與用戶進行交互，分析用戶的需求，並收集專案相關資訊，最終使用 "plan_task" 建立任務，當任務建立完成後必須總結摘要，並告知用戶使用"TaskExecutor"模式進行任務執行。
+你必須專心於任務規劃禁止使用 "execute_task" 來執行任務，
 嚴重警告你是任務規劃專家，你不能直接修改程式碼，你只能規劃任務，並且你不能直接修改程式碼，你只能規劃任務。`,
-    "task.executor.prompt": `你是一個專業的任務執行專家，當用戶有指定執行任務，則使用 「execute_task」 進行任務執行，
-沒有指定任務時則使用 「list_tasks」 尋找未執行的任務並執行，
+    "task.executor.prompt": `你是一個專業的任務執行專家，當用戶有指定執行任務，則使用 "execute_task" 進行任務執行，
+沒有指定任務時則使用 "list_tasks" 尋找未執行的任務並執行，
 當執行完成後必須總結摘要告知用戶結論，
 你一次只能執行一個任務，當任務完成時除非用戶明確告知否則禁止進行下一則任務。
-用戶如果要求「連續模式」則按照順序連續執行所有任務。`,
+用戶如果要求"連續模式"則按照順序連續執行所有任務。`,
     // Prompt 自定義功能區塊
     "prompt-custom.title": "Prompt 自定義功能",
     "prompt-custom.subtitle":

@@ -1,54 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="160" viewBox="0 0 600 160" fill="none">
-  <!-- 步驟1：任務規劃 -->
+  <!-- Step 1: Task Planning -->
   <rect x="10" y="60" width="80" height="40" rx="8" fill="#3B82F6" fill-opacity="0.9"/>
-  <text x="50" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">任務規劃</text>
+  <text x="50" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Task Planning</text>
   
-  <!-- 箭頭1 -->
+  <!-- Arrow 1 -->
   <path d="M95 80L120 80" stroke="white" stroke-width="2" stroke-dasharray="4 2"/>
   <polygon points="120,80 112,76 112,84" fill="white"/>
   
-  <!-- 步驟2：分析 -->
+  <!-- Step 2: Analysis -->
   <rect x="125" y="60" width="80" height="40" rx="8" fill="#3B82F6" fill-opacity="0.8"/>
-  <text x="165" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">深入分析</text>
+  <text x="165" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">In-depth Analysis</text>
   
-  <!-- 箭頭2 -->
+  <!-- Arrow 2 -->
   <path d="M210 80L235 80" stroke="white" stroke-width="2" stroke-dasharray="4 2"/>
   <polygon points="235,80 227,76 227,84" fill="white"/>
   
-  <!-- 步驟3：反思 -->
+  <!-- Step 3: Reflection -->
   <rect x="240" y="60" width="80" height="40" rx="8" fill="#3B82F6" fill-opacity="0.7"/>
-  <text x="280" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">方案反思</text>
+  <text x="280" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Solution Reflection</text>
   
-  <!-- 箭頭3 -->
+  <!-- Arrow 3 -->
   <path d="M325 80L350 80" stroke="white" stroke-width="2" stroke-dasharray="4 2"/>
   <polygon points="350,80 342,76 342,84" fill="white"/>
   
-  <!-- 步驟4：任務分解 -->
+  <!-- Step 4: Task Decomposition -->
   <rect x="355" y="60" width="80" height="40" rx="8" fill="#3B82F6" fill-opacity="0.6"/>
-  <text x="395" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">任務分解</text>
+  <text x="395" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Task Decomposition</text>
   
-  <!-- 箭頭4 -->
+  <!-- Arrow 4 -->
   <path d="M440 80L465 80" stroke="white" stroke-width="2" stroke-dasharray="4 2"/>
   <polygon points="465,80 457,76 457,84" fill="white"/>
   
-  <!-- 步驟5：執行完成 -->
+  <!-- Step 5: Execution Complete -->
   <rect x="470" y="60" width="80" height="40" rx="8" fill="#4F46E5" fill-opacity="0.8"/>
-  <text x="510" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">執行完成</text>
+  <text x="510" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Execution Complete</text>
   
-  <!-- 裝飾元素：圓點 -->
+  <!-- Decorative Elements: Dots -->
   <circle cx="50" y="40" r="3" fill="white" fill-opacity="0.5"/>
   <circle cx="165" y="30" r="2" fill="white" fill-opacity="0.3"/>
   <circle cx="280" y="45" r="4" fill="white" fill-opacity="0.4"/>
   <circle cx="395" y="35" r="2" fill="white" fill-opacity="0.3"/>
   <circle cx="510" y="40" r="3" fill="white" fill-opacity="0.5"/>
   
-  <!-- 裝飾元素：圓點（底部） -->
+  <!-- Decorative Elements: Dots (Bottom) -->
   <circle cx="50" y="120" r="2" fill="white" fill-opacity="0.3"/>
   <circle cx="165" y="125" r="3" fill="white" fill-opacity="0.4"/>
   <circle cx="280" y="115" r="2" fill="white" fill-opacity="0.3"/>
   <circle cx="395" y="120" r="4" fill="white" fill-opacity="0.5"/>
   <circle cx="510" y="115" r="2" fill="white" fill-opacity="0.3"/>
   
-  <!-- 文字標題 -->
-  <text x="300" y="20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">智能任務管理工作流程</text>
+  <!-- Text Title -->
+  <text x="300" y="20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Intelligent Task Management Workflow</text>
 </svg> 

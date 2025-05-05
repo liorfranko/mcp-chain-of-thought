@@ -274,7 +274,7 @@ Shrimp Task Manager supports customizing prompt behavior through environment var
   "mcpServers": {
     "shrimp-task-manager": {
       "command": "node",
-      "args": ["/path/to/shrimp-task-manager/dist/index.js"],
+      "args": ["/path/to/mcp-shrimp-task-manager/dist/index.js"],
       "env": {
         "DATA_DIR": "/path/to/project/data",
         "MCP_PROMPT_PLAN_TASK": "Custom planning guidance...",

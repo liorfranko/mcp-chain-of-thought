@@ -14,10 +14,12 @@ import { Task } from "../../types/index.js";
  * splitTasks prompt parameter interface
  */
 export interface SplitTasksPromptParams {
-  globalAnalysisResult: string;
-  memoryDir: string;
+  globalAnalysisResult?: string;
+  memoryDir?: string;
   updateMode: "append" | "overwrite" | "selective" | "clearAllTasks";
   tasks?: Task[];
+  allTasks?: Task[];
+  createdTasks?: Task[];
 }
 
 /**

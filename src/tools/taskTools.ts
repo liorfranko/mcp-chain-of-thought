@@ -39,7 +39,7 @@ import {
   getCompleteTaskPrompt,
   getListTasksPrompt,
   getQueryTaskPrompt,
-  getGetTaskDetailPrompt,
+  getTaskDetailPrompt,
   getDeleteTaskPrompt,
   getClearAllTasksPrompt,
   getUpdateTaskContentPrompt,
@@ -1163,7 +1163,7 @@ export async function getTaskDetail({
     const task = result.tasks[0];
 
     // Use prompt generator to get the final prompt
-    const prompt = getGetTaskDetailPrompt({
+    const prompt = getTaskDetailPrompt({
       taskId,
       task,
     });
@@ -1178,7 +1178,7 @@ export async function getTaskDetail({
     };
   } catch (error) {
     // Use prompt generator to get error message
-    const errorPrompt = getGetTaskDetailPrompt({
+    const errorPrompt = getTaskDetailPrompt({
       taskId,
       error: error instanceof Error ? error.message : String(error),
     });
