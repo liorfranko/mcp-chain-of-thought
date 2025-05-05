@@ -1,0 +1,218 @@
+{
+  "tasks": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "Simple Pending Task",
+      "description": "A basic task with minimal fields for testing basic UI rendering",
+      "status": "Pending",
+      "dependencies": [],
+      "createdAt": "2024-03-20T10:00:00Z",
+      "updatedAt": "2024-03-20T10:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "name": "Medium Complexity Task",
+      "description": "This is a medium complexity task that includes multiple components and requires careful consideration. It demonstrates how the UI handles tasks with moderate amounts of content and relationships to other tasks. The description is deliberately written to be around 500 characters to test medium-length content rendering. It includes technical details that would be typical in a real task, such as implementation requirements, testing needs, and specific acceptance criteria that need to be met for the task to be considered complete.",
+      "status": "In Progress",
+      "dependencies": [
+        {
+          "taskId": "550e8400-e29b-41d4-a716-446655440000"
+        },
+        {
+          "taskId": "550e8400-e29b-41d4-a716-446655440005"
+        }
+      ],
+      "createdAt": "2024-03-20T11:00:00Z",
+      "updatedAt": "2024-03-20T14:30:00Z",
+      "notes": "Implementation in progress, waiting for review of component design",
+      "implementationGuide": "1. Review existing components\n2. Create new module\n3. Implement required interfaces\n4. Add unit tests",
+      "relatedFiles": [
+        {
+          "path": "src/components/TaskList.tsx",
+          "type": "TO_MODIFY",
+          "description": "Update task list component",
+          "lineStart": 10,
+          "lineEnd": 50
+        },
+        {
+          "path": "src/utils/taskHelpers.ts",
+          "type": "REFERENCE",
+          "description": "Helper functions for task management"
+        }
+      ]
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "High Complexity Completed Task",
+      "description": "This high complexity task demonstrates a completed task with extensive content and multiple dependencies. It includes a long description to test how the UI handles larger content blocks. The task involves multiple components, services, and integration points that needed to be coordinated. It required careful planning and execution to ensure all parts worked together correctly. The implementation touched various parts of the system and required consideration of performance implications. Testing was comprehensive, covering unit tests, integration tests, and end-to-end scenarios. The task also required documentation updates and careful consideration of backward compatibility. This description is intentionally verbose to test handling of longer content in the UI.",
+      "status": "Completed",
+      "dependencies": [
+        {"taskId": "550e8400-e29b-41d4-a716-446655440000"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440001"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440003"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440004"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440005"}
+      ],
+      "createdAt": "2024-03-19T09:00:00Z",
+      "updatedAt": "2024-03-20T16:45:00Z",
+      "completedAt": "2024-03-20T16:45:00Z",
+      "summary": "Successfully implemented all required functionality with comprehensive testing",
+      "notes": "All acceptance criteria met and verified by QA",
+      "analysisResult": "Performance metrics show 30% improvement in response time",
+      "implementationGuide": "1. Updated core components\n2. Added new services\n3. Implemented caching layer\n4. Added comprehensive tests\n5. Updated documentation",
+      "verificationCriteria": "1. All tests passing\n2. Performance requirements met\n3. Documentation updated\n4. Code reviewed and approved",
+      "relatedFiles": [
+        {
+          "path": "src/services/TaskService.ts",
+          "type": "TO_MODIFY",
+          "description": "Core task service updates",
+          "lineStart": 100,
+          "lineEnd": 250
+        },
+        {
+          "path": "docs/architecture.md",
+          "type": "OUTPUT",
+          "description": "Updated architecture documentation"
+        }
+      ]
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "name": "Blocked Task",
+      "description": "This task is currently blocked due to dependencies on incomplete tasks",
+      "status": "Blocked",
+      "dependencies": [
+        {"taskId": "550e8400-e29b-41d4-a716-446655440006"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440007"}
+      ],
+      "createdAt": "2024-03-20T13:00:00Z",
+      "updatedAt": "2024-03-20T15:20:00Z",
+      "notes": "Blocked due to pending dependency tasks. Cannot proceed until authentication service is updated and database migration is complete.",
+      "verificationCriteria": "1. Dependencies completed\n2. Resources available\n3. No blocking issues remaining"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440004",
+      "name": "Maximum Length Task",
+      "description": "This task description is intentionally very long to test how the UI handles maximum length content. It includes detailed technical specifications, implementation requirements, and extensive background information. The purpose is to verify that the UI can properly display and handle long text content without breaking the layout or causing performance issues. The description continues with more technical details about the system architecture, component interactions, and specific implementation requirements. It includes information about database schema changes, API modifications, and frontend component updates. There are also notes about performance considerations, security implications, and backward compatibility requirements. The description further elaborates on testing requirements, including unit tests, integration tests, and end-to-end testing scenarios. It discusses the need for proper error handling, logging, and monitoring. The text continues with details about documentation requirements, including API documentation, architecture diagrams, and user guides. There are also notes about deployment considerations, including database migrations, feature flags, and rollback procedures. The description includes information about required code reviews, testing procedures, and acceptance criteria. It further discusses integration points with other systems, data flow diagrams, and security considerations. The text goes on to cover performance requirements, including expected response times, throughput, and resource utilization. There are additional notes about monitoring requirements, alerting thresholds, and incident response procedures. The description continues with details about user experience considerations, accessibility requirements, and internationalization support. It includes information about browser compatibility, mobile responsiveness, and cross-platform testing requirements. The text further elaborates on compliance requirements, data privacy considerations, and regulatory obligations. This description is intentionally verbose and detailed to test the system's ability to handle maximum length content in task descriptions.",
+      "status": "Pending",
+      "dependencies": [
+        {"taskId": "550e8400-e29b-41d4-a716-446655440000"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440001"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440002"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440003"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440005"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440006"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440007"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440008"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440009"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440010"}
+      ],
+      "createdAt": "2024-03-20T09:00:00Z",
+      "updatedAt": "2024-03-20T17:00:00Z",
+      "notes": "This task includes very long notes to test maximum content handling. The notes section contains detailed information about implementation considerations, technical challenges, and potential solutions. It discusses various approaches that were considered and the reasoning behind the chosen solution. The notes include information about performance implications, security considerations, and maintenance requirements. There are also details about required resources, timeline estimates, and potential risks. The notes continue with information about testing requirements, documentation needs, and deployment considerations. This content is intentionally long to test how the UI handles maximum length notes.",
+      "implementationGuide": "1. Extensive setup steps\n2. Multiple component updates\n3. Database migrations\n4. API changes\n5. Frontend updates\n6. Testing procedures\n7. Documentation updates\n8. Deployment steps\n9. Monitoring setup\n10. Maintenance procedures",
+      "verificationCriteria": "1. All components updated\n2. Tests passing\n3. Performance verified\n4. Documentation complete\n5. Security reviewed"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440005",
+      "name": "Special Characters Task ✨",
+      "description": "This task tests special character handling: \n\n# Markdown Heading\n* Bullet point\n> Blockquote\n\n```typescript\nconst test = 'code block';\n```\n\n🚀 Emoji\nñ á é í ó ú (Spanish)\n漢字 (Chinese)\nहिंदी (Hindi)\n\nHTML entities: &copy; &reg; &trade;\n\nLinks: https://example.com\n\n**Bold** and *italic* text",
+      "status": "Pending",
+      "dependencies": [],
+      "createdAt": "2024-03-20T12:00:00Z",
+      "updatedAt": "2024-03-20T12:00:00Z",
+      "notes": "Testing various text formatting:\n\n1. Lists\n2. Code\n3. Symbols\n\n`inline code`\n\n| Table | Header |\n|-------|--------|\n| Cell  | Cell   |"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440006",
+      "name": "Full Fields Task",
+      "description": "A task with all possible fields populated to test complete data display",
+      "status": "In Progress",
+      "dependencies": [
+        {"taskId": "550e8400-e29b-41d4-a716-446655440000"}
+      ],
+      "createdAt": "2024-03-20T08:00:00Z",
+      "updatedAt": "2024-03-20T16:00:00Z",
+      "notes": "Testing all available fields",
+      "analysisResult": "Comprehensive analysis completed",
+      "implementationGuide": "Complete implementation steps documented",
+      "verificationCriteria": "All verification points listed",
+      "relatedFiles": [
+        {
+          "path": "src/components/Task.tsx",
+          "type": "TO_MODIFY",
+          "description": "Main task component",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "src/services/TaskService.ts",
+          "type": "REFERENCE",
+          "description": "Task service implementation"
+        },
+        {
+          "path": "src/types/task.ts",
+          "type": "DEPENDENCY",
+          "description": "Task type definitions"
+        },
+        {
+          "path": "docs/tasks.md",
+          "type": "OUTPUT",
+          "description": "Task documentation"
+        },
+        {
+          "path": "tests/Task.test.ts",
+          "type": "OTHER",
+          "description": "Task tests"
+        }
+      ]
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440007",
+      "name": "🔥 Edge Case Test with HTML & Special Characters &lt;script&gt;alert('test')&lt;/script&gt; & Unicode: 漢字 العربية हिंदी",
+      "description": "This task tests extreme edge cases including HTML injection attempts, Unicode characters from multiple languages, and maximum length content. The description continues with repeated text to reach close to 2000 characters. This description includes various edge cases such as: HTML tags &lt;div&gt;test&lt;/div&gt;, special characters like &lt; &gt; &amp;, emojis 🎉 🚀 💻 🔧 🎨, mathematical symbols ∑ ∏ ∆ ∇, currency symbols € £ ¥ ₹, arrows ← → ↑ ↓, and other special characters ™ ® © ¶ § ¿ ¡. It also includes various formatting tests **bold** *italic* `code` [link](http://test.com) # heading > quote. Testing line breaks\\nand\\ttabs\\rand\\other\\control\\characters. Testing extremely long words likethisonewhichisverylongandmightwrapinunexpectedways. Testing URLs https://verylongdomainnamethatmightbreakthings.com/with/very/long/path/segments/that/could/cause/issues/in/rendering",
+      "status": "Pending",
+      "dependencies": [
+        {"taskId": "550e8400-e29b-41d4-a716-446655440000"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440001"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440002"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440003"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440004"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440005"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440006"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440008"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440009"},
+        {"taskId": "550e8400-e29b-41d4-a716-446655440010"}
+      ],
+      "createdAt": "2024-03-20T18:00:00Z",
+      "updatedAt": "2024-03-20T18:00:00Z",
+      "notes": "Testing notes with maximum length and special formatting:\\n\\n# Heading 1\\n## Heading 2\\n### Heading 3\\n\\n* Bullet point 1\\n* Bullet point 2\\n  * Nested bullet 1\\n  * Nested bullet 2\\n\\n1. Numbered list\\n2. With nesting\\n   1. Nested item\\n   2. Another nested item\\n\\n> Blockquote with special characters: © ® ™ ± ∞ ≈ ≠ ≤ ≥ × ÷\\n\\n```typescript\\nconst test = 'Testing code blocks';\\nfunction complexFunction() {\\n  // With comments\\n  return true;\\n}\\n```\\n\\n| Complex | Table | Header |\\n|---------|--------|--------|\\n| With | Multiple | Cells |\\n| And | Special | Chars ™ |\\n\\nTesting extremely long paragraphs that might cause wrapping issues in the UI.",
+      "implementationGuide": "1. Test HTML injection: &lt;script&gt;alert('test')&lt;/script&gt;\\n2. Test Unicode: 漢字 العربية हिंदी\\n3. Test special chars: © ® ™ ± ∞ ≈ ≠ ≤ ≥\\n4. Test markdown: **bold** *italic* `code`\\n5. Test code blocks:\\n```typescript\\nconst test = 'code';\\n```\\n6. Test lists:\\n   * Nested\\n   * Lists\\n7. Test tables:\\n   | Header | Value |\\n   |--------|-------|\\n   | Test   | Data  |",
+      "verificationCriteria": "1. Verify HTML escaping\\n2. Check Unicode rendering\\n3. Validate special chars\\n4. Test markdown parsing\\n5. Verify code blocks\\n6. Check list formatting\\n7. Validate table rendering",
+      "relatedFiles": [
+        {
+          "path": "src/components/TaskRenderer.tsx",
+          "type": "TO_MODIFY",
+          "description": "Update component to handle edge cases",
+          "lineStart": 1,
+          "lineEnd": 500
+        },
+        {
+          "path": "src/utils/sanitization.ts",
+          "type": "CREATE",
+          "description": "Add sanitization utilities"
+        },
+        {
+          "path": "src/types/task.ts",
+          "type": "REFERENCE",
+          "description": "Task type definitions"
+        },
+        {
+          "path": "tests/edge-cases.test.ts",
+          "type": "OUTPUT",
+          "description": "Edge case test results"
+        }
+      ]
+    }
+  ]
+} 
