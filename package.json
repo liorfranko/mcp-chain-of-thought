@@ -1,19 +1,19 @@
 {
-  "name": "mcp-shrimp-task-manager",
-  "version": "1.0.13",
-  "description": "Shrimp Task Manager is a task tool built for AI Agents, emphasizing chain-of-thought, reflection, and style consistency. It converts natural language into structured dev tasks with dependency tracking and iterative refinement, enabling agent-like developer behavior in reasoning AI systems",
+  "name": "mcp-chain-of-thought",
+  "version": "1.0.0",
+  "description": "Chain of Thought is a tool built for AI Agents, emphasizing chain-of-thought, reflection, and style consistency. It converts natural language into structured dev tasks with dependency tracking and iterative refinement, enabling agent-like developer behavior in reasoning AI systems",
   "main": "dist/index.js",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cjo4m06/mcp-shrimp-task-manager"
+    "url": "https://github.com/liorfranko/mcp-chain-of-thought"
   },
   "bugs": {
-    "url": "https://github.com/cjo4m06/mcp-shrimp-task-manager/issues"
+    "url": "https://github.com/liorfranko/mcp-chain-of-thought/issues"
   },
-  "homepage": "https://cjo4m06.github.io/mcp-shrimp-task-manager",
+  "homepage": "https://github.com/liorfranko/mcp-chain-of-thought",
   "bin": {
-    "mcp-shrimp-task-manager": "./dist/index.js"
+    "mcp-chain-of-thought": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc && copyfiles -u 1 './src/**/*.md' dist && copyfiles -u 1 './src/public/**/*' dist && node scripts/add-shebang.js",
@@ -25,7 +25,8 @@
     "mcp",
     "task-manager",
     "agent",
-    "workflow"
+    "workflow",
+    "chain-of-thought"
   ],
   "author": "",
   "license": "MIT",

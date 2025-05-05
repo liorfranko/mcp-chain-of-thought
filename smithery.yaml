@@ -11,14 +11,14 @@ startCommand:
       dataDir:
         type: string
         description: Absolute path to the data directory for task data storage
-    description: Configuration for shrimp task manager. dataDir must be an absolute path.
+    description: Configuration for chain of thought. dataDir must be an absolute path.
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
     (config) => ({
         command: 'node',
-        args: ['/mcp-shrimp-task-manager/dist/index.js'],
+        args: ['/mcp-chain-of-thought/dist/index.js'],
         env: { DATA_DIR: config.dataDir }
     })
   exampleConfig:
-    dataDir: /var/lib/mcp-shrimp-task-manager/data
+    dataDir: /var/lib/mcp-chain-of-thought/data

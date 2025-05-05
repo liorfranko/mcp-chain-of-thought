@@ -9,10 +9,10 @@ const i18n = {
     "nav.installation": "Installation",
     "nav.github": "GitHub",
     "nav.menu-button": "Menu",
-    "nav.logo.alt": "Shrimp Task Manager Logo",
+    "nav.logo.alt": "Chain Of Thought Logo",
     "nav.prompt-custom": "Prompt Config",
     // Hero Section
-    "hero.title": "Shrimp Task Manager",
+    "hero.title": "Chain Of Thought",
     "hero.subtitle":
       "Intelligent System for Structured Task Management in AI Programming Assistants",
     "hero.description":
@@ -23,7 +23,7 @@ const i18n = {
     // Pain Points Solution Section
     "pain-points.title": "Pain Points & Solutions",
     "pain-points.subtitle":
-      "Shrimp Task Manager is designed to solve three core pain points faced by AI programming assistants in task management.",
+      "Chain Of Thought is designed to solve three core pain points faced by AI programming assistants in task management.",
     "pain-points.memory-loss.title": "Memory Loss",
     "pain-points.memory-loss.description":
       "AI assistants lack cross-conversation task memory capability, resulting in inability to track long-term task progress, repeated explanation of the same requirements, and wasted time and resources.",
@@ -55,7 +55,7 @@ const i18n = {
     // Features Section
     "features.title": "Core Features",
     "features.subtitle":
-      "Shrimp Task Manager provides six core features to help you efficiently manage, execute, and track complex tasks.",
+      "Chain Of Thought provides six core features to help you efficiently manage, execute, and track complex tasks.",
     "features.planning.title": "Intelligent Task Planning & Analysis",
     "features.planning.description":
       "Through in-depth analysis of requirements and constraints, generate structured task plans. Automatically assess scope, risks, and priorities to provide rational and comprehensive implementation strategies.",
@@ -86,7 +86,7 @@ const i18n = {
     // Workflow Section
     "workflow.title": "Workflow",
     "workflow.subtitle":
-      "Shrimp Task Manager provides a complete workflow, with each step from task planning to task completion carefully designed.",
+      "Chain Of Thought provides a complete workflow, with each step from task planning to task completion carefully designed.",
     "workflow.step1.title": "Task Planning",
     "workflow.step1.description": "Initialize and plan task flow in detail",
     "workflow.step2.title": "In-depth Analysis",
@@ -125,17 +125,17 @@ const i18n = {
     // Installation & Configuration Section
     "installation.title": "Installation & Configuration",
     "installation.subtitle":
-      "Shrimp Task Manager offers multiple installation methods, whether you want to get started quickly or need advanced configuration, it's easy to set up.",
+      "Chain Of Thought offers multiple installation methods, whether you want to get started quickly or need advanced configuration, it's easy to set up.",
     "installation.manual.title": "Manual Installation",
     "installation.step1": "Clone Repository",
     "installation.step2": "Install Dependencies",
     "installation.step3": "Build Project",
     "installation.cursor.title": "Cursor IDE Configuration",
     "installation.cursor.description":
-      "If you use Cursor IDE, you can integrate Shrimp Task Manager into your development environment.",
+      "If you use Cursor IDE, you can integrate Chain Of Thought into your development environment.",
     "installation.quickstart.title": "Quick Start",
     "installation.quickstart.description":
-      "After installation, check our quick start guide to learn how to use MCP Shrimp Task Manager.",
+      "After installation, check our quick start guide to learn how to use MCP Chain of Thought.",
     "installation.faq.title": "FAQ",
     "installation.faq.description":
       "Having issues? Check our frequently asked questions or submit an issue on GitHub.",
@@ -145,7 +145,7 @@ const i18n = {
       "Must use absolute path: Please ensure the DATA_DIR configuration uses absolute paths rather than relative paths, otherwise data may not load correctly",
     "installation.prompt-config.title": "Prompt Configuration Guide",
     "installation.prompt-config.intro":
-      "Shrimp Task Manager supports two modes:",
+      "Chain Of Thought supports two modes:",
     "installation.prompt-config.mode1.title": "TaskPlanner:",
     "installation.prompt-config.mode1.description":
       "Suitable for initial task planning and complex task decomposition, where the AI assistant plays the role of a task planner.",
@@ -161,8 +161,8 @@ const i18n = {
     "cta.github": "Go to GitHub Repository",
     "cta.start": "Start Installation",
     // Footer Section
-    "footer.copyright": "© 2023 MCP Task Manager. All Rights Reserved.",
-    "footer.developer": "Made with ❤️ by Siage",
+    "footer.copyright": "© 2025 Chain Of Thought. All Rights Reserved.",
+    "footer.developer": "Made with ❤️ by Lior Franko",
 
     // Common UI Elements
     "common.close": "Close",
@@ -250,7 +250,7 @@ const i18n = {
     // Code Example Section
     "examples.planning.title": "Task Planning and Decomposition Process",
     "examples.planning.intro":
-      "This example demonstrates how to use MCP Shrimp Task Manager to plan and break down complex tasks. The entire process includes four main steps:",
+      "This example demonstrates how to use MCP Chain of Thought to plan and break down complex tasks. The entire process includes four main steps:",
     "examples.planning.step1":
       "Initialize and plan tasks in detail, establishing clear goals and success criteria",
     "examples.planning.step2":
@@ -281,7 +281,7 @@ const i18n = {
     // Quick Start and FAQ Section
     "quickstart.title": "Quick Start",
     "quickstart.description":
-      "After installation, check our quick start guide to learn how to use MCP Shrimp Task Manager.",
+      "After installation, check our quick start guide to learn how to use MCP Chain of Thought.",
     "quickstart.view-code-link": "View Code →",
     "faq.title": "Frequently Asked Questions",
     "faq.description":

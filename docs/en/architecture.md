@@ -1,14 +1,14 @@
-# Architecture Design Document for Shrimp Task Manager
+# Architecture Design Document for Chain of Thought
 
 [English](../en/architecture.md)
 
 ## 1. System Overview
 
-The Shrimp Task Manager is designed based on the MCP (Model-Chain-Protocol) framework architecture, implementing a task management system with memory capability. The system's primary functionality is to assist Large Language Models (LLMs) in efficiently managing complex task execution processes.
+The Chain of Thought is designed based on the MCP (Model-Chain-Protocol) framework architecture, implementing a task management system with memory capability. The system's primary functionality is to assist Large Language Models (LLMs) in efficiently managing complex task execution processes.
 
 ## 2. Design Goals
 
-The core design goals of the Shrimp Task Manager include:
+The core design goals of the Chain of Thought include:
 
 - **Memory Enhancement**: Overcome the context limitations of LLMs, enabling long-term task processing.
 - **Context Management**: Provide relevant context for each task based on dependencies and related files.
@@ -417,7 +417,7 @@ Evaluates the complexity of tasks based on various indicators, helping to determ
 
 ### 6.1 Method for New Feature Extensions
 
-The modular design of the Shrimp Task Manager makes it easy to extend. To add new features, typically you need to:
+The modular design of the Chain of Thought makes it easy to extend. To add new features, typically you need to:
 
 1. Define related data types in `types/index.ts`
 2. Implement core logic in the corresponding model files
@@ -456,7 +456,7 @@ The system currently provides the following extension points:
 
 ## 8. Conclusion
 
-The Shrimp Task Manager adopts a modular, layered design, giving the system good maintainability and extensibility. Through 12 core tool functions and a well-developed data model, the system can effectively manage task processes in complex projects, performing exceptionally well in scenarios requiring long-term context memory.
+The Chain of Thought adopts a modular, layered design, giving the system good maintainability and extensibility. Through 12 core tool functions and a well-developed data model, the system can effectively manage task processes in complex projects, performing exceptionally well in scenarios requiring long-term context memory.
 
 The design focus of the system is to provide a clear task management process while enhancing the LLM's context memory capability during task execution. Through precise file association and intelligent context loading, it effectively solves the memory limitation problem that LLMs face when handling long-term complex tasks.
 

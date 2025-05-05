@@ -1,5 +1,5 @@
 {
-  "app_title": "Shrimp Task Manager",
+  "app_title": "Chain Of Thought",
   "status_indicator_online": "ONLINE",
   "dependency_view_title": "Dependency View",
   "dependency_graph_placeholder": "Dependency relationship for all tasks",
@@ -18,7 +18,7 @@
   "task_list_empty": "No matching tasks",
   "task_details_title": "Task Details",
   "task_details_placeholder": "Select a task to view details",
-  "footer_copyright": "© 2023 Shrimp Task Manager - Current time: ",
+  "footer_copyright": "© 2025 Chain Of Thought - Current time: ",
 
   "status_pending": "Pending",
   "status_in_progress": "In Progress",

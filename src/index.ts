@@ -59,7 +59,7 @@ import {
 
 async function main() {
   try {
-    console.log("Starting Shrimp Task Manager service...");
+    console.log("Starting MCP Chain of Thought service...");
     const ENABLE_GUI = process.env.ENABLE_GUI === "true";
 
     if (ENABLE_GUI) {
@@ -180,7 +180,7 @@ async function main() {
     // Create MCP server
     const server = new Server(
       {
-        name: "Shrimp Task Manager",
+        name: "MCP Chain of Thought",
         version: "1.0.0",
       },
       {
@@ -474,7 +474,7 @@ async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
 
-    console.log("Shrimp Task Manager service started");
+    console.log("MCP Chain of Thought service started");
   } catch (error) {
     process.exit(1);
   }

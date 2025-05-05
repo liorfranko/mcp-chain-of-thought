@@ -1,5 +1,5 @@
 /**
- * MCP Shrimp Task Manager main website script
+ * MCP Chain of Thought main website script
  */
 
 // Execute after page load
