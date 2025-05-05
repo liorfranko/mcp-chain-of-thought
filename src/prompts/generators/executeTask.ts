@@ -51,6 +51,24 @@ function getComplexityStyle(level: string): string {
 }
 
 /**
+ * Get complexity-based guidance for subtask evaluation
+ * @param level complexity level
+ * @returns guidance text
+ */
+function getComplexityBasedGuidance(level: string): string {
+  switch (level) {
+    case "VERY_HIGH":
+      return "⚠️ This task has very high complexity. It is strongly recommended to split it into multiple subtasks. You should have compelling reasons if you choose not to split this task.";
+    case "HIGH":
+      return "This task has high complexity. Strongly consider splitting it into smaller subtasks for better manageability and reduced risk. If you decide not to split, you must justify your decision.";
+    case "MEDIUM":
+      return "This task has moderate complexity. Consider if there are natural boundaries for splitting, but proceeding with a single task may be appropriate.";
+    default: // LOW
+      return "This task appears to be low complexity. Splitting is typically not necessary unless you identify specific reasons.";
+  }
+}
+
+/**
  * Get the complete executeTask prompt
  * @param params prompt parameters
  * @returns generated prompt
@@ -151,6 +169,22 @@ export function getExecuteTaskPrompt(params: ExecuteTaskPromptParams): string {
     });
   }
 
+  const subtaskEvaluationTemplate = loadPromptFromTemplate(
+    "executeTask/subtaskEvaluation.md"
+  );
+  let subtaskEvaluationPrompt = "";
+  if (complexityAssessment) {
+    const complexityBasedGuidance = getComplexityBasedGuidance(complexityAssessment.level);
+    subtaskEvaluationPrompt = generatePrompt(subtaskEvaluationTemplate, {
+      complexityBasedGuidance,
+    });
+  } else {
+    // Default guidance if complexity assessment is missing
+    subtaskEvaluationPrompt = generatePrompt(subtaskEvaluationTemplate, {
+      complexityBasedGuidance: "Unable to determine task complexity. Evaluate the task based on your understanding and the assessment criteria.",
+    });
+  }
+
   const indexTemplate = loadPromptFromTemplate("executeTask/index.md");
   let prompt = generatePrompt(indexTemplate, {
     name: task.name,
@@ -163,6 +197,7 @@ export function getExecuteTaskPrompt(params: ExecuteTaskPromptParams): string {
     dependencyTasksTemplate: dependencyTasksPrompt,
     relatedFilesSummaryTemplate: relatedFilesSummaryPrompt,
     complexityTemplate: complexityPrompt,
+    subtaskEvaluationTemplate: subtaskEvaluationPrompt,
   });
 
   // Load possible custom prompt

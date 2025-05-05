@@ -22,12 +22,15 @@
 
 {complexityTemplate}
 
+{subtaskEvaluationTemplate}
+
 ## Execution Steps
 
-1. **Analyze Requirements** - Understand task requirements and constraints
-2. **Design Solution** - Develop implementation plan and testing strategy
-3. **Implement Solution** - Execute according to plan, handle edge cases
-4. **Test and Verify** - Ensure functional correctness and robustness
+1. **Evaluate Task Complexity** - Assess if this task should be split into subtasks
+2. **Analyze Requirements** - Understand task requirements and constraints
+3. **Design Solution** - Develop implementation plan and testing strategy
+4. **Implement Solution** - Execute according to plan, handle edge cases
+5. **Test and Verify** - Ensure functional correctness and robustness
 
 ## Quality Requirements
 
