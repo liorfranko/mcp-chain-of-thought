@@ -73,7 +73,7 @@ Add to your Cursor configuration file (`~/.cursor/mcp.json` or project-specific 
   "mcpServers": {
     "chain-of-thought": {
       "command": "npx",
-      "args": ["-y", "/mcp-chain-of-thought"],
+      "args": ["-y", "mcp-chain-of-thought"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
