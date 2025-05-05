@@ -394,7 +394,7 @@ function initTypingEffect() {
     codeBlock.textContent = "";
 
     let charIndex = 0;
-    const typingSpeed = 30; // 每字符間隔毫秒
+    const typingSpeed = 30; // milliseconds per character
 
     // First hide the original code, then perform the typing effect
     codeBlock.parentElement.classList.add("typing-in-progress");

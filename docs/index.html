@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Shrimp Task Manager - 為AI編程助手提供結構化任務管理的智能系統
+      Shrimp Task Manager - An Intelligent System for Structured Task Management for AI Programming Assistants
     </title>
     <meta
       name="description"
-      content="Shrimp Task Manager是一個專為AI編程助手設計的結構化任務管理系統，提供智能任務規劃、自動分解、執行追蹤和完整性驗證等功能。"
+      content="Shrimp Task Manager is a structured task management system designed specifically for AI programming assistants, offering intelligent task planning, automatic decomposition, execution tracking, and integrity verification."
     />
     <meta
       name="keywords"
-      content="MCP, Shrimp Task Manager, AI編程助手, 任務管理, 結構化任務"
+      content="MCP, Shrimp Task Manager, AI Programming Assistant, Task Management, Structured Tasks"
     />
     <!-- Favicon -->
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS.js 滾動動畫庫 -->
+    <!-- AOS.js Scroll Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Prism.js 代碼高亮 -->
+    <!-- Prism.js Code Highlighting -->
     <link
       href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css"
       rel="stylesheet"
@@ -31,13 +31,13 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-    <!-- 自定義樣式 -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
-    <!-- 多語系支援 -->
+    <!-- Multi-language Support -->
     <script src="js/i18n.js"></script>
   </head>
   <body class="bg-gray-50 font-sans text-gray-900">
-    <!-- 導航欄 -->
+    <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white shadow-md">
       <nav
         class="container mx-auto px-4 py-3 flex justify-between items-center"
@@ -57,33 +57,33 @@
           <div class="flex space-x-5">
             <a
               href="#pain-points"
-              class="hover:text-blue-600 transition"
+              class="hover:text-blue-600 transition py-1"
               data-i18n="nav.pain-points"
-              >痛點</a
+              >Pain Points</a
             >
             <a
               href="#features"
-              class="hover:text-blue-600 transition"
+              class="hover:text-blue-600 transition py-1"
               data-i18n="nav.features"
-              >功能</a
+              >Features</a
             >
             <a
               href="#workflow"
-              class="hover:text-blue-600 transition"
+              class="hover:text-blue-600 transition py-1"
               data-i18n="nav.workflow"
-              >工作流程</a
+              >Workflow</a
             >
             <a
               href="#prompt-customization"
-              class="hover:text-blue-600 transition"
+              class="hover:text-blue-600 transition py-1"
               data-i18n="nav.prompt-custom"
-              >提示詞配置</a
+              >Prompt Customization</a
             >
             <a
               href="#installation"
-              class="hover:text-blue-600 transition"
+              class="hover:text-blue-600 transition py-1"
               data-i18n="nav.installation"
-              >安裝配置</a
+              >Installation</a
             >
             <a
               href="https://github.com/cjo4m06/mcp-shrimp-task-manager"
@@ -105,16 +105,9 @@
               <span data-i18n="nav.github">GitHub</span>
             </a>
           </div>
-          <!-- 語言切換按鈕 -->
+          <!-- Language Switch Button -->
           <div class="language-switcher ml-6">
-            <button
-              data-lang="zh-TW"
-              class="lang-btn active"
-              data-i18n="common.lang.zh-tw"
-            >
-              中
-            </button>
-            <button data-lang="en" class="lang-btn" data-i18n="common.lang.en">
+            <button data-lang="en" class="lang-btn active" data-i18n="common.lang.en">
               EN
             </button>
           </div>
@@ -136,7 +129,7 @@
           </svg>
         </button>
       </nav>
-      <!-- 移動端菜單 -->
+      <!-- Mobile Menu -->
       <div
         class="hidden md:hidden bg-white px-4 py-2 shadow-lg"
         id="mobile-menu"
@@ -146,31 +139,31 @@
             href="#pain-points"
             class="hover:text-blue-600 transition py-1"
             data-i18n="nav.pain-points"
-            >痛點</a
+            >Pain Points</a
           >
           <a
             href="#features"
             class="hover:text-blue-600 transition py-1"
             data-i18n="nav.features"
-            >功能</a
+            >Features</a
           >
           <a
             href="#workflow"
             class="hover:text-blue-600 transition py-1"
             data-i18n="nav.workflow"
-            >工作流程</a
+            >Workflow</a
           >
           <a
             href="#prompt-customization"
             class="hover:text-blue-600 transition py-1"
             data-i18n="nav.prompt-custom"
-            >提示詞配置</a
+            >Prompt Customization</a
           >
           <a
             href="#installation"
             class="hover:text-blue-600 transition py-1"
             data-i18n="nav.installation"
-            >安裝配置</a
+            >Installation</a
           >
           <a
             href="https://github.com/cjo4m06/mcp-shrimp-task-manager"
@@ -191,16 +184,9 @@
             </svg>
             <span data-i18n="nav.github">GitHub</span>
           </a>
-          <!-- 移動端語言切換按鈕 -->
+          <!-- Mobile Language Switch Button -->
           <div class="language-switcher py-1">
-            <button
-              data-lang="zh-TW"
-              class="lang-btn active"
-              data-i18n="common.lang.zh-tw"
-            >
-              中
-            </button>
-            <button data-lang="en" class="lang-btn" data-i18n="common.lang.en">
+             <button data-lang="en" class="lang-btn active" data-i18n="common.lang.en">
               EN
             </button>
           </div>
@@ -208,9 +194,9 @@
       </div>
     </header>
 
-    <!-- 頁面內容區域劃分 -->
+    <!-- Page Content Area -->
     <main>
-      <!-- 英雄區 -->
+      <!-- Hero Section -->
       <section
         id="hero"
         class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 md:py-24 section-padding"
@@ -225,23 +211,23 @@
                 Shrimp Task Manager
               </h1>
               <p class="text-xl mb-6 text-blue-100" data-i18n="hero.subtitle">
-                為AI編程助手提供結構化任務管理的智能系統
+                An Intelligent System for Structured Task Management for AI Programming Assistants
               </p>
               <p class="mb-8 text-blue-100" data-i18n="hero.description">
-                讓AI助手擁有長期記憶能力，高效管理複雜任務，提供結構化的任務分解和執行追蹤，讓您的編程體驗更加流暢和高效。
+                Let AI assistants have long-term memory, manage complex tasks efficiently, provide structured task decomposition and execution tracking, and make your programming experience smoother and more efficient.
               </p>
               <div class="flex flex-wrap gap-4">
                 <a
                   href="#installation"
                   class="btn btn-primary"
                   data-i18n="hero.start"
-                  >開始使用</a
+                  >Get Started</a
                 >
                 <a
                   href="#features"
                   class="btn btn-secondary"
                   data-i18n="hero.learn-more"
-                  >了解更多</a
+                  >Learn More</a
                 >
               </div>
             </div>
@@ -256,7 +242,7 @@
               >
                 <img
                   src="assets/images/workflow-simple.svg"
-                  alt="智能任務管理工作流程"
+                  alt="Intelligent Task Management Workflow"
                   class="w-full max-w-lg"
                   loading="lazy"
                   data-src="assets/images/workflow-simple.svg"
@@ -266,7 +252,7 @@
             </div>
           </div>
 
-          <!-- 浮動裝飾元素 -->
+          <!-- Floating Decorative Elements -->
           <div
             class="absolute top-1/4 left-10 w-4 h-4 rounded-full bg-blue-300 opacity-20"
           ></div>
@@ -279,25 +265,24 @@
         </div>
       </section>
 
-      <!-- 痛點解決方案區 -->
+      <!-- Pain Points and Solutions Section -->
       <section id="pain-points" class="py-16 bg-white">
         <div class="container mx-auto px-4">
           <h2
             class="text-3xl font-bold mb-2 text-center"
             data-i18n="pain-points.title"
           >
-            痛點與解決方案
+            Pain Points and Solutions
           </h2>
           <p
             class="text-center text-gray-600 mb-12 max-w-3xl mx-auto"
             data-i18n="pain-points.subtitle"
           >
-            Shrimp Task Manager 專為解決 AI
-            編程助手在任務管理中面臨的三大核心痛點而設計。
+            Shrimp Task Manager is designed to address the three core pain points of AI programming assistants in task management.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- 痛點1：記憶缺失 -->
+            <!-- Pain Point 1: Memory Loss -->
             <div
               class="rounded-lg overflow-hidden shadow-lg"
               data-aos="fade-up"
@@ -306,7 +291,7 @@
               <div class="p-6 bg-red-50 flex justify-center">
                 <img
                   src="assets/icons/memory-loss.svg"
-                  alt="記憶缺失"
+                  alt="Memory Loss"
                   class="h-24 w-24"
                   data-i18n-alt="pain-points.memory-loss.icon.alt"
                 />
@@ -316,13 +301,13 @@
                   class="text-xl font-bold mb-3 text-red-600"
                   data-i18n="pain-points.memory-loss.title"
                 >
-                  記憶缺失
+                  Memory Loss
                 </h3>
                 <p
                   class="text-gray-700 mb-4"
                   data-i18n="pain-points.memory-loss.description"
                 >
-                  AI助手缺乏跨對話的任務記憶能力，導致無法追蹤長期任務進度，重複解釋相同需求，浪費時間和資源。
+                  AI assistants lack the ability to remember tasks across conversations, leading to difficulty in tracking long-term task progress, repeating explanations of the same needs, wasting time and resources.
                 </p>
                 <div class="border-t border-gray-200 my-4"></div>
                 <div class="flex items-center justify-center my-4">
@@ -345,7 +330,7 @@
                   <div class="flex justify-center mb-3">
                     <img
                       src="assets/icons/memory-solution.svg"
-                      alt="任務記憶功能"
+                      alt="Task Memory Function"
                       class="h-16 w-16"
                       data-i18n-alt="pain-points.memory-loss.solution.icon.alt"
                     />
@@ -354,19 +339,19 @@
                     class="text-lg font-semibold mb-2 text-green-600"
                     data-i18n="pain-points.memory-loss.solution.title"
                   >
-                    任務記憶功能
+                    Task Memory Function
                   </h4>
                   <p
                     class="text-gray-700"
                     data-i18n="pain-points.memory-loss.solution.description"
                   >
-                    自動保存執行歷史，提供長期記憶能力，讓AI助手能夠記住之前的任務進度，無縫繼續未完成任務。
+                    Automatically saves execution history, provides long-term memory, allowing AI assistants to remember previous task progress, seamlessly continuing unfinished tasks.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- 痛點2：結構混亂 -->
+            <!-- Pain Point 2: Structure Chaos -->
             <div
               class="rounded-lg overflow-hidden shadow-lg"
               data-aos="fade-up"
@@ -375,7 +360,7 @@
               <div class="p-6 bg-orange-50 flex justify-center">
                 <img
                   src="assets/icons/structure-chaos.svg"
-                  alt="結構混亂"
+                  alt="Structure Chaos"
                   class="h-24 w-24"
                   data-i18n-alt="pain-points.structure-chaos.icon.alt"
                 />
@@ -385,13 +370,13 @@
                   class="text-xl font-bold mb-3 text-orange-600"
                   data-i18n="pain-points.structure-chaos.title"
                 >
-                  結構混亂
+                  Structure Chaos
                 </h3>
                 <p
                   class="text-gray-700 mb-4"
                   data-i18n="pain-points.structure-chaos.description"
                 >
-                  複雜任務缺乏系統化管理導致效率低下，缺少依賴關係管理，子任務執行混亂，難以追蹤總體進度。
+                  Complex tasks lack systematic management, leading to low efficiency, lack of dependency management, chaotic sub-task execution, and difficulty in tracking overall progress.
                 </p>
                 <div class="border-t border-gray-200 my-4"></div>
                 <div class="flex items-center justify-center my-4">
@@ -414,7 +399,7 @@
                   <div class="flex justify-center mb-3">
                     <img
                       src="assets/icons/structure-solution.svg"
-                      alt="結構化任務分解"
+                      alt="Structured Task Decomposition"
                       class="h-16 w-16"
                       data-i18n-alt="pain-points.structure-chaos.solution.icon.alt"
                     />
@@ -423,19 +408,19 @@
                     class="text-lg font-semibold mb-2 text-yellow-600"
                     data-i18n="pain-points.structure-chaos.solution.title"
                   >
-                    結構化任務分解
+                    Structured Task Decomposition
                   </h4>
                   <p
                     class="text-gray-700"
                     data-i18n="pain-points.structure-chaos.solution.description"
                   >
-                    自動將複雜任務分解為可管理的子任務，建立清晰的依賴關係，提供有序執行路徑，確保高效完成。
+                    Automatically decomposes complex tasks into manageable sub-tasks, establishes clear dependency relationships, provides an orderly execution path, ensuring efficient completion.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- 痛點3：重複工作 -->
+            <!-- Pain Point 3: Repetitive Work -->
             <div
               class="rounded-lg overflow-hidden shadow-lg"
               data-aos="fade-up"
@@ -444,7 +429,7 @@
               <div class="p-6 bg-blue-50 flex justify-center">
                 <img
                   src="assets/icons/repeat-work.svg"
-                  alt="重複工作"
+                  alt="Repetitive Work"
                   class="h-24 w-24"
                   data-i18n-alt="pain-points.repeat-work.icon.alt"
                 />
@@ -454,13 +439,13 @@
                   class="text-xl font-bold mb-3 text-blue-600"
                   data-i18n="pain-points.repeat-work.title"
                 >
-                  重複工作
+                  Repetitive Work
                 </h3>
                 <p
                   class="text-gray-700 mb-4"
                   data-i18n="pain-points.repeat-work.description"
                 >
-                  無法有效利用過往經驗與解決方案，每次對話都需從零開始，缺乏知識積累和經驗參考系統。
+                  Unable to effectively utilize past experiences and solutions, starting from scratch each time, lacking knowledge accumulation and reference system.
                 </p>
                 <div class="border-t border-gray-200 my-4"></div>
                 <div class="flex items-center justify-center my-4">
@@ -483,7 +468,7 @@
                   <div class="flex justify-center mb-3">
                     <img
                       src="assets/icons/knowledge-solution.svg"
-                      alt="知識積累和經驗參考"
+                      alt="Knowledge Accumulation and Experience Reference"
                       class="h-16 w-16"
                       data-i18n-alt="pain-points.repeat-work.solution.icon.alt"
                     />
@@ -492,13 +477,13 @@
                     class="text-lg font-semibold mb-2 text-purple-600"
                     data-i18n="pain-points.repeat-work.solution.title"
                   >
-                    知識積累與經驗參考
+                    Knowledge Accumulation and Experience Reference
                   </h4>
                   <p
                     class="text-gray-700"
                     data-i18n="pain-points.repeat-work.solution.description"
                   >
-                    自動記錄成功解決方案，建立任務知識庫，支持相似任務快速參考，實現經驗積累和知識復用。
+                    Automatically records successful solutions, establishes a task knowledge base, supports quick reference for similar tasks, and achieves knowledge accumulation and reuse.
                   </p>
                 </div>
               </div>
@@ -510,7 +495,7 @@
               href="#features"
               class="btn btn-primary inline-flex items-center"
             >
-              <span data-i18n="pain-points.explore">探索核心功能</span>
+              <span data-i18n="pain-points.explore">Explore Core Features</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 ml-2"
@@ -528,25 +513,24 @@
         </div>
       </section>
 
-      <!-- 核心功能展示區 - 將由後續任務完成 -->
+      <!-- Core Features Showcase - Will be filled in later -->
       <section id="features" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
           <h2
             class="text-3xl font-bold mb-2 text-center"
             data-i18n="features.title"
           >
-            核心功能
+            Core Features
           </h2>
           <p
             class="text-center text-gray-600 mb-12 max-w-3xl mx-auto"
             data-i18n="features.subtitle"
           >
-            Shrimp Task Manager
-            提供六大核心功能，幫助您高效管理、執行和追蹤複雜任務。
+            Shrimp Task Manager provides six core features to help you manage, execute, and track complex tasks efficiently.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 功能1：智能任務規劃與分析 -->
+            <!-- Feature 1: Intelligent Task Planning and Analysis -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -555,7 +539,7 @@
               <div class="flex justify-center p-6 bg-indigo-50">
                 <img
                   src="assets/icons/feature-planning.svg"
-                  alt="智能任務規劃與分析"
+                  alt="Intelligent Task Planning and Analysis"
                   class="h-20 w-20"
                   data-i18n-alt="features.planning.icon.alt"
                 />
@@ -565,18 +549,18 @@
                   class="text-xl font-bold mb-3 text-indigo-600"
                   data-i18n="features.planning.title"
                 >
-                  智能任務規劃與分析
+                  Intelligent Task Planning and Analysis
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.planning.description"
                 >
-                  通過深入分析需求和約束條件，生成結構化任務計劃。自動評估範圍、風險和優先級，提供理性和全面的實施策略。
+                  Through in-depth analysis of requirements and constraints, generate structured task plans. Automatically assesses scope, risks, and priorities, providing rational and comprehensive implementation strategies.
                 </p>
               </div>
             </div>
 
-            <!-- 功能2：自動任務分解與依賴管理 -->
+            <!-- Feature 2: Automatic Task Decomposition and Dependency Management -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -585,7 +569,7 @@
               <div class="flex justify-center p-6 bg-green-50">
                 <img
                   src="assets/icons/feature-decomposition.svg"
-                  alt="自動任務分解與依賴管理"
+                  alt="Automatic Task Decomposition and Dependency Management"
                   class="h-20 w-20"
                   data-i18n-alt="features.decomposition.icon.alt"
                 />
@@ -595,18 +579,18 @@
                   class="text-xl font-bold mb-3 text-green-600"
                   data-i18n="features.decomposition.title"
                 >
-                  自動任務分解與依賴管理
+                  Automatic Task Decomposition and Dependency Management
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.decomposition.description"
                 >
-                  智能將複雜任務分解為可管理的小任務，識別任務間依賴關係，建立優化執行路徑，避免資源衝突與執行瓶頸。
+                  Intelligently break down complex tasks into manageable smaller tasks, identify dependencies between tasks, establish optimized execution paths, and avoid resource conflicts and execution bottlenecks.
                 </p>
               </div>
             </div>
 
-            <!-- 功能3：執行狀態追蹤 -->
+            <!-- Feature 3: Execution Status Tracking -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -615,7 +599,7 @@
               <div class="flex justify-center p-6 bg-blue-50">
                 <img
                   src="assets/icons/feature-tracking.svg"
-                  alt="執行狀態追蹤"
+                  alt="Execution Status Tracking"
                   class="h-20 w-20"
                   data-i18n-alt="features.tracking.icon.alt"
                 />
@@ -625,18 +609,18 @@
                   class="text-xl font-bold mb-3 text-blue-600"
                   data-i18n="features.tracking.title"
                 >
-                  執行狀態追蹤
+                  Execution Status Tracking
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.tracking.description"
                 >
-                  實時監控每個任務的執行狀態，提供進度視覺化顯示，自動更新依賴項狀態，並在任務完成時提供詳細執行報告。
+                  Monitor the execution status of each task in real time, provide visual progress display, automatically update dependency status, and provide detailed execution reports upon task completion.
                 </p>
               </div>
             </div>
 
-            <!-- 功能4：任務完整性驗證 -->
+            <!-- Feature 4: Task Integrity Verification -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -645,7 +629,7 @@
               <div class="flex justify-center p-6 bg-amber-50">
                 <img
                   src="assets/icons/feature-verification.svg"
-                  alt="任務完整性驗證"
+                  alt="Task Integrity Verification"
                   class="h-20 w-20"
                   data-i18n-alt="features.verification.icon.alt"
                 />
@@ -655,18 +639,18 @@
                   class="text-xl font-bold mb-3 text-amber-600"
                   data-i18n="features.verification.title"
                 >
-                  任務完整性驗證
+                  Task Integrity Verification
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.verification.description"
                 >
-                  全面檢查任務完成度，確保所有需求與標準都已滿足，提供驗證報告與質量評估，確保產出符合預期要求。
+                  Comprehensively check task completion, ensure all requirements and standards are met, provide verification reports and quality assessments, and ensure deliverables meet expected requirements.
                 </p>
               </div>
             </div>
 
-            <!-- 功能5：任務複雜度評估 -->
+            <!-- Feature 5: Task Complexity Assessment -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -675,7 +659,7 @@
               <div class="flex justify-center p-6 bg-purple-50">
                 <img
                   src="assets/icons/feature-complexity.svg"
-                  alt="任務複雜度評估"
+                  alt="Task Complexity Assessment"
                   class="h-20 w-20"
                   data-i18n-alt="features.complexity.icon.alt"
                 />
@@ -685,18 +669,18 @@
                   class="text-xl font-bold mb-3 text-purple-600"
                   data-i18n="features.complexity.title"
                 >
-                  任務複雜度評估
+                  Task Complexity Assessment
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.complexity.description"
                 >
-                  基於多維度標準評估任務複雜度，提供資源需求估算，識別高風險組件，幫助合理分配資源與時間。
+                  Assess task complexity based on multi-dimensional criteria, provide resource requirement estimates, identify high-risk components, and help allocate resources and time reasonably.
                 </p>
               </div>
             </div>
 
-            <!-- 功能6：任務記憶功能 -->
+            <!-- Feature 6: Task Memory Function -->
             <div
               class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               data-aos="fade-up"
@@ -705,7 +689,7 @@
               <div class="flex justify-center p-6 bg-red-50">
                 <img
                   src="assets/icons/feature-memory.svg"
-                  alt="任務記憶功能"
+                  alt="Task Memory Function"
                   class="h-20 w-20"
                   data-i18n-alt="features.memory.icon.alt"
                 />
@@ -715,13 +699,13 @@
                   class="text-xl font-bold mb-3 text-red-600"
                   data-i18n="features.memory.title"
                 >
-                  任務記憶功能
+                  Task Memory Function
                 </h3>
                 <p
                   class="text-gray-700"
                   data-i18n="features.memory.description"
                 >
-                  提供跨會話的任務記憶能力，自動保存執行歷史與上下文，允許隨時恢復任務並繼續執行，無需重複解釋需求。
+                  Provide cross-session task memory, automatically save execution history and context, allow resuming and continuing tasks at any time without repeating requirements.
                 </p>
               </div>
             </div>
@@ -732,7 +716,7 @@
               href="#workflow"
               class="btn btn-primary inline-flex items-center"
             >
-              <span data-i18n="features.learn-workflow">了解工作流程</span>
+              <span data-i18n="features.learn-workflow">Learn the Workflow</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 ml-2"
@@ -750,28 +734,27 @@
         </div>
       </section>
 
-      <!-- 工作流程展示區 - 將由後續任務完成 -->
+      <!-- Workflow Showcase Area - To be completed in subsequent tasks -->
       <section id="workflow" class="py-16 bg-white">
         <div class="container mx-auto px-4">
           <h2
             class="text-3xl font-bold mb-2 text-center"
             data-i18n="workflow.title"
           >
-            工作流程
+            Workflow
           </h2>
           <p
             class="text-center text-gray-600 mb-12 max-w-3xl mx-auto"
             data-i18n="workflow.subtitle"
           >
-            Shrimp Task Manager
-            提供完整的工作流程，從任務規劃到任務完成的每個步驟都經過精心設計。
+            Shrimp Task Manager provides a complete workflow, with each step from task planning to completion carefully designed.
           </p>
 
-          <!-- 水平時間軸 (桌面版) -->
+          <!-- Horizontal Timeline (Desktop) -->
           <div class="hidden md:block relative">
-            <!-- 七個步驟 -->
+            <!-- Seven Steps -->
             <div class="relative z-10 flex justify-center items-top gap-8">
-              <!-- 步驟1：任務規劃 -->
+              <!-- Step 1: Task Planning -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -781,7 +764,7 @@
                 <div class="workflow-icon bg-blue-100">
                   <img
                     src="assets/icons/workflow-plan.svg"
-                    alt="任務規劃"
+                    alt="Task Planning"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step1.icon.alt"
                   />
@@ -790,17 +773,17 @@
                   class="text-lg font-bold mt-4 text-blue-600 min-h-[56px]"
                   data-i18n="workflow.step1.title"
                 >
-                  任務規劃
+                  Task Planning
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step1.description"
                 >
-                  初始化並詳細規劃任務流程
+                  Initialize and plan the task process in detail
                 </p>
               </div>
 
-              <!-- 步驟2：深入分析 -->
+              <!-- Step 2: In-depth Analysis -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -810,7 +793,7 @@
                 <div class="workflow-icon bg-green-100">
                   <img
                     src="assets/icons/workflow-analyze.svg"
-                    alt="深入分析"
+                    alt="In-depth Analysis"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step2.icon.alt"
                   />
@@ -819,17 +802,17 @@
                   class="text-lg font-bold mt-4 text-green-600 min-h-[56px]"
                   data-i18n="workflow.step2.title"
                 >
-                  深入分析
+                  In-depth Analysis
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step2.description"
                 >
-                  深入分析需求並評估技術可行性
+                  Analyze requirements in depth and assess technical feasibility
                 </p>
               </div>
 
-              <!-- 步驟3：方案反思 -->
+              <!-- Step 3: Solution Reflection -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -839,7 +822,7 @@
                 <div class="workflow-icon bg-indigo-100">
                   <img
                     src="assets/icons/workflow-reflect.svg"
-                    alt="方案反思"
+                    alt="Solution Reflection"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step3.icon.alt"
                   />
@@ -848,17 +831,17 @@
                   class="text-lg font-bold mt-4 text-indigo-600 min-h-[56px]"
                   data-i18n="workflow.step3.title"
                 >
-                  方案反思
+                  Solution Reflection
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step3.description"
                 >
-                  批判性審查分析結果並優化方案
+                  Critically review analysis results and optimize the solution
                 </p>
               </div>
 
-              <!-- 步驟4：任務分解 -->
+              <!-- Step 4: Task Decomposition -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -868,7 +851,7 @@
                 <div class="workflow-icon bg-purple-100">
                   <img
                     src="assets/icons/workflow-split.svg"
-                    alt="任務分解"
+                    alt="Task Decomposition"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step4.icon.alt"
                   />
@@ -877,20 +860,20 @@
                   class="text-lg font-bold mt-4 text-purple-600 min-h-[56px]"
                   data-i18n="workflow.step4.title"
                 >
-                  任務分解
+                  Task Decomposition
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step4.description"
                 >
-                  將複雜任務分解為可管理的子任務
+                  Break down complex tasks into manageable sub-tasks
                 </p>
               </div>
             </div>
             <div
               class="relative z-10 flex justify-center items-top mt-16 gap-8"
             >
-              <!-- 步驟5：任務執行 -->
+              <!-- Step 5: Task Execution -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -900,7 +883,7 @@
                 <div class="workflow-icon bg-red-100">
                   <img
                     src="assets/icons/workflow-execute.svg"
-                    alt="任務執行"
+                    alt="Task Execution"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step5.icon.alt"
                   />
@@ -909,17 +892,17 @@
                   class="text-lg font-bold mt-4 text-red-600 min-h-[56px]"
                   data-i18n="workflow.step5.title"
                 >
-                  任務執行
+                  Task Execution
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step5.description"
                 >
-                  按照預定計劃執行特定任務
+                  Execute specific tasks according to the scheduled plan
                 </p>
               </div>
 
-              <!-- 步驟6：結果驗證 -->
+              <!-- Step 6: Result Verification -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -929,7 +912,7 @@
                 <div class="workflow-icon bg-amber-100">
                   <img
                     src="assets/icons/workflow-verify.svg"
-                    alt="結果驗證"
+                    alt="Result Verification"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step6.icon.alt"
                   />
@@ -938,17 +921,17 @@
                   class="text-lg font-bold mt-4 text-amber-600 min-h-[56px]"
                   data-i18n="workflow.step6.title"
                 >
-                  結果驗證
+                  Result Verification
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step6.description"
                 >
-                  全面驗證任務完成度和質量
+                  Comprehensively verify task completion and quality
                 </p>
               </div>
 
-              <!-- 步驟7：任務完成 -->
+              <!-- Step 7: Task Completion -->
               <div
                 class="workflow-step"
                 data-aos="fade-up"
@@ -958,7 +941,7 @@
                 <div class="workflow-icon bg-emerald-100">
                   <img
                     src="assets/icons/workflow-complete.svg"
-                    alt="任務完成"
+                    alt="Task Completion"
                     class="h-8 w-8"
                     data-i18n-alt="workflow.step7.icon.alt"
                   />
@@ -967,33 +950,33 @@
                   class="text-lg font-bold mt-4 text-emerald-600 min-h-[56px]"
                   data-i18n="workflow.step7.title"
                 >
-                  任務完成
+                  Task Completion
                 </h4>
                 <p
                   class="text-sm text-gray-600 mt-2 max-w-[150px]"
                   data-i18n="workflow.step7.description"
                 >
-                  標記任務為完成狀態並生成報告
+                  Mark task as completed and generate report
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- 垂直時間軸 (移動版) -->
+          <!-- Vertical Timeline (Mobile) -->
           <div class="md:hidden relative">
-            <!-- 連接線 -->
+            <!-- Connection Line -->
             <div
               class="absolute w-1 bg-gray-200 top-0 bottom-0 left-6 z-0"
             ></div>
 
-            <!-- 七個步驟 -->
+            <!-- Seven Steps -->
             <div class="relative z-10">
-              <!-- 步驟1：任務規劃 -->
+              <!-- Step 1: Task Planning -->
               <div class="flex items-start mb-10" data-aos="fade-right">
                 <div class="workflow-icon-mobile bg-blue-100">
                   <img
                     src="assets/icons/workflow-plan.svg"
-                    alt="任務規劃"
+                    alt="Task Planning"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step1.icon.alt"
                   />
@@ -1003,13 +986,13 @@
                     class="text-lg font-bold text-blue-600"
                     data-i18n="workflow.step1.title"
                   >
-                    任務規劃
+                    Task Planning
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step1.description"
                   >
-                    初始化並詳細規劃任務流程，建立明確的目標與成功標準，可選擇參考現有任務進行延續規劃。
+                    Initialize and plan the task process in detail, establish clear goals and success criteria, and choose to continue planning based on existing tasks.
                   </p>
                   <a
                     href="#"
@@ -1017,12 +1000,12 @@
                     data-step="1"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟2：深入分析 -->
+              <!-- Step 2: In-depth Analysis -->
               <div
                 class="flex items-start mb-10"
                 data-aos="fade-right"
@@ -1031,7 +1014,7 @@
                 <div class="workflow-icon-mobile bg-green-100">
                   <img
                     src="assets/icons/workflow-analyze.svg"
-                    alt="深入分析"
+                    alt="In-depth Analysis"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step2.icon.alt"
                   />
@@ -1041,13 +1024,13 @@
                     class="text-lg font-bold text-green-600"
                     data-i18n="workflow.step2.title"
                   >
-                    深入分析
+                    In-depth Analysis
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step2.description"
                   >
-                    深入分析任務需求並系統性檢查代碼庫，評估技術可行性與潛在風險，提供初步解決方案建議。
+                    Analyze requirements in depth and assess technical feasibility and potential risks, providing preliminary solutions.
                   </p>
                   <a
                     href="#"
@@ -1055,12 +1038,12 @@
                     data-step="2"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟3：方案反思 -->
+              <!-- Step 3: Solution Reflection -->
               <div
                 class="flex items-start mb-10"
                 data-aos="fade-right"
@@ -1069,7 +1052,7 @@
                 <div class="workflow-icon-mobile bg-indigo-100">
                   <img
                     src="assets/icons/workflow-reflect.svg"
-                    alt="方案反思"
+                    alt="Solution Reflection"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step3.icon.alt"
                   />
@@ -1079,13 +1062,13 @@
                     class="text-lg font-bold text-indigo-600"
                     data-i18n="workflow.step3.title"
                   >
-                    方案反思
+                    Solution Reflection
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step3.description"
                   >
-                    批判性審查分析結果，評估方案完整性並識別優化機會，確保解決方案符合最佳實踐。
+                    Critically review analysis results, assess the completeness of the solution, and identify opportunities for optimization to ensure the solution meets best practices.
                   </p>
                   <a
                     href="#"
@@ -1093,12 +1076,12 @@
                     data-step="3"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟4：任務分解 -->
+              <!-- Step 4: Task Decomposition -->
               <div
                 class="flex items-start mb-10"
                 data-aos="fade-right"
@@ -1107,7 +1090,7 @@
                 <div class="workflow-icon-mobile bg-purple-100">
                   <img
                     src="assets/icons/workflow-split.svg"
-                    alt="任務分解"
+                    alt="Task Decomposition"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step4.icon.alt"
                   />
@@ -1117,13 +1100,13 @@
                     class="text-lg font-bold text-purple-600"
                     data-i18n="workflow.step4.title"
                   >
-                    任務分解
+                    Task Decomposition
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step4.description"
                   >
-                    將複雜任務分解為獨立且可追蹤的子任務，建立明確的依賴關係和優先順序，支援多種更新模式。
+                    Break down complex tasks into independent and trackable sub-tasks, establish clear dependencies and priorities, and support multiple update modes.
                   </p>
                   <a
                     href="#"
@@ -1131,12 +1114,12 @@
                     data-step="4"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟5：任務執行 -->
+              <!-- Step 5: Task Execution -->
               <div
                 class="flex items-start mb-10"
                 data-aos="fade-right"
@@ -1145,7 +1128,7 @@
                 <div class="workflow-icon-mobile bg-red-100">
                   <img
                     src="assets/icons/workflow-execute.svg"
-                    alt="任務執行"
+                    alt="Task Execution"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step5.icon.alt"
                   />
@@ -1155,13 +1138,13 @@
                     class="text-lg font-bold text-red-600"
                     data-i18n="workflow.step5.title"
                   >
-                    任務執行
+                    Task Execution
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step5.description"
                   >
-                    按照預定計劃執行特定任務，確保每個步驟的輸出符合質量標準，處理執行過程中的異常情況。
+                    Execute specific tasks according to the scheduled plan, ensuring that each step meets the quality standards and handling exceptions in the execution process.
                   </p>
                   <a
                     href="#"
@@ -1169,12 +1152,12 @@
                     data-step="5"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟6：結果驗證 -->
+              <!-- Result Verification -->
               <div
                 class="flex items-start mb-10"
                 data-aos="fade-right"
@@ -1183,7 +1166,7 @@
                 <div class="workflow-icon-mobile bg-amber-100">
                   <img
                     src="assets/icons/workflow-verify.svg"
-                    alt="結果驗證"
+                    alt="Result Verification"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step6.icon.alt"
                   />
@@ -1193,13 +1176,13 @@
                     class="text-lg font-bold text-amber-600"
                     data-i18n="workflow.step6.title"
                   >
-                    結果驗證
+                    Result Verification
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step6.description"
                   >
-                    全面驗證任務完成度，確保所有需求與技術標準都已滿足，並無遺漏細節，提供質量評估報告。
+                    Verify the completion of the task and ensure all requirements and technical standards are met, providing a quality assessment report without missing details.
                   </p>
                   <a
                     href="#"
@@ -1207,12 +1190,12 @@
                     data-step="6"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- 步驟7：任務完成 -->
+              <!-- Task Completion -->
               <div
                 class="flex items-start"
                 data-aos="fade-right"
@@ -1221,7 +1204,7 @@
                 <div class="workflow-icon-mobile bg-emerald-100">
                   <img
                     src="assets/icons/workflow-complete.svg"
-                    alt="任務完成"
+                    alt="Task Completion"
                     class="h-6 w-6"
                     data-i18n-alt="workflow.step7.icon.alt"
                   />
@@ -1231,13 +1214,13 @@
                     class="text-lg font-bold text-emerald-600"
                     data-i18n="workflow.step7.title"
                   >
-                    任務完成
+                    Task Completion
                   </h4>
                   <p
                     class="text-gray-600 mt-2"
                     data-i18n="workflow.step7.description"
                   >
-                    正式標記任務為完成狀態，生成詳細的完成報告，並更新關聯任務的依賴狀態，確保工作流程的連續性。
+                    Mark the task as completed and generate a detailed completion report, update the dependency status of related tasks, and ensure the continuity of the workflow.
                   </p>
                   <a
                     href="#"
@@ -1245,14 +1228,14 @@
                     data-step="7"
                     data-i18n="workflow.learn-more-link"
                   >
-                    了解更多 &rarr;
+                    Learn More &rarr;
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 步驟詳情彈窗 -->
+          <!-- Workflow Step Details Popup -->
           <div
             id="workflow-detail-modal"
             class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
@@ -1263,7 +1246,7 @@
                 <button
                   id="close-modal"
                   class="text-gray-500 hover:text-gray-700"
-                  aria-label="關閉"
+                  aria-label="Close"
                   data-i18n-aria-label="modal.close-button-aria"
                 >
                   <svg
@@ -1289,7 +1272,7 @@
                   class="btn btn-primary"
                   data-i18n="modal.close-button"
                 >
-                  關閉
+                  Close
                 </button>
               </div>
             </div>
@@ -1297,70 +1280,69 @@
         </div>
       </section>
 
-      <!-- 代碼示例區 - 將由後續任務完成 -->
+      <!-- Code Examples Area - To be completed in subsequent tasks -->
       <section id="examples" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-          <!-- 代碼示例內容區 -->
+          <!-- Code Examples Content Area -->
           <div class="code-content-wrapper">
-            <!-- 任務規劃與分解流程示例 -->
+            <!-- Task Planning and Decomposition Process Example -->
             <div id="planning-example" class="code-content-section active">
               <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <!-- 左側說明區 -->
+                <!-- Left Description Area -->
                 <div class="lg:col-span-2" data-aos="fade-right">
                   <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3
                       class="text-2xl font-bold mb-4 text-blue-600"
                       data-i18n="examples.planning.title"
                     >
-                      任務規劃與分解流程
+                      Task Planning and Decomposition Process
                     </h3>
                     <p class="mb-4" data-i18n="examples.planning.intro">
-                      這個示例展示了如何使用MCP Shrimp Task
-                      Manager來規劃和分解複雜任務。整個流程包括四個主要步驟：
+                      This example demonstrates how to use MCP Shrimp Task Manager to plan and decompose complex tasks. The entire process includes four main steps:
                     </p>
                     <ol class="list-decimal ml-5 mb-6 space-y-2">
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-blue-600"
                           data-i18n="workflow.step1.title"
-                          >任務規劃</span
+                          >Task Planning</span
                         >
                         -
                         <span data-i18n="examples.planning.step1"
-                          >初始化並詳細規劃任務，明確目標與成功標準</span
+                          >Initialize and plan the task in detail, clarify goals and success criteria</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-green-600"
                           data-i18n="workflow.step2.title"
-                          >深入分析</span
+                          >In-depth Analysis</span
                         >
                         -
                         <span data-i18n="examples.planning.step2"
-                          >深入了解任務，分析技術可行性和潛在挑戰</span
+                          >Gain a deep understanding of the task, analyze technical feasibility and potential challenges</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-indigo-600"
                           data-i18n="workflow.step3.title"
-                          >方案反思</span
+                          >Solution Reflection</span
                         >
                         -
                         <span data-i18n="examples.planning.step3"
-                          >批判性審查分析結果，優化提案</span
+                          >Critically review analysis results and optimize the proposal</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-purple-600"
                           data-i18n="workflow.step4.title"
-                          >任務分解</span
+                          >Task Decomposition</span
                         >
                         -
                         <span data-i18n="examples.planning.step4"
-                          >將複雜任務分解為可管理的子任務</span
+                          >Break down complex tasks into manageable sub-tasks</span
                         >
                       </li>
                     </ol>
@@ -1368,7 +1350,7 @@
                       class="text-sm text-gray-600"
                       data-i18n="examples.planning.conclusion"
                     >
-                      通過這種方法，您可以將複雜的大型任務轉化為結構化的、可執行的工作單元，同時保持整體視角。
+                      With this approach, you can transform complex large tasks into structured, actionable work units while maintaining an overall perspective.
                     </p>
                   </div>
                 </div>
@@ -1378,54 +1360,54 @@
                       class="text-2xl font-bold mb-4 text-red-600"
                       data-i18n="examples.execution.title"
                     >
-                      任務執行與完成流程
+                      Task Execution and Completion Process
                     </h3>
                     <p class="mb-4" data-i18n="examples.execution.intro">
-                      這個示例展示了如何執行和完成已規劃的任務。整個流程包括四個主要步驟：
+                      This example demonstrates how to execute and complete planned tasks. The entire process includes four main steps:
                     </p>
                     <ol class="list-decimal ml-5 mb-6 space-y-2">
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-blue-600"
                           data-i18n="examples.execution.step1.title"
-                          >任務列表</span
+                          >Task List</span
                         >
                         -
                         <span data-i18n="examples.execution.step1"
-                          >查詢待處理任務列表，了解當前狀態</span
+                          >Query the list of pending tasks to understand the current status</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-red-600"
                           data-i18n="workflow.step5.title"
-                          >任務執行</span
+                          >Task Execution</span
                         >
                         -
                         <span data-i18n="examples.execution.step2"
-                          >按照預定計劃執行選定的任務</span
+                          >Execute the selected task according to the scheduled plan</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-amber-600"
                           data-i18n="workflow.step6.title"
-                          >結果驗證</span
+                          >Result Verification</span
                         >
                         -
                         <span data-i18n="examples.execution.step3"
-                          >驗證任務完成情況，確保達到質量標準</span
+                          >Verify task completion and ensure quality standards are met</span
                         >
                       </li>
                       <li class="text-gray-700">
                         <span
                           class="font-semibold text-emerald-600"
                           data-i18n="workflow.step7.title"
-                          >任務完成</span
+                          >Task Completion</span
                         >
                         -
                         <span data-i18n="examples.execution.step4"
-                          >正式標記任務為完成狀態，生成報告</span
+                          >Formally mark the task as completed and generate a report</span
                         >
                       </li>
                     </ol>
@@ -1433,7 +1415,7 @@
                       class="text-sm text-gray-600"
                       data-i18n="examples.execution.conclusion"
                     >
-                      通過這種方法，您可以系統地執行任務並確保每個步驟都達到預期的質量標準，最終完成整個工作流程。
+                      With this approach, you can systematically execute tasks and ensure each step meets the expected quality standards, ultimately completing the entire workflow.
                     </p>
                   </div>
                 </div>
@@ -1441,7 +1423,7 @@
             </div>
           </div>
 
-          <!-- 提示區域 -->
+          <!-- Tip Area -->
           <div
             class="mt-12 bg-blue-50 p-6 rounded-lg shadow-md max-w-3xl mx-auto"
             data-aos="fade-up"
@@ -1449,18 +1431,15 @@
             <h3
               class="text-xl font-bold mb-2 text-blue-600"
               data-i18n="examples.tip.title"
-            >
-              💡 提示
-            </h3>
+            >💡 Tip</h3>
             <p class="text-gray-700" data-i18n="examples.tip.description">
-              上面的工作流程並非固定不變的，Agent
-              會根據分析情況進行重複迭代不同步驟，直到達到預期效果。
+              The above workflow is not fixed; the Agent will iteratively repeat different steps based on the analysis until the expected result is achieved.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Prompt 自定義功能區塊 -->
+      <!-- Prompt Customization Feature Block -->
       <section id="prompt-customization" class="py-16 bg-white section-padding">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12" data-aos="fade-up">
@@ -1468,94 +1447,93 @@
               class="text-3xl md:text-4xl font-bold mb-4"
               data-i18n="prompt-custom.title"
             >
-              Prompt 自定義功能
+              Prompt Customization Feature
             </h2>
             <p
               class="text-lg text-gray-600 max-w-3xl mx-auto"
               data-i18n="prompt-custom.subtitle"
             >
-              透過環境變數自定義系統提示詞，無需修改代碼即可定制 AI 助手行為
+              Customize system prompts via environment variables, allowing you to tailor AI assistant behavior without modifying code
             </p>
           </div>
 
-          <!-- 內容區塊 - 將在後續任務中填充 -->
+          <!-- Content Block - To be filled in subsequent tasks -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- 左側：功能概述與好處 -->
+            <!-- Left: Feature Overview and Benefits -->
             <div data-aos="fade-right" data-aos-delay="100">
               <div class="bg-white rounded-lg shadow-md p-6 h-full">
                 <h3
                   class="text-xl font-bold text-purple-600 mb-4"
                   data-i18n="prompt-custom.overview.title"
                 >
-                  功能概述
+                  Feature Overview
                 </h3>
                 <p
                   class="text-gray-700 mb-6"
                   data-i18n="prompt-custom.overview.description"
                 >
-                  Prompt 自定義允許用戶透過環境變數調整 AI
-                  助手的行為表現，提供兩種自定義方式：完全覆蓋原始提示詞或在原有基礎上追加內容。
+                  Prompt customization allows users to adjust AI assistant behavior via environment variables, offering two customization methods: complete override of the original prompt or appending content to the existing prompt.
                 </p>
 
                 <h4
                   class="text-lg font-semibold text-gray-800 mb-3"
                   data-i18n="prompt-custom.benefits.title"
                 >
-                  主要好處
+                  Main Benefits
                 </h4>
                 <ul class="list-disc ml-5 mb-4 space-y-2 text-gray-700">
                   <li data-i18n="prompt-custom.benefits.item1">
-                    個性化定制：根據特定項目或領域需求調整系統行為
+                    Personalization: Adjust system behavior according to specific project or domain needs
                   </li>
                   <li data-i18n="prompt-custom.benefits.item2">
-                    效率提升：針對重複任務類型進行優化，減少冗余說明
+                    Efficiency Improvement: Optimize for repetitive task types, reducing redundant explanations
                   </li>
                   <li data-i18n="prompt-custom.benefits.item3">
-                    品牌一致性：確保輸出內容符合組織的風格指南和標準
+                    Brand Consistency: Ensure output content aligns with organizational style guides and standards
                   </li>
                   <li data-i18n="prompt-custom.benefits.item4">
-                    專業適應性：為特定技術領域或行業調整專業術語和標準
+                    Professional Adaptability: Adjust terminology and standards for specific technical fields or industries
                   </li>
                   <li data-i18n="prompt-custom.benefits.item5">
-                    團隊協作：統一團隊成員使用的提示詞，保證一致的工作方式
+                    Team Collaboration: Standardize prompts used by team members to ensure consistent workflows
                   </li>
                 </ul>
               </div>
             </div>
 
-            <!-- 右側：使用方法與示例 -->
+            <!-- Right: Usage and Examples -->
             <div data-aos="fade-left" data-aos-delay="200">
               <div class="bg-white rounded-lg shadow-md p-6 h-full">
                 <h3
                   class="text-xl font-bold text-purple-600 mb-4"
                   data-i18n="prompt-custom.usage.title"
                 >
-                  使用方法
+                  Usage
                 </h3>
 
                 <h4
                   class="text-lg font-semibold text-gray-800 mb-3"
                   data-i18n="prompt-custom.usage.env.title"
                 >
-                  環境變數配置
+                  Environment Variable Configuration
                 </h4>
                 <p
                   class="text-gray-700 mb-4"
                   data-i18n="prompt-custom.usage.env.description"
                 >
-                  設置環境變數來自定義各功能的提示詞，使用特定命名規則：
+                  Set environment variables to customize prompts for each feature, using specific naming conventions:
                 </p>
 
                 <div
                   class="mockup-code bg-gray-900 text-gray-100 p-4 rounded-lg mb-6 text-sm"
                 >
                   <pre class="whitespace-pre-wrap">
-# 覆蓋模式: MCP_PROMPT_[FUNCTION_NAME]
-# 追加模式: MCP_PROMPT_[FUNCTION_NAME]_APPEND
+# Override Mode: MCP_PROMPT_[FUNCTION_NAME]
+# Append Mode: MCP_PROMPT_[FUNCTION_NAME]_APPEND
 
-# 示例:
-MCP_PROMPT_PLAN_TASK="自定義的任務規劃提示詞"
-MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
+# Example:
+MCP_PROMPT_PLAN_TASK="Custom task planning prompt"
+MCP_PROMPT_EXECUTE_TASK_APPEND="Additional task execution guidance"
 </pre
                   >
                 </div>
@@ -1564,17 +1542,16 @@ MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
                   class="text-gray-700 mb-4"
                   data-i18n="prompt-custom.usage.more"
                 >
-                  查看詳細文檔了解更多配置方式和參數使用說明。
+                  See the detailed documentation for more configuration methods and parameter usage instructions.
                 </p>
 
                 <a
                   href="https://github.com/cjo4m06/mcp-shrimp-task-manager/tree/main/docs/en/prompt-customization.md"
                   class="btn btn-primary lang-specific"
-                  data-lang-zh-tw="https://github.com/cjo4m06/mcp-shrimp-task-manager/tree/main/docs/zh/prompt-customization.md"
                   data-lang-en="https://github.com/cjo4m06/mcp-shrimp-task-manager/tree/main/docs/en/prompt-customization.md"
                   data-i18n="prompt-custom.view-docs"
                 >
-                  查看完整文檔
+                  View Full Documentation
                 </a>
               </div>
             </div>
@@ -1582,28 +1559,27 @@ MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
         </div>
       </section>
 
-      <!-- 安裝與配置區 - 將由後續任務完成 -->
+      <!-- Installation and Configuration -->
       <section id="installation" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
           <h2
             class="text-3xl font-bold mb-2 text-center"
             data-i18n="installation.title"
           >
-            安裝與配置區
+            Installation and Configuration
           </h2>
           <p
             class="text-center text-gray-600 mb-12 max-w-3xl mx-auto"
             data-i18n="installation.subtitle"
           >
-            Shrimp Task Manager
-            提供多種安裝方式，無論您是想快速開始，還是需要進行高級配置，都能輕鬆上手。
+            Shrimp Task Manager provides multiple installation methods, making it easy to get started quickly or perform advanced configuration as needed.
           </p>
 
-          <!-- 安裝方式選項卡 -->
+          <!-- Installation Options Tabs -->
           <div
             class="bg-white rounded-lg shadow-lg overflow-hidden max-w-5xl mx-auto mb-16"
           >
-            <!-- 選項卡按鈕 -->
+            <!-- Tab Buttons -->
             <div class="flex border-b border-gray-200">
               <button
                 class="install-tab-btn flex-1 py-4 px-6 text-center font-medium focus:outline-none active"
@@ -1621,7 +1597,7 @@ MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
                     clip-rule="evenodd"
                   />
                 </svg>
-                <span data-i18n="installation.manual.title">手動安裝設置</span>
+                <span data-i18n="installation.manual.title">Manual Installation Setup</span>
               </button>
               <button
                 class="install-tab-btn flex-1 py-4 px-6 text-center font-medium focus:outline-none"
@@ -1638,25 +1614,25 @@ MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
                   />
                 </svg>
                 <span data-i18n="installation.cursor.title"
-                  >Cursor IDE 配置</span
+                  >Cursor IDE Configuration</span
                 >
               </button>
             </div>
 
-            <!-- 選項卡內容 -->
+            <!-- Tab Content -->
             <div class="install-content-wrapper">
-              <!-- 手動安裝設置 -->
+              <!-- Manual Installation Setup -->
               <div id="manual-install" class="install-content-section p-6">
                 <div class="mb-6">
                   <h3
                     class="text-2xl font-bold mb-3 text-green-600"
                     data-i18n="installation.manual.title"
                   >
-                    手動安裝設置
+                    Manual Installation Setup
                   </h3>
                 </div>
 
-                <!-- 步驟 1: 克隆倉庫 -->
+                <!-- Step 1: Clone the Repository -->
                 <div class="mb-8">
                   <div class="flex items-center mb-3">
                     <div
@@ -1668,7 +1644,7 @@ MCP_PROMPT_EXECUTE_TASK_APPEND="額外的任務執行指導"
                       class="text-lg font-semibold"
                       data-i18n="installation.step1"
                     >
-                      克隆代碼倉庫
+                      Clone the Repository
                     </h4>
                   </div>
 
@@ -1685,12 +1661,12 @@ cd mcp-shrimp-task-manager</code></pre>
 cd mcp-shrimp-task-manager"
                       data-i18n="installation.copy-button"
                     >
-                      複製
+                      Copy
                     </button>
                   </div>
                 </div>
 
-                <!-- 步驟 2: 安裝依賴 -->
+                <!-- Step 2: Install Dependencies -->
                 <div class="mb-8">
                   <div class="flex items-center mb-3">
                     <div
@@ -1702,7 +1678,7 @@ cd mcp-shrimp-task-manager"
                       class="text-lg font-semibold"
                       data-i18n="installation.step2"
                     >
-                      安裝依賴
+                      Install Dependencies
                     </h4>
                   </div>
 
@@ -1717,12 +1693,12 @@ cd mcp-shrimp-task-manager"
                       data-command="npm install"
                       data-i18n="installation.copy-button"
                     >
-                      複製
+                      Copy
                     </button>
                   </div>
                 </div>
 
-                <!-- 步驟 3: 編譯項目 -->
+                <!-- Step 3: Build the Project -->
                 <div>
                   <div class="flex items-center mb-3">
                     <div
@@ -1734,7 +1710,7 @@ cd mcp-shrimp-task-manager"
                       class="text-lg font-semibold"
                       data-i18n="installation.step3"
                     >
-                      編譯項目
+                      Build the Project
                     </h4>
                   </div>
 
@@ -1749,13 +1725,13 @@ cd mcp-shrimp-task-manager"
                       data-command="npm run build"
                       data-i18n="installation.copy-button"
                     >
-                      複製
+                      Copy
                     </button>
                   </div>
                 </div>
               </div>
 
-              <!-- Cursor IDE 配置 -->
+              <!-- Cursor IDE Configuration -->
               <div
                 id="cursor-config"
                 class="install-content-section hidden p-6"
@@ -1765,14 +1741,13 @@ cd mcp-shrimp-task-manager"
                     class="text-2xl font-bold mb-3 text-purple-600"
                     data-i18n="installation.cursor.title"
                   >
-                    Cursor IDE 配置
+                    Cursor IDE Configuration
                   </h3>
                   <p
                     class="text-gray-700 mb-4"
                     data-i18n="installation.cursor.description"
                   >
-                    如果您使用 Cursor IDE，可以將 Shrimp Task Manager
-                    集成到您的開發環境中。
+                    If you use Cursor IDE, you can integrate Shrimp Task Manager into your development environment.
                   </p>
                 </div>
 
@@ -1784,7 +1759,7 @@ cd mcp-shrimp-task-manager"
                       <span
                         class="ml-2 text-xs text-gray-400"
                         data-i18n="installation.cursor.mcp-servers"
-                        >您的項目目錄/.cursor/mcp.jsonn</span
+                        >Your project directory/.cursor/mcp.json</span
                       >
                     </div>
                     <pre
@@ -1818,7 +1793,7 @@ cd mcp-shrimp-task-manager"
   }
 }'
                     >
-                      複製
+                      Copy
                     </button>
                   </div>
 
@@ -1839,17 +1814,13 @@ cd mcp-shrimp-task-manager"
                           clip-rule="evenodd"
                         />
                       </svg>
-                      重要提示
+                      Important Note
                     </h4>
                     <p
                       class="text-gray-700"
                       data-i18n="installation.important-note.description"
                     >
-                      <strong>必須使用絕對路徑：</strong> 請確保
-                      <code class="bg-red-100 px-1 py-0.5 rounded"
-                        >DATA_DIR</code
-                      >
-                      配置使用絕對路徑而非相對路徑，否則可能無法正確載入資料
+                      <strong>You must use absolute paths:</strong> Please ensure that the <code class="bg-red-100 px-1 py-0.5 rounded">DATA_DIR</code> configuration uses absolute paths instead of relative paths, otherwise data may not load correctly.
                     </p>
                   </div>
                   <div class="bg-purple-50 p-4 rounded-lg mb-6">
@@ -1857,13 +1828,13 @@ cd mcp-shrimp-task-manager"
                       class="text-lg font-semibold mb-2 text-purple-600"
                       data-i18n="installation.prompt-config.title"
                     >
-                      提示詞配置說明
+                      Prompt Configuration Instructions
                     </h4>
                     <p
                       class="text-gray-700 mb-4"
                       data-i18n="installation.prompt-config.intro"
                     >
-                      Shrimp Task Manager 支持兩種模式：
+                      Shrimp Task Manager supports two modes:
                     </p>
                     <ul class="list-disc ml-6 mb-4 space-y-2">
                       <li>
@@ -1875,13 +1846,12 @@ cd mcp-shrimp-task-manager"
                         <span
                           data-i18n="installation.prompt-config.mode1.description"
                         >
-                          適用於初始任務規劃和複雜任務分解，AI
-                          助手扮演任務規劃師角色。
+                          Suitable for initial task planning and complex task decomposition, the AI assistant acts as a task planner.
                         </span>
                         <pre><code class="language-none" data-i18n="task.planner.prompt">
-你是一個專業的任務規劃專家，你必須與用戶進行交互，分析用戶的需求，並收集專案相關資訊，最終使用 「plan_task」 建立任務，當任務建立完成後必須總結摘要，並告知用戶使用「TaskExecutor」模式進行任務執行。
-你必須專心於任務規劃禁止使用 「execute_task」 來執行任務，
-嚴重警告你是任務規劃專家，你不能直接修改程式碼，你只能規劃任務，並且你不能直接修改程式碼，你只能規劃任務。
+You are a professional task planning expert. You must interact with the user, analyze their needs, and collect project-related information. Finally, use "plan_task" to create tasks. After the task is created, you must summarize and inform the user to use the "TaskExecutor" mode for task execution.
+You must focus on task planning and are strictly prohibited from using "execute_task" to execute tasks.
+Warning: You are a task planning expert. You cannot directly modify code. You can only plan tasks, and you cannot directly modify code. You can only plan tasks.
 </code></pre>
                       </li>
                       <li>
@@ -1893,14 +1863,14 @@ cd mcp-shrimp-task-manager"
                         <span
                           data-i18n="installation.prompt-config.mode2.description"
                         >
-                          適用於執行預定義任務，AI 助手扮演執行專家角色。
+                          Suitable for executing predefined tasks, the AI assistant acts as an execution expert.
                         </span>
                         <pre><code class="language-none" data-i18n="task.executor.prompt">
-你是一個專業的任務執行專家，當用戶有指定執行任務，則使用 「execute_task」 進行任務執行，
-沒有指定任務時則使用 「list_tasks」 尋找未執行的任務並執行，
-當執行完成後必須總結摘要告知用戶結論，
-你一次只能執行一個任務，當任務完成時除非用戶明確告知否則禁止進行下一則任務。
-用戶如果要求「連續模式」則按照順序連續執行所有任務。
+You are a professional task execution expert. When the user specifies a task to execute, use "execute_task" to perform the task.
+If no task is specified, use "list_tasks" to find unexecuted tasks and execute them.
+After execution, you must summarize and inform the user of the conclusion.
+You can only execute one task at a time. Unless the user explicitly requests, do not proceed to the next task.
+If the user requests "continuous mode," execute all tasks in order.
 </code></pre>
                       </li>
                     </ul>
@@ -1908,11 +1878,7 @@ cd mcp-shrimp-task-manager"
                       class="text-gray-700"
                       data-i18n="installation.prompt-config.tip"
                     >
-                      您可以在Cursor設置中使用
-                      <code class="bg-purple-100 px-1 py-0.5 rounded"
-                        >Custom modes</code
-                      >
-                      配置來自定義模式，以適應不同的工作場景。
+                      You can use the <code class="bg-purple-100 px-1 py-0.5 rounded">Custom modes</code> configuration in Cursor settings to define modes for different work scenarios.
                     </p>
                   </div>
                 </div>
@@ -1920,9 +1886,9 @@ cd mcp-shrimp-task-manager"
             </div>
           </div>
 
-          <!-- 下一步和資源卡片 -->
+          <!-- Next Steps and Resource Cards -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <!-- 開始使用指南 -->
+            <!-- Getting Started Guide -->
             <div
               class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md p-6"
               data-aos="fade-up"
@@ -1949,23 +1915,22 @@ cd mcp-shrimp-task-manager"
                   class="text-xl font-bold text-blue-600"
                   data-i18n="quickstart.title"
                 >
-                  快速入門
+                  Quick Start
                 </h3>
               </div>
               <p class="text-gray-700 mb-4" data-i18n="quickstart.description">
-                完成安裝後，請查看我們的快速入門指南，了解如何使用 MCP Shrimp
-                Task Manager。
+                After installation, check out our quick start guide to learn how to use MCP Shrimp Task Manager.
               </p>
               <a
                 href="https://github.com/cjo4m06/mcp-shrimp-task-manager"
                 class="text-blue-600 hover:text-blue-800 font-medium"
                 data-i18n="quickstart.view-code-link"
               >
-                查看代碼 &rarr;
+                View Code &rarr;
               </a>
             </div>
 
-            <!-- 常見問題解答 -->
+            <!-- Frequently Asked Questions -->
             <div
               class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-md p-6"
               data-aos="fade-up"
@@ -1992,25 +1957,25 @@ cd mcp-shrimp-task-manager"
                   class="text-xl font-bold text-amber-600"
                   data-i18n="faq.title"
                 >
-                  常見問題
+                  FAQ
                 </h3>
               </div>
               <p class="text-gray-700 mb-4" data-i18n="faq.description">
-                遇到問題？查看我們的常見問題解答，或在 GitHub 上提交問題。
+                Have questions? Check our FAQ or submit an issue on GitHub.
               </p>
               <a
                 href="https://github.com/cjo4m06/mcp-shrimp-task-manager/issues"
                 class="text-amber-600 hover:text-amber-800 font-medium"
                 data-i18n="faq.view-faq-link"
               >
-                查看常見問題 &rarr;
+                View FAQ &rarr;
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA與資源區 -->
+      <!-- CTA and Resource Area -->
       <section
         id="cta"
         class="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white"
@@ -2025,10 +1990,10 @@ cd mcp-shrimp-task-manager"
               class="text-3xl md:text-4xl font-bold mb-6"
               data-i18n="cta.title"
             >
-              立即體驗智能任務管理
+              Experience Intelligent Task Management Now
             </h2>
             <p class="text-blue-100 mb-8 text-lg" data-i18n="cta.description">
-              提升您的AI編程體驗，告別無序任務管理，擁抱更高效的工作流程。
+              Enhance your AI programming experience, say goodbye to chaotic task management, and embrace a more efficient workflow.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
               <a
@@ -2046,7 +2011,7 @@ cd mcp-shrimp-task-manager"
                     d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
                   />
                 </svg>
-                <span data-i18n="cta.github">前往 GitHub 倉庫</span>
+                <span data-i18n="cta.github">Go to GitHub Repository</span>
               </a>
               <a href="#installation" class="btn btn-secondary btn-lg">
                 <svg
@@ -2063,39 +2028,39 @@ cd mcp-shrimp-task-manager"
                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                   />
                 </svg>
-                <span data-i18n="cta.start">開始安裝</span>
+                <span data-i18n="cta.start">Start Installation</span>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 頁腳區域 -->
+      <!-- Footer Area -->
+      <!-- Footer Section -->
       <footer class="bg-gray-900 text-white pt-4 pb-8">
         <div class="container mx-auto px-4">
-          <!-- 版權信息 -->
+          <!-- Copyright Information -->
+          <!-- Copyright Information -->
           <div class="border-t border-gray-800 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
               <p class="text-gray-400" data-i18n="footer.copyright">
-                © 2023 MCP Task Manager. 保留所有權利。
+                © 2023 MCP Task Manager. All rights reserved.
               </p>
               <p class="text-gray-500 text-sm mt-2 md:mt-0">
                 <span data-i18n="footer.developer"
-                  >由
+                  >Developed with ❤️ by
                   <a
                     href="https://github.com/cjo4m06/mcp-shrimp-task-manager"
                     class="text-blue-400 hover:text-blue-300"
-                    >Siage</a
-                  >
-                  用 ❤️ 開發</span
-                >
+                    >Siage</a>
+                </span>
               </p>
             </div>
           </div>
         </div>
       </footer>
     </main>
-    <!-- 主腳本 -->
+    <!-- Main Script -->
     <script src="js/main.js"></script>
   </body>
 </html>
