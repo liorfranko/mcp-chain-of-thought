@@ -10,7 +10,7 @@ USER service-user
 
 WORKDIR /app
 
-RUN git clone https://github.com/liorfranko/mcp-chain-of-thought . && git checkout 6e949dc69b9cd47e706d20d0296311d7b7112ec9
+RUN git clone https://github.com/liorfranko/mcp-chain-of-thought . && git checkout 196c77bec606c6fc24856c2c9d9ba3316bb23aaf
 
 RUN (npm install) && (npm run build)
 
