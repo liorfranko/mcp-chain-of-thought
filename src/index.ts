@@ -62,7 +62,6 @@ import { updateTaskConversationHistory, getTaskById } from "./models/taskModel.j
 
 async function main() {
   try {
-    console.log("Starting MCP Chain of Thought service...");
     const ENABLE_GUI = process.env.ENABLE_GUI === "true";
     const ENABLE_DETAILED_MODE = process.env.ENABLE_DETAILED_MODE === "true";
 
@@ -588,7 +587,6 @@ async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
 
-    console.log("MCP Chain of Thought service started");
   } catch (error) {
     process.exit(1);
   }
