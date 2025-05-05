@@ -1,4 +1,4 @@
-[English](CHANGELOG.md) | [中文](docs/zh/CHANGELOG.md)
+[English](CHANGELOG.md)
 
 # Changelog
 

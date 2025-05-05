@@ -1,4 +1,4 @@
-[English](../en/functionality-checklist.md) | [中文](../zh/functionality-checklist.md)
+[English](../en/functionality-checklist.md)
 
 # Shrimp Task Manager - Functionality Implementation Checklist
 
@@ -8,10 +8,10 @@ This document lists all the tools, functions, parameter structures, and features
 
 ### Task Status Enumeration (TaskStatus)
 
-- `PENDING = "待處理"` - Tasks that have been created but not yet started
-- `IN_PROGRESS = "進行中"` - Tasks currently being executed
-- `COMPLETED = "已完成"` - Tasks that have been successfully completed and verified
-- `BLOCKED = "被阻擋"` - Tasks that cannot be executed temporarily due to dependencies
+- `PENDING = "Pending"` - Tasks that have been created but not yet started
+- `IN_PROGRESS = "In Progress"` - Tasks currently being executed
+- `COMPLETED = "Completed"` - Tasks that have been successfully completed and verified
+- `BLOCKED = "Blocked"` - Tasks that cannot be executed temporarily due to dependencies
 
 ### Task Dependency (TaskDependency)
 
@@ -19,11 +19,11 @@ This document lists all the tools, functions, parameter structures, and features
 
 ### Related File Type Enumeration (RelatedFileType)
 
-- `TO_MODIFY = "待修改"` - Files that need to be modified in the task
-- `REFERENCE = "參考資料"` - Reference materials or related documents for the task
-- `CREATE = "待建立"` - Files that need to be created in the task
-- `DEPENDENCY = "依賴文件"` - Component or library files that the task depends on
-- `OTHER = "其他"` - Other types of related files
+- `TO_MODIFY = "To Modify"` - Files that need to be modified in the task
+- `REFERENCE = "Reference"` - Reference materials or related documents for the task
+- `CREATE = "To Create"` - Files that need to be created in the task
+- `DEPENDENCY = "Dependency"` - Component or library files that the task depends on
+- `OTHER = "Other"` - Other types of related files
 
 ### Related File (RelatedFile)
 
@@ -49,10 +49,10 @@ This document lists all the tools, functions, parameter structures, and features
 
 ### Task Complexity Level Enumeration (TaskComplexityLevel)
 
-- `LOW = "低複雜度"` - Simple and straightforward tasks that usually do not require special handling
-- `MEDIUM = "中等複雜度"` - Tasks with some complexity but still manageable
-- `HIGH = "高複雜度"` - Complex and time-consuming tasks that require special attention
-- `VERY_HIGH = "極高複雜度"` - Extremely complex tasks that are recommended to be broken down
+- `LOW = "Low Complexity"` - Simple and straightforward tasks that usually do not require special handling
+- `MEDIUM = "Medium Complexity"` - Tasks with some complexity but still manageable
+- `HIGH = "High Complexity"` - Complex and time-consuming tasks that require special attention
+- `VERY_HIGH = "Very High Complexity"` - Extremely complex tasks that are recommended to be broken down
 
 ### Task Complexity Assessment Result (TaskComplexityAssessment)
 

@@ -1,43 +1,43 @@
-// 任務狀態枚舉：定義任務在工作流程中的當前階段
+// Task status enum: Defines the current stage of a task in the workflow
 export var TaskStatus;
 (function (TaskStatus) {
-  TaskStatus["PENDING"] = "\u5F85\u8655\u7406";
-  TaskStatus["IN_PROGRESS"] = "\u9032\u884C\u4E2D";
-  TaskStatus["COMPLETED"] = "\u5DF2\u5B8C\u6210";
-  TaskStatus["BLOCKED"] = "\u88AB\u963B\u64CB";
+  TaskStatus["PENDING"] = "Pending";
+  TaskStatus["IN_PROGRESS"] = "In Progress";
+  TaskStatus["COMPLETED"] = "Completed";
+  TaskStatus["BLOCKED"] = "Blocked";
 })(TaskStatus || (TaskStatus = {}));
-// 相關文件類型：定義文件與任務的關係類型
+// Related file types: Defines the relationship types between files and tasks
 export var RelatedFileType;
 (function (RelatedFileType) {
-  RelatedFileType["TO_MODIFY"] = "\u5F85\u4FEE\u6539";
-  RelatedFileType["REFERENCE"] = "\u53C3\u8003\u8CC7\u6599";
-  RelatedFileType["OUTPUT"] = "\u8F38\u51FA\u7D50\u679C";
-  RelatedFileType["DEPENDENCY"] = "\u4F9D\u8CF4\u6587\u4EF6";
-  RelatedFileType["OTHER"] = "\u5176\u4ED6";
+  RelatedFileType["TO_MODIFY"] = "To Modify";
+  RelatedFileType["REFERENCE"] = "Reference Material";
+  RelatedFileType["OUTPUT"] = "Output Result";
+  RelatedFileType["DEPENDENCY"] = "Dependency File";
+  RelatedFileType["OTHER"] = "Other";
 })(RelatedFileType || (RelatedFileType = {}));
-// 任務複雜度級別：定義任務的複雜程度分類
+// Task complexity levels: Defines the classification of task complexity
 export var TaskComplexityLevel;
 (function (TaskComplexityLevel) {
-  TaskComplexityLevel["LOW"] = "\u4F4E\u8907\u96DC\u5EA6";
-  TaskComplexityLevel["MEDIUM"] = "\u4E2D\u7B49\u8907\u96DC\u5EA6";
-  TaskComplexityLevel["HIGH"] = "\u9AD8\u8907\u96DC\u5EA6";
-  TaskComplexityLevel["VERY_HIGH"] = "\u6975\u9AD8\u8907\u96DC\u5EA6";
+  TaskComplexityLevel["LOW"] = "Low Complexity";
+  TaskComplexityLevel["MEDIUM"] = "Medium Complexity";
+  TaskComplexityLevel["HIGH"] = "High Complexity";
+  TaskComplexityLevel["VERY_HIGH"] = "Very High Complexity";
 })(TaskComplexityLevel || (TaskComplexityLevel = {}));
-// 任務複雜度閾值：定義任務複雜度評估的參考標準
+// Task complexity thresholds: Defines the reference standards for task complexity assessment
 export const TaskComplexityThresholds = {
   DESCRIPTION_LENGTH: {
-    MEDIUM: 500, // 超過此字數判定為中等複雜度
-    HIGH: 1000, // 超過此字數判定為高複雜度
-    VERY_HIGH: 2000, // 超過此字數判定為極高複雜度
+    MEDIUM: 500, // Exceeding this character count is considered medium complexity
+    HIGH: 1000, // Exceeding this character count is considered high complexity
+    VERY_HIGH: 2000, // Exceeding this character count is considered very high complexity
   },
   DEPENDENCIES_COUNT: {
-    MEDIUM: 2, // 超過此依賴數量判定為中等複雜度
-    HIGH: 5, // 超過此依賴數量判定為高複雜度
-    VERY_HIGH: 10, // 超過此依賴數量判定為極高複雜度
+    MEDIUM: 2, // Exceeding this dependency count is considered medium complexity
+    HIGH: 5, // Exceeding this dependency count is considered high complexity
+    VERY_HIGH: 10, // Exceeding this dependency count is considered very high complexity
   },
   NOTES_LENGTH: {
-    MEDIUM: 200, // 超過此字數判定為中等複雜度
-    HIGH: 500, // 超過此字數判定為高複雜度
-    VERY_HIGH: 1000, // 超過此字數判定為極高複雜度
+    MEDIUM: 200, // Exceeding this character count is considered medium complexity
+    HIGH: 500, // Exceeding this character count is considered high complexity
+    VERY_HIGH: 1000, // Exceeding this character count is considered very high complexity
   },
 };

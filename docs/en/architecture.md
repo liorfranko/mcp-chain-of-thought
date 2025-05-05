@@ -1,6 +1,6 @@
 # Architecture Design Document for Shrimp Task Manager
 
-[English](../en/architecture.md) | [中文](../zh/architecture.md)
+[English](../en/architecture.md)
 
 ## 1. System Overview
 
