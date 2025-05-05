@@ -165,6 +165,46 @@ export async function updateTaskSummary(
   return await updateTask(taskId, { summary });
 }
 
+/**
+ * Update task conversation history
+ * Adds a new message to the task's conversation history
+ * @param taskId Unique identifier of the task
+ * @param role Role of the message sender (user or assistant)
+ * @param content Content of the message
+ * @param toolName Optional name of the tool associated with the message
+ * @returns Updated task or null if task not found
+ */
+export async function updateTaskConversationHistory(
+  taskId: string,
+  role: 'user' | 'assistant',
+  content: string,
+  toolName?: string
+): Promise<Task | null> {
+  // Get task and check if it exists
+  const task = await getTaskById(taskId);
+
+  if (!task) {
+    return null;
+  }
+
+  // Create new conversation message
+  const message = {
+    timestamp: new Date(),
+    role,
+    content,
+    toolName
+  };
+
+  // Create conversation history array if it doesn't exist
+  const conversationHistory = task.conversationHistory || [];
+  
+  // Add new message to conversation history
+  const updatedConversationHistory = [...conversationHistory, message];
+
+  // Update task with new conversation history
+  return await updateTask(taskId, { conversationHistory: updatedConversationHistory });
+}
+
 // Update task content
 export async function updateTaskContent(
   taskId: string,

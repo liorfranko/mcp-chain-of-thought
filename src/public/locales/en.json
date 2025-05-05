@@ -51,5 +51,11 @@
   "error_loading_tasks": "Failed to load tasks: {message}",
   "error_updating_tasks": "Failed to update tasks: {message}",
   "error_loading_graph": "Failed to load dependency graph",
-  "error_task_not_found": "Task not found"
+  "error_task_not_found": "Task not found",
+  
+  "conversation_history_title": "Conversation History",
+  "toggle_conversation": "Toggle",
+  "user_role": "User",
+  "assistant_role": "Assistant",
+  "no_conversation_history": "No conversation history available"
 }

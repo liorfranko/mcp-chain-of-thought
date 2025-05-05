@@ -5,6 +5,7 @@ let searchTerm = "";
 let sortOption = "date-asc";
 let globalAnalysisResult = null; // Added: Store global analysis result
 let svg, g, simulation; // Modified: Define D3 related variables
+let conversationHistory = []; // Added: Store conversation history for selected task
 
 // Added: i18n global variables
 let currentLang = "en"; // Default language
@@ -538,7 +539,7 @@ function renderTasks() {
 }
 
 // Select task
-function selectTask(taskId) {
+async function selectTask(taskId) {
   // Clear old selected state and highlight
   if (selectedTaskId) {
     const previousElement = document.querySelector(
@@ -578,6 +579,9 @@ function selectTask(taskId) {
     )}</div>`;
     return;
   }
+
+  // Fetch conversation history if detailed mode is enabled
+  conversationHistory = await fetchConversationHistory(taskId);
 
   // --- Safely fill task details ---
   // 1. Create basic skeleton (use innerHTML, but replace dynamic content with ID'd empty elements)
@@ -628,6 +632,9 @@ function selectTask(taskId) {
       <h4>Notes</h4>
       <p id="detail-notes"></p>
     </div>
+    
+    <!-- Conversation history section will be added here if available -->
+    <div id="conversation-history-container"></div>
   `;
 
   // 2. Get corresponding elements and use textContent safely to fill content
@@ -648,6 +655,7 @@ function selectTask(taskId) {
   const detailNotes = document.getElementById("detail-notes");
   const detailDependencies = document.getElementById("detail-dependencies");
   const detailRelatedFiles = document.getElementById("detail-related-files");
+  const conversationHistoryContainer = document.getElementById("conversation-history-container");
 
   if (detailName) detailName.textContent = task.name;
   if (detailStatus) {
@@ -730,11 +738,25 @@ function selectTask(taskId) {
           )}</span>`; // Translate placeholder
     detailRelatedFiles.innerHTML = relatedFilesHtml;
   }
-
-  // --- Original innerHTML assignment has been removed ---
+  
+  // Add conversation history section if available
+  if (conversationHistoryContainer && conversationHistory && conversationHistory.length > 0) {
+    conversationHistoryContainer.innerHTML = renderConversationHistory(conversationHistory);
+    
+    // Add event listeners for toggle buttons
+    document.querySelectorAll(".toggle-btn").forEach((btn) => {
+      const targetId = btn.getAttribute("data-target");
+      const targetElement = document.getElementById(targetId);
+      
+      btn.addEventListener("click", () => {
+        targetElement.classList.toggle("collapsed");
+        btn.classList.toggle("collapsed");
+      });
+    });
+  }
 
   // Just call highlight function
-  highlightNode(taskId); // Just call highlightNode
+  highlightNode(taskId);
 }
 
 // Render dependency relationship graph - Modified to global view and enter/update/exit mode
@@ -1184,3 +1206,63 @@ function getStatusClass(status) {
 
 // Function: Enable node drag (keep unchanged)
 // ... drag ...
+
+// Function to fetch conversation history for a task
+async function fetchConversationHistory(taskId) {
+  try {
+    const response = await fetch(`/api/tasks/${taskId}/conversation`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.conversationHistory || [];
+  } catch (error) {
+    console.error("Error fetching conversation history:", error);
+    return [];
+  }
+}
+
+// Function to render conversation history in the task details
+function renderConversationHistory(history) {
+  if (!history || history.length === 0) {
+    return '';
+  }
+  
+  let historyHtml = `
+    <div class="task-details-section conversation-history-section">
+      <div class="section-header">
+        <h4 data-i18n-key="conversation_history_title">Conversation History</h4>
+        <button class="toggle-btn" data-target="conversation-content">${translate('toggle_conversation')}</button>
+      </div>
+      <div id="conversation-content" class="section-content conversation-content">
+  `;
+  
+  // Sort messages by timestamp
+  const sortedHistory = [...history].sort((a, b) => 
+    new Date(a.timestamp) - new Date(b.timestamp)
+  );
+  
+  sortedHistory.forEach(msg => {
+    const timestamp = new Date(msg.timestamp).toLocaleString();
+    const role = msg.role === 'user' ? translate('user_role') : translate('assistant_role');
+    const toolInfo = msg.toolName ? `<span class="tool-name">${msg.toolName}</span>` : '';
+    
+    historyHtml += `
+      <div class="message ${msg.role}-message">
+        <div class="message-header">
+          <span class="message-role">${role}</span>
+          <span class="message-time">${timestamp}</span>
+          ${toolInfo}
+        </div>
+        <div class="message-content">${msg.content}</div>
+      </div>
+    `;
+  });
+  
+  historyHtml += `
+      </div>
+    </div>
+  `;
+  
+  return historyHtml;
+}

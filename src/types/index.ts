@@ -29,6 +29,14 @@ export interface RelatedFile {
   lineEnd?: number; // Ending line of the relevant code block (optional)
 }
 
+// Conversation message: defines the structure of a message in the task conversation history
+export interface ConversationMessage {
+  timestamp: Date; // Timestamp when the message was created
+  role: 'user' | 'assistant'; // Role of the message sender (user or assistant)
+  content: string; // Content of the message
+  toolName?: string; // Name of the tool associated with the message (if applicable)
+}
+
 // Task interface: defines the complete data structure of a task
 export interface Task {
   id: string; // Unique identifier of the task
@@ -51,6 +59,9 @@ export interface Task {
 
   // Additional field: save verification standards and testing methods
   verificationCriteria?: string; // Clear verification standards, test points, and acceptance conditions
+  
+  // Additional field: save conversation history for detailed mode
+  conversationHistory?: ConversationMessage[]; // History of conversations related to this task (only used when detailed mode is enabled)
 }
 
 // Parameters for planning a task: used to initialize the task planning phase

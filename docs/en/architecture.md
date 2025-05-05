@@ -74,7 +74,25 @@ Manages the execution history and experience of tasks, with key functions:
 - Loading of historical task context
 - Creation of backup files
 
-### 4.3 File Association Module
+### 4.3 Conversation History Module
+
+Captures and manages conversations between the user and the system for each task when detailed mode is enabled:
+
+- Records all tool requests and responses
+- Associates messages with specific tasks
+- Provides API endpoints for retrieving conversation history
+- Displays conversation history in the web UI
+
+The module is activated by setting the `ENABLE_DETAILED_MODE` environment variable to `true`. When enabled, it captures:
+
+- User requests (tool calls)
+- System responses
+- Timestamps for each message
+- Associated tool names
+
+This provides a detailed audit trail of the entire task execution process, which is especially useful for debugging, learning, and understanding complex task workflows.
+
+### 4.4 File Association Module
 
 Manages the relationship between tasks and related files, including:
 
@@ -82,7 +100,7 @@ Manages the relationship between tasks and related files, including:
 - Loading file summaries
 - Updating file relationships
 
-### 4.4 Task Complexity Assessment Module
+### 4.5 Task Complexity Assessment Module
 
 Evaluates the complexity of tasks based on various indicators, helping to determine the appropriate execution strategy.
 

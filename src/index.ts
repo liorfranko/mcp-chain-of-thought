@@ -57,10 +57,14 @@ import {
   initProjectRulesSchema,
 } from "./tools/projectTools.js";
 
+// Import task model functions
+import { updateTaskConversationHistory, getTaskById } from "./models/taskModel.js";
+
 async function main() {
   try {
     console.log("Starting MCP Chain of Thought service...");
     const ENABLE_GUI = process.env.ENABLE_GUI === "true";
+    const ENABLE_DETAILED_MODE = process.env.ENABLE_DETAILED_MODE === "true";
 
     if (ENABLE_GUI) {
       // Create Express application
@@ -132,6 +136,36 @@ async function main() {
         });
       });
 
+      // Conversation history API endpoint (only when detailed mode is enabled)
+      if (ENABLE_DETAILED_MODE) {
+        app.get("/api/tasks/:taskId/conversation", async (req: Request, res: Response) => {
+          try {
+            const taskId = req.params.taskId;
+            
+            // Validate taskId
+            if (!taskId) {
+              res.status(400).json({ error: "Task ID is required" });
+              return;
+            }
+
+            // Get task by ID
+            const task = await getTaskById(taskId);
+            
+            // If task doesn't exist, return 404
+            if (!task) {
+              res.status(404).json({ error: "Task not found" });
+              return;
+            }
+            
+            // Return conversation history or empty array if it doesn't exist
+            res.json({ conversationHistory: task.conversationHistory || [] });
+          } catch (error) {
+            console.error("Error retrieving conversation history:", error);
+            res.status(500).json({ error: "Failed to retrieve conversation history" });
+          }
+        });
+      }
+
       // Get available port
       const port = await getPort();
 
@@ -181,7 +215,7 @@ async function main() {
     const server = new Server(
       {
         name: "MCP Chain of Thought",
-        version: "1.0.0",
+        version: "1.0.1",
       },
       {
         capabilities: {
@@ -309,6 +343,44 @@ async function main() {
           }
 
           let parsedArgs;
+          let taskId: string | undefined;
+          let result;
+
+          // Save request to conversation history if detailed mode is enabled
+          // and this is a task-related tool request
+          const saveRequest = async () => {
+            if (ENABLE_DETAILED_MODE && taskId) {
+              try {
+                await updateTaskConversationHistory(
+                  taskId,
+                  'user',
+                  JSON.stringify(request.params),
+                  request.params.name
+                );
+              } catch (error) {
+                // Silently handle errors to avoid interrupting the main flow
+                console.error('Failed to save request to conversation history:', error);
+              }
+            }
+          };
+
+          // Save response to conversation history if detailed mode is enabled
+          const saveResponse = async (response: any) => {
+            if (ENABLE_DETAILED_MODE && taskId) {
+              try {
+                await updateTaskConversationHistory(
+                  taskId,
+                  'assistant',
+                  JSON.stringify(response),
+                  request.params.name
+                );
+              } catch (error) {
+                // Silently handle errors to avoid interrupting the main flow
+                console.error('Failed to save response to conversation history:', error);
+              }
+            }
+          };
+
           switch (request.params.name) {
             case "plan_task":
               parsedArgs = await planTaskSchema.safeParseAsync(
@@ -319,7 +391,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await planTask(parsedArgs.data);
+              result = await planTask(parsedArgs.data);
+              return result;
+
             case "analyze_task":
               parsedArgs = await analyzeTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -329,7 +403,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await analyzeTask(parsedArgs.data);
+              result = await analyzeTask(parsedArgs.data);
+              return result;
+
             case "reflect_task":
               parsedArgs = await reflectTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -339,7 +415,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await reflectTask(parsedArgs.data);
+              result = await reflectTask(parsedArgs.data);
+              return result;
+
             case "split_tasks":
               parsedArgs = await splitTasksSchema.safeParseAsync(
                 request.params.arguments
@@ -349,7 +427,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await splitTasks(parsedArgs.data);
+              result = await splitTasks(parsedArgs.data);
+              return result;
+
             case "list_tasks":
               parsedArgs = await listTasksSchema.safeParseAsync(
                 request.params.arguments
@@ -359,7 +439,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await listTasks(parsedArgs.data);
+              result = await listTasks(parsedArgs.data);
+              return result;
+
             case "execute_task":
               parsedArgs = await executeTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -369,7 +451,12 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await executeTask(parsedArgs.data);
+              taskId = parsedArgs.data.taskId;
+              await saveRequest();
+              result = await executeTask(parsedArgs.data);
+              await saveResponse(result);
+              return result;
+
             case "verify_task":
               parsedArgs = await verifyTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -379,7 +466,12 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await verifyTask(parsedArgs.data);
+              taskId = parsedArgs.data.taskId;
+              await saveRequest();
+              result = await verifyTask(parsedArgs.data);
+              await saveResponse(result);
+              return result;
+
             case "complete_task":
               parsedArgs = await completeTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -389,7 +481,12 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await completeTask(parsedArgs.data);
+              taskId = parsedArgs.data.taskId;
+              await saveRequest();
+              result = await completeTask(parsedArgs.data);
+              await saveResponse(result);
+              return result;
+
             case "delete_task":
               parsedArgs = await deleteTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -399,7 +496,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await deleteTask(parsedArgs.data);
+              result = await deleteTask(parsedArgs.data);
+              return result;
+
             case "clear_all_tasks":
               parsedArgs = await clearAllTasksSchema.safeParseAsync(
                 request.params.arguments
@@ -409,7 +508,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await clearAllTasks(parsedArgs.data);
+              result = await clearAllTasks(parsedArgs.data);
+              return result;
+
             case "update_task":
               parsedArgs = await updateTaskContentSchema.safeParseAsync(
                 request.params.arguments
@@ -419,7 +520,12 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await updateTaskContent(parsedArgs.data);
+              taskId = parsedArgs.data.taskId;
+              await saveRequest();
+              result = await updateTaskContent(parsedArgs.data);
+              await saveResponse(result);
+              return result;
+
             case "query_task":
               parsedArgs = await queryTaskSchema.safeParseAsync(
                 request.params.arguments
@@ -429,7 +535,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await queryTask(parsedArgs.data);
+              result = await queryTask(parsedArgs.data);
+              return result;
+
             case "get_task_detail":
               parsedArgs = await getTaskDetailSchema.safeParseAsync(
                 request.params.arguments
@@ -439,7 +547,9 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await getTaskDetail(parsedArgs.data);
+              result = await getTaskDetail(parsedArgs.data);
+              return result;
+
             case "process_thought":
               parsedArgs = await processThoughtSchema.safeParseAsync(
                 request.params.arguments
@@ -449,9 +559,13 @@ async function main() {
                   `Invalid arguments for tool ${request.params.name}: ${parsedArgs.error.message}`
                 );
               }
-              return await processThought(parsedArgs.data);
+              result = await processThought(parsedArgs.data);
+              return result;
+
             case "init_project_rules":
-              return await initProjectRules();
+              result = await initProjectRules();
+              return result;
+
             default:
               throw new Error(`Tool ${request.params.name} does not exist`);
           }
