@@ -8,7 +8,7 @@
 > 🚀 An intelligent task management system based on Model Context Protocol (MCP), providing an efficient programming workflow framework for AI Agents.
 
 <a href="https://glama.ai/mcp/servers/@liorfranko/mcp-chain-of-thought">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@liorfranko/mcp-chain-of-thought/badge" alt="Chain of Thought MCP server" />
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@liorfranko/mcp-chain-of-thought/badge" />
 </a>
 
 ## 📑 Table of Contents
