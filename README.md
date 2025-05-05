@@ -74,14 +74,14 @@ Add to your Cursor configuration file (`~/.cursor/mcp.json` or project-specific 
 {
   "mcpServers": {
     "chain-of-thought": {
-      "command": "node",
-      "args": ["/path/to/mcp-chain-of-thought/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "/mcp-chain-of-thought"],
       "env": {
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false",
-        "ENABLE_DETAILED_MODE": "false"
+        "ENABLE_GUI": "true",
+        "ENABLE_DETAILED_MODE": "true"
       }
     }
   }
