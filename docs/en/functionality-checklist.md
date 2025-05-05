@@ -33,6 +33,13 @@ This document lists all the tools, functions, parameter structures, and features
 - `lineStart?: number` - Starting line of the relevant code block (optional)
 - `lineEnd?: number` - Ending line of the relevant code block (optional)
 
+### Conversation Message (ConversationMessage)
+
+- `timestamp: Date` - Timestamp when the message was created
+- `role: 'user' | 'assistant'` - Role of the message sender (user or assistant)
+- `content: string` - Content of the message
+- `toolName?: string` - Name of the tool associated with the message (if applicable)
+
 ### Task Interface (Task)
 
 - `id: string` - Unique identifier of the task
@@ -46,6 +53,7 @@ This document lists all the tools, functions, parameter structures, and features
 - `completedAt?: Date` - Timestamp when the task was completed (only applicable to completed tasks)
 - `summary?: string` - Task completion summary, concisely describing implementation results and important decisions (only applicable to completed tasks)
 - `relatedFiles?: RelatedFile[]` - List of files related to the task (optional)
+- `conversationHistory?: ConversationMessage[]` - History of conversations related to the task (only when detailed mode is enabled)
 
 ### Task Complexity Level Enumeration (TaskComplexityLevel)
 
@@ -214,27 +222,18 @@ This document lists all the tools, functions, parameter structures, and features
 
 ### 11. query_task
 
-**Description**: Search for tasks based on keywords or ID, displaying abbreviated task information
+**Description**: Search tasks by keyword or ID, displaying abbreviated task information
 
 **Parameters**:
 
-- `query: string` (required) - Search query text, can be a task ID or multiple keywords (space-separated)
-  - Must be at least 1 character
-- `isId: boolean` (optional) - Specify whether it is an ID query mode, default is false (keyword mode)
-- `page: number` (optional) - Page number, default is page 1
-- `pageSize: number` (optional) - Number of tasks displayed per page, default is 5 entries, maximum 20
-  - Must be a positive integer, range 1-20
+- `query: string` (required) - Search query text (can be task ID or keyword)
+- `isId?: boolean` (optional) - Specify whether it's ID query mode (default is false)
+- `page?: number` (optional) - Page number (default is 1)
+- `pageSize?: number` (optional) - Results per page (default is 5, max 20)
 
 **Return Value**:
 
-- Returns a response containing search results, including a list of tasks matching the criteria, pagination information, and total number of results
-
-**Important Details**:
-
-- When `isId` is true, the system will precisely query the task with the specified ID
-- When `isId` is false, the system will search for the specified keywords in task names, descriptions, and summaries
-- Keyword mode supports multiple keywords (space-separated), returning tasks matching any of the keywords
-- Results are sorted by task status and update time, making it easy to quickly find the most relevant tasks
+- Returns a response containing search results in paginated format
 
 ### 12. update_task
 
@@ -253,23 +252,15 @@ This document lists all the tools, functions, parameter structures, and features
 
 ### 13. get_task_detail
 
-**Description**: Get complete detailed information of a task based on the task ID, including untruncated implementation guidelines and verification standards
+**Description**: Get the complete detailed information of a task based on its ID
 
 **Parameters**:
 
-- `taskId: string` (required) - ID of the task to view details
-  - Must be at least 1 character
+- `taskId: string` (required) - Task ID to view details
 
 **Return Value**:
 
-- Returns a response containing complete task details, including all task attributes, especially complete implementation guidelines and verification standards
-
-**Important Details**:
-
-- Unlike `list_tasks`, this function returns complete details of a single task, with no content truncation
-- Suitable for in-depth understanding of specific task requirements and technical details
-- Provides a complete list of related files and task analysis results
-- Can be used to view long text content that may be omitted during execution
+- Returns a response containing the complete task details in a well-structured format
 
 ### 14. update_task_files
 
@@ -355,3 +346,44 @@ The Task Memory feature is an important characteristic of the Chain of Thought s
 - The backup process is transparent and unnoticeable, not affecting the user's normal operation flow
 
 This feature requires no additional tools or configuration. The system automatically saves historical records when tasks are cleared and provides intelligent guidance during task planning, allowing Agents to fully utilize past experiences and knowledge.
+
+## Environment Variables
+
+### DATA_DIR
+
+- **Description**: Specifies the directory to store task data and memory backups
+- **Default**: If not specified, defaults to `{current directory}/data`
+- **Example**: `DATA_DIR=/path/to/your/data/directory`
+
+### ENABLE_GUI
+
+- **Description**: Enables or disables the web-based graphical user interface for task management
+- **Default**: `false`
+- **Values**: `true` or `false`
+- **Example**: `ENABLE_GUI=true`
+
+### ENABLE_THOUGHT_CHAIN
+
+- **Description**: Enables or disables the thought chain processing for structured reasoning
+- **Default**: `true`
+- **Values**: `true` or `false`
+- **Example**: `ENABLE_THOUGHT_CHAIN=false`
+
+### TEMPLATES_USE
+
+- **Description**: Specifies which language template set to use for prompts
+- **Default**: `en` (English)
+- **Example**: `TEMPLATES_USE=en`
+
+### ENABLE_DETAILED_MODE
+
+- **Description**: Enables or disables the detailed mode which captures conversation history for tasks
+- **Default**: `false`
+- **Values**: `true` or `false`
+- **Example**: `ENABLE_DETAILED_MODE=true`
+- **Features when enabled**:
+  - Captures all tool requests and responses as conversation messages
+  - Associates messages with specific tasks
+  - Provides an API endpoint (`/api/tasks/:taskId/conversation`) to retrieve conversation history
+  - Displays conversation history in the web UI task details when GUI is also enabled
+  - Stores timestamps and tool names with each message

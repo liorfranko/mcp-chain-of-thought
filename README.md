@@ -43,6 +43,7 @@ Chain of Thought guides Agents through structured workflows for systematic progr
 - **Thought Chain Process**: Step-by-step reasoning to analyze complex problems systematically
 - **Project Rules Initialization**: Define project standards and rules to maintain consistency across large projects
 - **<a id="web-gui"></a>Web GUI**: Provides an optional web-based graphical user interface for task management. Enable by setting `ENABLE_GUI=true` in your `.env` file. When enabled, a `WebGUI.md` file containing the access address will be created in your `DATA_DIR`.
+- **<a id="detailed-mode"></a>Detailed Mode**: Captures and displays conversation history for each task, including all tool calls and responses. Enable by setting `ENABLE_DETAILED_MODE=true` in your `.env` file. When enabled alongside Web GUI, conversation history will be viewable in the task details panel.
 
 ## 🧭 <a id="usage-guide"></a>Usage Guide
 
@@ -185,7 +186,8 @@ Chain of Thought offers two configuration methods: global configuration and proj
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false"
+        "ENABLE_GUI": "false",
+        "ENABLE_DETAILED_MODE": "false"
       }
     }
   }
@@ -203,7 +205,8 @@ or
         "DATA_DIR": "/mcp-chain-of-thought/data",
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false"
+        "ENABLE_GUI": "false",
+        "ENABLE_DETAILED_MODE": "false"
       }
     }
   }
@@ -229,7 +232,8 @@ You can also set up dedicated configurations for each project to use independent
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false"
+        "ENABLE_GUI": "false",
+        "ENABLE_DETAILED_MODE": "false"
       }
     }
   }
@@ -247,7 +251,8 @@ or
         "DATA_DIR": "/path/to/project/data", // Must use absolute path
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false"
+        "ENABLE_GUI": "false",
+        "ENABLE_DETAILED_MODE": "false"
       }
     }
   }
@@ -281,7 +286,8 @@ Chain of Thought supports customizing prompt behavior through environment variab
         "MCP_PROMPT_EXECUTE_TASK_APPEND": "Additional execution instructions...",
         "ENABLE_THOUGHT_CHAIN": "true",
         "TEMPLATES_USE": "en",
-        "ENABLE_GUI": "false"
+        "ENABLE_GUI": "false",
+        "ENABLE_DETAILED_MODE": "false"
       }
     }
   }
