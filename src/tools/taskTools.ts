@@ -322,6 +322,22 @@ export async function splitTasks({
     let createdTasks: Task[] = [];
     let allTasks: Task[] = [];
 
+    // Add the project rules update task as the last item
+    // This task will always depend on all other tasks
+    const projectRulesTask = {
+      name: "Update Project Rules",
+      description: "Update the project rules based on the completed tasks to ensure the project specification reflects the latest changes.",
+      implementationGuide: "1. Review all completed tasks\n2. Extract key architectural decisions, patterns, and conventions that emerged during implementation\n3. Update the project specification to reflect these changes\n4. Update any relevant documentation",
+      verificationCriteria: "- Project rules have been updated with all relevant information from completed tasks\n- Documentation reflects the current state of the project",
+      dependencies: tasks.map(task => task.name), // Depend on all other tasks
+      notes: "This is an automatically added task that should always be executed last after all other tasks are completed."
+    };
+    
+    // Only add the project rules update task if it doesn't already exist
+    if (!tasks.some(task => task.name === "Update Project Rules")) {
+      tasks.push(projectRulesTask);
+    }
+
     // Convert task data to the format required for batchCreateOrUpdateTasks
     const convertedTasks = tasks.map((task) => ({
       name: task.name,

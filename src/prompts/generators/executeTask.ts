@@ -77,6 +77,28 @@ export function getExecuteTaskPrompt(params: ExecuteTaskPromptParams): string {
   const { task, complexityAssessment, relatedFilesSummary, dependencyTasks } =
     params;
 
+  // Special handling for "Update Project Rules" task
+  if (task.name === "Update Project Rules") {
+    const updateProjectRulesTemplate = loadPromptFromTemplate(
+      "executeTask/updateProjectRules.md"
+    );
+    
+    // Get all completed tasks to include in the template
+    let completedTasksContent = "";
+    if (dependencyTasks && dependencyTasks.length > 0) {
+      const completedTasks = dependencyTasks.filter(t => t.summary);
+      
+      if (completedTasks.length > 0) {
+        completedTasksContent = "## Completed Tasks Summary\n\n";
+        for (const completedTask of completedTasks) {
+          completedTasksContent += `### ${completedTask.name}\n${completedTask.summary || "*No completion summary*"}\n\n`;
+        }
+      }
+    }
+    
+    return loadPrompt(updateProjectRulesTemplate + "\n\n" + completedTasksContent, "EXECUTE_TASK");
+  }
+
   const notesTemplate = loadPromptFromTemplate("executeTask/notes.md");
   let notesPrompt = "";
   if (task.notes) {
