@@ -1,8 +1,10 @@
 import { jest } from '@jest/globals';
 
-// Mock modules
-jest.mock('../../models/taskModel.ts', () => {
+// Mock the taskModel module
+jest.mock('../../models/taskModel.js', () => {
+  const original = jest.requireActual('../../models/taskModel.js');
   return {
+    ...original,
     batchCreateOrUpdateTasks: jest.fn().mockResolvedValue([]),
     getAllTasks: jest.fn().mockResolvedValue([]),
     clearAllTasks: jest.fn().mockResolvedValue({
@@ -13,9 +15,11 @@ jest.mock('../../models/taskModel.ts', () => {
   };
 });
 
+// Import the taskModel module after mocking
+import * as taskModel from '../../models/taskModel.js';
+
 // Import the module to test
-import { splitTasks } from '../../tools/taskTools.ts';
-import * as taskModel from '../../models/taskModel.ts';
+import { splitTasks } from '../../tools/taskTools.js';
 
 describe('Project Rules Update Task Implementation Tests', () => {
   beforeEach(() => {

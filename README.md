@@ -127,10 +127,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📚 Documentation
 
 - [🏗️ System Architecture](docs/en/architecture.md)
+- [🧪 Testing Guide](docs/en/testing.md)
 - [🔧 Prompt Customization Guide](docs/en/prompt-customization.md)
 - [🔄 Project Rules Update Task](docs/en/project-rules-update-task.md)
 - [📝 Changelog](CHANGELOG.md)
 
+## 🧪 Running Tests
+
+### Standard Tests (Jest)
+```bash
+npm test
+```
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=liorfranko/mcp-chain-of-thought&type=Timeline)](https://www.star-history.com/#liorfranko/mcp-chain-of-thought&Timeline)

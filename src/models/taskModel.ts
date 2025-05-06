@@ -14,14 +14,12 @@ import { fileURLToPath } from "url";
 import { exec } from "child_process";
 import { promisify } from "util";
 
-// Ensure project folder path is obtained
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const PROJECT_ROOT = path.resolve(__dirname, "../..");
+// Get project root directory
+const PROJECT_ROOT = path.resolve(process.cwd());
 
-// Data file paths
-const DATA_DIR = process.env.DATA_DIR || path.join(PROJECT_ROOT, "data");
-const TASKS_FILE = path.join(DATA_DIR, "tasks.json");
+// Set up data directory and file paths - export as mutable variables for testing
+export let DATA_DIR = process.env.DATA_DIR || path.join(PROJECT_ROOT, "data");
+export let TASKS_FILE = path.join(DATA_DIR, "tasks.json");
 
 // Convert exec to Promise form
 const execPromise = promisify(exec);
@@ -1022,3 +1020,9 @@ function filterCurrentTasks(
     });
   }
 }
+
+// Testing helpers for unit tests
+export const __test__ = {
+  setMockReadTasks: null, // Will be set by tests
+  setMockWriteTasks: null, // Will be set by tests
+};

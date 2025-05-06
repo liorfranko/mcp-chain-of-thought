@@ -16,6 +16,8 @@
   - Model Context Protocol SDK
   - Zod validation
   - Express (for GUI mode)
+  - Jest for testing
+  - GitHub Actions for CI/CD
 
 ## Project Architecture
 
@@ -35,12 +37,21 @@
   - **/utils/**: Shared utilities
     - `fileLoader.ts`: File operations
     - `summaryExtractor.ts`: Text analysis
+  - **/__tests__/**: Test files and utilities
+    - **/integration/**: Integration tests
+    - **/helpers/**: Test utilities and mock factories
 - **/dist/**: Compiled JavaScript output
 - **/docs/**: Project documentation
+  - **/en/**: English documentation
+    - `testing.md`: Testing documentation
 - **/data/**: Runtime data storage
   - **/memory/**: Thought chain storage
   - `tasks.json`: Task database
   - `rules.md`: This file
+- **/.github/**: GitHub configuration
+  - **/workflows/**: GitHub Actions workflows
+    - `publish.yml`: NPM publishing workflow
+    - `tests.yml`: Testing workflow
 
 ### Module Interactions
 
@@ -57,6 +68,7 @@
   - Changes to tool schemas require prompt template updates
   - New features need documentation in both code and docs
   - Version changes must be reflected in all relevant files
+  - Test changes must be reflected in documentation
 
 ## Development Standards
 
@@ -73,6 +85,7 @@
   - Use camelCase for files
   - Add type suffix for interfaces (e.g., `taskType.ts`)
   - Add Tool suffix for MCP tools
+  - Add .test.js suffix for test files
 - **Code Structure**:
   - Export interfaces and types at top
   - Group related functions together
@@ -84,9 +97,23 @@
   - Required for all model functions
   - Required for utility functions
   - Must cover error cases
+  - Must use proper mocking for external dependencies
 - **Integration Tests**:
   - Required for tool implementations
   - Must verify MCP compatibility
+  - Must test complete workflows
+- **Test Organization**:
+  - Mirror source code structure in test organization
+  - Group tests by functionality
+  - Use descriptive test names
+- **Test Coverage**:
+  - Maintain >80% coverage for critical paths
+  - CI/CD pipeline validates coverage on PRs
+  - Coverage reports available in HTML format
+- **Testing Utilities**:
+  - Use common test helpers for repeated operations
+  - Use fixture factories for consistent test data
+  - Properly mock file system operations
 
 ## Configuration Management
 
@@ -130,6 +157,10 @@
   - Must preserve task history
   - Must validate status transitions
   - Must update all related entities
+- **Task Evaluation**:
+  - Must evaluate task complexity before execution
+  - Must split complex tasks when appropriate
+  - Must document complex implementation decisions
 
 ### Thought Chain Processing
 
@@ -163,3 +194,5 @@
 - **NEVER** hardcode absolute paths
 - **NEVER** include sensitive data in tasks
 - **NEVER** skip dependency checks
+- **NEVER** merge code without passing tests
+- **NEVER** disable test coverage checks
