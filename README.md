@@ -29,6 +29,7 @@
 - **💾 Task Memory**: Store task history for reference and learning
 - **⛓️ Thought Chain Process**: Step-by-step reasoning for complex problems
 - **📋 Project Rules**: Define standards to maintain consistency
+- **🔄 Automatic Project Rules Updates**: Project rules update task automatically added to every task list to keep documentation in sync with code
 - **🌐 Web GUI**: Optional web interface (enable with `ENABLE_GUI=true`)
 - **📝 Detailed Mode**: View conversation history (enable with `ENABLE_DETAILED_MODE=true`)
 
@@ -127,6 +128,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [🏗️ System Architecture](docs/en/architecture.md)
 - [🔧 Prompt Customization Guide](docs/en/prompt-customization.md)
+- [🔄 Project Rules Update Task](docs/en/project-rules-update-task.md)
 - [📝 Changelog](CHANGELOG.md)
 
 ## ⭐ Star History

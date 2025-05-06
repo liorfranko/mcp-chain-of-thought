@@ -339,6 +339,31 @@ export async function splitTasks({
       })),
     }));
 
+    // Create dependencies array from task names
+    const taskDependencies = convertedTasks.map(task => task.name);
+
+    // Create project rules update task
+    const projectRulesTask = {
+      name: "Update Project Rules Based on Completed Items",
+      description: "This task involves updating the project rules and specification based on completed tasks to ensure the documentation reflects the current state of the project. The update should incorporate patterns, decisions, and standards established during development.",
+      dependencies: taskDependencies,
+      implementationGuide: "1. Review all completed tasks\n2. Identify key decisions and patterns\n3. Update the project rules document\n4. Ensure consistency with implemented solutions\n5. Document architectural decisions and coding standards",
+      verificationCriteria: "1. Project rules document is updated\n2. All completed tasks are reflected in the rules\n3. Documentation is consistent with code implementation",
+      notes: "This task is automatically added to ensure project rules are kept up-to-date with completed work.",
+      relatedFiles: [
+        {
+          path: "data/rules.md",
+          type: RelatedFileType.TO_MODIFY,
+          description: "Project rules document to be updated",
+          lineStart: undefined,
+          lineEnd: undefined
+        }
+      ]
+    };
+
+    // Add project rules task to convertedTasks
+    convertedTasks.push(projectRulesTask);
+
     // Process clearAllTasks mode
     if (updateMode === "clearAllTasks") {
       const clearResult = await modelClearAllTasks();

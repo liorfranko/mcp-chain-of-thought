@@ -65,6 +65,14 @@ Responsible for the entire lifecycle management of tasks, including:
 - Task completion
 - Task updates
 - Task queries
+- Automatic project rules updates
+
+The Task Management Module includes a feature that automatically adds a "Project Rules Update" task to every task list. This task:
+- Is added as the last item in any task list
+- Depends on all other tasks in the batch
+- Ensures project documentation remains in sync with code
+- Updates project rules based on completed tasks
+- Is created regardless of the update mode (clearAllTasks, append, overwrite, or selective)
 
 ### 4.2 Task Memory Module
 
