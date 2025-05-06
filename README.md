@@ -1,6 +1,6 @@
 # MCP Chain of Thought
 
-[![Chain of Thought Demo](/docs/yt.png)](https://youtu.be/hzOCwwGSQhs)
+[![Chain of Thought Demo](/docs/youtube.png)](https://youtu.be/hzOCwwGSQhs)
 [![smithery badge](https://smithery.ai/badge/@liorfranko/mcp-chain-of-thought)](https://smithery.ai/server/@liorfranko/mcp-chain-of-thought)
 
 > 🚀 An intelligent task management system based on Model Context Protocol (MCP), providing an efficient programming workflow framework for AI Agents.
