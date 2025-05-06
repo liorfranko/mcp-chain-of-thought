@@ -62,6 +62,70 @@ async function writeTasks(tasks: Task[]): Promise<void> {
   await fs.writeFile(TASKS_FILE, JSON.stringify({ tasks }, null, 2));
 }
 
+/**
+ * Creates or retrieves a project rules update task.
+ * This function ensures that a task for updating project rules after completion
+ * of other tasks is present in the task list.
+ * 
+ * @param taskDependencies - Array of task IDs that the rules update task depends on
+ * @returns The rules update task
+ */
+export async function ensureProjectRulesUpdateTask(taskDependencies: string[] = []): Promise<Task> {
+  const tasks = await readTasks();
+  
+  // Check if a project rules update task already exists
+  let rulesUpdateTask = tasks.find(task => 
+    task.name === "Update Project Rules" && 
+    task.status !== TaskStatus.COMPLETED
+  );
+  
+  if (rulesUpdateTask) {
+    // If the task exists but we need to update its dependencies
+    if (taskDependencies.length > 0) {
+      // Create a set of unique task IDs from existing and new dependencies
+      const dependencySet = new Set<string>();
+      
+      // Add existing dependencies
+      rulesUpdateTask.dependencies.forEach(dep => dependencySet.add(dep.taskId));
+      
+      // Add new dependencies
+      taskDependencies.forEach(depId => dependencySet.add(depId));
+      
+      // Convert back to dependency array
+      const updatedDependencies: TaskDependency[] = Array.from(dependencySet).map(taskId => ({ taskId }));
+      
+      // Update the task
+      rulesUpdateTask = await updateTask(rulesUpdateTask.id, { 
+        dependencies: updatedDependencies 
+      }) || rulesUpdateTask;
+    }
+    
+    return rulesUpdateTask;
+  }
+  
+  // Create new project rules update task
+  const dependencyObjects: TaskDependency[] = taskDependencies.map(taskId => ({ taskId }));
+  
+  const newTask: Task = {
+    id: uuidv4(),
+    name: "Update Project Rules",
+    description: "Update the project rules document based on completed tasks to ensure it reflects the current state of the project.",
+    notes: "This task should always be executed last, after all other tasks are completed.",
+    status: TaskStatus.PENDING,
+    dependencies: dependencyObjects,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    implementationGuide: "1. Review all completed tasks\n2. Identify changes made to the codebase\n3. Update the project rules document to reflect these changes\n4. Ensure rules are consistent with the current project state\n5. Call the initProjectRules tool to finalize the update",
+    verificationCriteria: "1. Project rules document is updated with all relevant changes\n2. Rules accurately reflect the current state of the project\n3. There are no inconsistencies or outdated rules"
+  };
+  
+  // Add the task to the list
+  tasks.push(newTask);
+  await writeTasks(tasks);
+  
+  return newTask;
+}
+
 // Get all tasks
 export async function getAllTasks(): Promise<Task[]> {
   return await readTasks();

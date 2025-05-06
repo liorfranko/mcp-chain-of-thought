@@ -14,6 +14,7 @@ import {
   updateTaskContent as modelUpdateTaskContent,
   updateTaskRelatedFiles as modelUpdateTaskRelatedFiles,
   searchTasksWithCommand,
+  ensureProjectRulesUpdateTask,
 } from "../models/taskModel.js";
 import {
   TaskStatus,
@@ -389,6 +390,28 @@ export async function splitTasks({
       } catch (error) {
         actionSuccess = false;
         message = `Task creation failed: ${
+          error instanceof Error ? error.message : String(error)
+        }`;
+      }
+    }
+
+    // Add or update the project rules update task with dependencies on all created tasks
+    if (actionSuccess && createdTasks.length > 0) {
+      try {
+        // Get IDs of all created tasks to set as dependencies
+        const taskIds = createdTasks.map(task => task.id);
+        
+        // Create or update the project rules update task
+        const rulesUpdateTask = await ensureProjectRulesUpdateTask(taskIds);
+        
+        // Add this task to the created tasks list if it's new
+        if (!createdTasks.some(task => task.id === rulesUpdateTask.id)) {
+          createdTasks.push(rulesUpdateTask);
+          message += `\nAdded a final task for updating project rules based on completed tasks.`;
+        }
+      } catch (error) {
+        // Don't fail the entire operation if adding this task fails
+        message += `\nNote: Could not add the project rules update task: ${
           error instanceof Error ? error.message : String(error)
         }`;
       }

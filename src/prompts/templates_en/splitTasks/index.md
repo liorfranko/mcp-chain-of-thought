@@ -24,6 +24,14 @@
 - Avoid circular dependencies, ensuring the task graph is a DAG
 - Balance the critical path, optimizing potential for parallel execution
 
+## Project Rules Update Task
+
+A special "Update Project Rules" task has been automatically added as the final task. This task:
+- Depends on all other tasks
+- Will be executed last
+- Updates the project rules based on completed tasks
+- Ensures project documentation remains in sync with the implementation
+
 ## Decision Points
 
 - Found unreasonable task split: Re-call "split_tasks" to adjust

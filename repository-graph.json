@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "projectName": "mcp-chain-of-thought",
+    "description": "An intelligent task management system based on Model Context Protocol (MCP)",
+    "version": "1.0.1",
+    "graphGeneratedAt": "2025-05-06"
+  },
+  "quickReference": {
+    "criticalFiles": [
+      {"path": "src/index.ts", "purpose": "Entry point and server setup"},
+      {"path": "src/models/taskModel.ts", "purpose": "Core task data operations"},
+      {"path": "src/tools/taskTools.ts", "purpose": "Task management tools implementation"},
+      {"path": "src/types/index.ts", "purpose": "Main type definitions"}
+    ]
+  },
+  "components": {
+    "entryPoint": {
+      "files": [
+        {
+          "path": "src/index.ts",
+          "importance": 5,
+          "purpose": "Sets up MCP server, registers tools, and initializes the optional web GUI",
+          "whenToRead": ["Understanding system initialization", "Modifying tool registration", "Working with web GUI"],
+          "relatedFiles": ["src/tools/taskTools.ts", "src/tools/thoughtChainTools.ts"],
+          "dependencies": ["@modelcontextprotocol/sdk", "express"],
+          "keyOperations": ["Server initialization", "Tool registration", "Web GUI setup"]
+        }
+      ]
+    },
+    "models": {
+      "files": [
+        {
+          "path": "src/models/taskModel.ts",
+          "importance": 5,
+          "purpose": "Provides data operations for tasks including CRUD, dependency management, and persistence",
+          "whenToRead": ["Modifying task data structure", "Changing how tasks are stored", "Implementing new task operations"],
+          "relatedFiles": ["src/types/index.ts", "src/tools/taskTools.ts"],
+          "dependencies": ["fs/promises", "uuid"],
+          "keyOperations": ["Task creation", "Task updating", "Task retrieval", "Dependency management", "Persistence"]
+        }
+      ]
+    },
+    "tools": {
+      "files": [
+        {
+          "path": "src/tools/taskTools.ts",
+          "importance": 5,
+          "purpose": "Implements the main task management tools including planning, analysis, splitting, execution, and verification",
+          "whenToRead": ["Adding new tools", "Modifying existing tool behavior", "Understanding task lifecycle"],
+          "relatedFiles": ["src/models/taskModel.ts", "src/types/index.ts", "src/prompts/templates_en/"],
+          "dependencies": ["zod"],
+          "keyOperations": ["Planning tasks", "Analyzing tasks", "Splitting tasks", "Executing tasks", "Verifying tasks"]
+        },
+        {
+          "path": "src/tools/thoughtChainTools.ts",
+          "importance": 4,
+          "purpose": "Provides chain-of-thought reasoning functionality",
+          "whenToRead": ["Modifying thought chain process", "Extending reasoning capabilities"],
+          "relatedFiles": ["src/types/thoughtChain.ts", "src/prompts/templates_en/processThought/"],
+          "dependencies": ["zod"],
+          "keyOperations": ["Process thought", "Chain-of-thought reasoning"]
+        },
+        {
+          "path": "src/tools/projectTools.ts",
+          "importance": 3,
+          "purpose": "Handles project-level rules and configuration",
+          "whenToRead": ["Modifying project rules", "Adding project-level functionality"],
+          "relatedFiles": ["src/prompts/templates_en/initProjectRules/"],
+          "dependencies": ["zod"],
+          "keyOperations": ["Initialize project rules"]
+        }
+      ]
+    },
+    "types": {
+      "files": [
+        {
+          "path": "src/types/index.ts",
+          "importance": 5,
+          "purpose": "Defines core data structures and interfaces including Task, TaskStatus, RelatedFile",
+          "whenToRead": ["Understanding data structures", "Adding or modifying data types", "Working with task operations"],
+          "relatedFiles": ["src/models/taskModel.ts", "src/tools/taskTools.ts"],
+          "dependencies": [],
+          "keyInterfaces": ["Task", "TaskStatus", "RelatedFile", "TaskDependency", "SplitTasksArgs"]
+        },
+        {
+          "path": "src/types/thoughtChain.ts",
+          "importance": 3,
+          "purpose": "Defines structures for the thought chain process",
+          "whenToRead": ["Working with thought chain functionality", "Modifying reasoning process"],
+          "relatedFiles": ["src/tools/thoughtChainTools.ts"],
+          "dependencies": [],
+          "keyInterfaces": ["ThoughtData", "ThoughtStage"]
+        }
+      ]
+    },
+    "prompts": {
+      "description": "Contains templates and generators for prompts used by tools",
+      "importance": 3,
+      "whenToRead": ["Modifying tool behavior", "Changing prompt templates"],
+      "subDirectories": [
+        {
+          "path": "src/prompts/templates_en/analyzeTask/",
+          "purpose": "Templates for task analysis"
+        },
+        {
+          "path": "src/prompts/templates_en/planTask/",
+          "purpose": "Templates for task planning"
+        },
+        {
+          "path": "src/prompts/templates_en/processThought/",
+          "purpose": "Templates for thought processing"
+        },
+        {
+          "path": "src/prompts/templates_en/reflectTask/",
+          "purpose": "Templates for task reflection"
+        },
+        {
+          "path": "src/prompts/templates_en/splitTasks/",
+          "purpose": "Templates for task splitting"
+        },
+        {
+          "path": "src/prompts/templates_en/executeTask/",
+          "purpose": "Templates for task execution"
+        },
+        {
+          "path": "src/prompts/templates_en/verifyTask/",
+          "purpose": "Templates for task verification"
+        },
+        {
+          "path": "src/prompts/templates_en/completeTask/",
+          "purpose": "Templates for task completion"
+        },
+        {
+          "path": "src/prompts/templates_en/initProjectRules/",
+          "purpose": "Templates for project rules initialization"
+        }
+      ]
+    }
+  },
+  "commonTasks": [
+    {
+      "taskName": "Add a new tool",
+      "filePath": [
+        {"path": "src/tools/taskTools.ts", "purpose": "Add the new tool function"},
+        {"path": "src/index.ts", "purpose": "Register the new tool"},
+        {"path": "src/types/index.ts", "purpose": "Define parameter types for the tool"},
+        {"path": "src/prompts/templates_en/", "purpose": "Add prompt templates for the new tool"}
+      ]
+    },
+    {
+      "taskName": "Modify task data structure",
+      "filePath": [
+        {"path": "src/types/index.ts", "purpose": "Update the Task interface"},
+        {"path": "src/models/taskModel.ts", "purpose": "Update the data operations"},
+        {"path": "src/tools/taskTools.ts", "purpose": "Update the tools that use the new fields"}
+      ]
+    },
+    {
+      "taskName": "Change how thoughts are processed",
+      "filePath": [
+        {"path": "src/types/thoughtChain.ts", "purpose": "Modify thought data structures"},
+        {"path": "src/tools/thoughtChainTools.ts", "purpose": "Update thought processing logic"},
+        {"path": "src/prompts/templates_en/processThought/", "purpose": "Update thought processing prompts"}
+      ]
+    },
+    {
+      "taskName": "Add a new prompt template",
+      "filePath": [
+        {"path": "src/prompts/templates_en/", "purpose": "Add the new prompt template"},
+        {"path": "src/prompts/loader.ts", "purpose": "Update the prompt loader if needed"}
+      ]
+    },
+    {
+      "taskName": "Modify the web GUI",
+      "filePath": [
+        {"path": "src/index.ts", "purpose": "Update server routes and SSE functionality"},
+        {"path": "src/public/", "purpose": "Modify the frontend code"}
+      ]
+    }
+  ]
+} 
