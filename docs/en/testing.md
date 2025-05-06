@@ -4,7 +4,7 @@ The MCP Chain of Thought project utilizes multiple testing approaches to ensure 
 
 ## Testing Approaches
 
-### 1. Jest Tests (Standard)
+### Jest Tests (Standard)
 
 The project uses Jest as its primary testing framework for comprehensive unit and integration testing. Jest tests are located in `__tests__` directories throughout the codebase.
 
@@ -17,33 +17,6 @@ When working with Jest tests, keep in mind:
 - The project uses ESM modules, which requires special configuration
 - Jest runs with the `--experimental-vm-modules` flag
 - TypeScript files are transformed using ts-jest
-
-### 2. Simplified Tests
-
-For more targeted and resilient testing of specific components, we've implemented simplified test scripts that don't rely on the Jest framework. These tests:
-- Are independent of Jest's configuration
-- Run directly with Node.js
-- Focus on validating core functionality
-- Are more resilient to module system changes
-
-**To run simplified tests:**
-```bash
-npm run simple-test
-```
-
-Simplified tests are particularly useful for:
-- Testing browser-specific functionality (like SSE)
-- Verifying critical components when running into Jest configuration issues
-- Quick validation of specific functionality
-
-## When to Use Each Approach
-
-| Use Jest Tests When... | Use Simplified Tests When... |
-|------------------------|------------------------------|
-| You need comprehensive test coverage | You're focusing on a specific component |
-| You want to leverage mocking and assertions | Jest configuration issues arise |
-| You're writing integration tests | You're testing browser API functionality |
-| Adding new features with test coverage | You need a quick targeted test |
 
 ## Creating New Tests
 
@@ -66,41 +39,6 @@ describe('Module Tests', () => {
 });
 ```
 
-### Adding New Simplified Tests
-
-1. Create a new file with a descriptive name (e.g., `simple-component-test.js`)
-2. Import the Node.js assertion module
-3. Set up any necessary mocks
-4. Write test functions that use assertions
-5. Add the test to package.json scripts if needed
-
-Example:
-```javascript
-import assert from 'assert';
-
-// Mock dependencies
-// ...
-
-// Function to test
-function testFunctionality() {
-  // ...
-}
-
-// Test cases
-function runTests() {
-  assert.strictEqual(testFunctionality(), true, 'Should return true');
-  // More assertions...
-}
-
-// Run tests
-try {
-  runTests();
-  console.log('All tests passed!');
-} catch (error) {
-  console.error('Test failed:', error);
-}
-```
-
 ## Debugging Tests
 
 For Jest tests:
@@ -108,18 +46,11 @@ For Jest tests:
 NODE_OPTIONS=--inspect-brk npm test -- --runInBand
 ```
 
-For simplified tests:
-```bash
-node --inspect-brk src/path/to/test-file.js
-```
-
 ## Best Practices
 
-1. **Prefer Jest** for comprehensive testing where possible
-2. **Use simplified tests** for browser API tests or when encountering Jest limitations
-3. **Keep tests focused** on specific functionality
-4. **Mock external dependencies** appropriately
-5. **Ensure test isolation** by cleaning up state between tests
+1. **Keep tests focused** on specific functionality
+2. **Mock external dependencies** appropriately
+3. **Ensure test isolation** by cleaning up state between tests
 
 ## Table of Contents
 
