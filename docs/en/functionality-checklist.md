@@ -387,3 +387,30 @@ This feature requires no additional tools or configuration. The system automatic
   - Provides an API endpoint (`/api/tasks/:taskId/conversation`) to retrieve conversation history
   - Displays conversation history in the web UI task details when GUI is also enabled
   - Stores timestamps and tool names with each message
+
+## Special Features
+
+### 1. Task Memory
+
+**Description**: Automatically saves task execution history for future reference, including execution plans, implementation details, and any decisions made during the process.
+
+**Components**:
+- Task data persistence
+- Execution history recording
+- Related file association preservation
+
+### 2. Automatic Project Rules Update Task
+
+**Description**: Automatically adds a project rules update task to every task list created or modified using the split_tasks tool.
+
+**Behavior**:
+- Added as the last item in any task list
+- Depends on all other tasks in the batch
+- Created regardless of the update mode (clearAllTasks, append, overwrite, or selective)
+- Ensures project documentation remains in sync with code
+
+**Components**:
+- Task creation logic in splitTasks function
+- Dependency management on other tasks
+- Standard implementation guide and verification criteria
+- Related file association with project rules document

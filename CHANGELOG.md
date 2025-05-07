@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Automatic Project Rules Update task feature that adds a task to every task list
+- New documentation for project rules update task functionality
+
 ### Changed
 - Renamed project from mcp-shrimp-task-manager to mcp-chain-of-thought
 - Updated all documentation and configuration files to reflect the new name

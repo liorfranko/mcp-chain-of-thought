@@ -29,6 +29,7 @@
 - **💾 Task Memory**: Store task history for reference and learning
 - **⛓️ Thought Chain Process**: Step-by-step reasoning for complex problems
 - **📋 Project Rules**: Define standards to maintain consistency
+- **🔄 Automatic Project Rules Updates**: Project rules update task automatically added to every task list to keep documentation in sync with code
 - **🌐 Web GUI**: Optional web interface (enable with `ENABLE_GUI=true`)
 - **📝 Detailed Mode**: View conversation history (enable with `ENABLE_DETAILED_MODE=true`)
 
@@ -126,9 +127,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📚 Documentation
 
 - [🏗️ System Architecture](docs/en/architecture.md)
+- [🧪 Testing Guide](docs/en/testing.md)
 - [🔧 Prompt Customization Guide](docs/en/prompt-customization.md)
+- [🔄 Project Rules Update Task](docs/en/project-rules-update-task.md)
 - [📝 Changelog](CHANGELOG.md)
 
+## 🧪 Running Tests
+
+### Standard Tests (Jest)
+```bash
+npm test
+```
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=liorfranko/mcp-chain-of-thought&type=Timeline)](https://www.star-history.com/#liorfranko/mcp-chain-of-thought&Timeline)

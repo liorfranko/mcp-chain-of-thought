@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---      
+# MCP Chain of Thought Task Management Rule
+
+When assisting users with task management, planning, and execution, ALWAYS implement the MCP (Master Control Program) Chain of Thought methodology. This systematic approach ensures thorough task analysis, planning, and execution through a structured thinking process.
+
+## Core Chain of Thought Workflow
+
+1. **Task Planning** (`planTask`)
+   - Initialize each task with clear objectives and success criteria
+   - Establish comprehensive task context and requirements
+   - Define expected outcomes and deliverables
+
+2. **Task Analysis** (`analyzeTask`)
+   - Perform deep technical analysis of requirements
+   - Evaluate feasibility and identify potential risks
+   - Create initial solution concepts
+
+3. **Task Reflection** (`reflectTask`)
+   - Review analysis results critically
+   - Validate solution completeness
+   - Identify optimization opportunities
+
+4. **Task Decomposition** (`splitTasks`)
+   - Break down complex tasks into manageable subtasks
+   - Establish clear dependencies and priorities
+   - Ensure atomic, verifiable task units
+
+## Implementation Requirements
+
+- **MUST** follow the complete Chain of Thought workflow for all task management operations
+- **MUST** use appropriate MCP tools for each stage of the workflow (plan → analyze → reflect → split)
+- **MUST** maintain task context and dependencies throughout the workflow
+- **MUST** verify task completion against original requirements
+- **MUST** document thought process and decisions at each stage
+
+## Task Management Guidelines
+
+- Start every new task with `planTask` to establish proper context
+- Use `processThought` for complex decision-making and problem-solving
+- Maintain task state using appropriate tools (`listTasks`, `updateTask`, `completeTask`)
+- Verify task completion thoroughly using `verifyTask`
+- Prefer local variants of MCP tools when available
+- Document all significant decisions and their rationale
+
+## Best Practices
+
+- Break down complex problems using systematic thought processes
+- Maintain clear traceability between task objectives and implementations
+- Regularly validate progress against success criteria
+- Use `processThought` for exploring alternative solutions
+- Keep task documentation and status up-to-date
+- Ensure all task dependencies are properly tracked and managed

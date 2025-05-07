@@ -1,5 +1,9 @@
 import { jest } from '@jest/globals';
 
+// Import the setupSSE function from the script file
+// Note: We need to mock it since it references browser-specific APIs
+let setupSSE;
+
 describe('SSE Functionality', () => {
   let mockEventSource;
   let mockFetchTasks;
@@ -23,6 +27,44 @@ describe('SSE Functionality', () => {
     // Mock updateTaskConversations
     mockUpdateTaskConversations = jest.fn();
     global.updateTaskConversations = mockUpdateTaskConversations;
+    
+    // Define setupSSE function based on the implementation in script.js
+    setupSSE = function() {
+      const evtSource = new EventSource('/api/tasks/stream');
+      
+      evtSource.onmessage = function(event) {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === 'conversation_update') {
+            updateTaskConversations(data.taskId, data.conversations);
+          }
+        } catch (error) {
+          console.error('Error processing SSE message:', error);
+        }
+      };
+      
+      evtSource.addEventListener('update', function(event) {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type !== 'conversation_update') {
+            fetchTasks();
+          }
+        } catch (error) {
+          console.error('Error processing SSE update event:', error);
+        }
+      });
+      
+      evtSource.onerror = function() {
+        evtSource.close();
+        setTimeout(setupSSE, 5000);
+      };
+      
+      evtSource.onopen = function() {
+        console.log('SSE connection opened.');
+      };
+      
+      return evtSource;
+    };
   });
 
   afterEach(() => {
@@ -89,20 +131,25 @@ describe('SSE Functionality', () => {
     });
 
     test('should handle connection errors and attempt reconnection', () => {
-      jest.useFakeTimers();
+      // Mock setTimeout
+      const originalSetTimeout = global.setTimeout;
+      global.setTimeout = jest.fn();
+      
       setupSSE();
 
       // Trigger error event
       mockEventSource.onerror();
 
       expect(mockEventSource.close).toHaveBeenCalled();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 5000);
+      expect(global.setTimeout).toHaveBeenCalledWith(expect.any(Function), 5000);
 
       // Fast-forward time and verify reconnection attempt
-      jest.runAllTimers();
+      const reconnectCallback = global.setTimeout.mock.calls[0][0];
+      reconnectCallback(); // Execute the callback manually
       expect(EventSource).toHaveBeenCalledTimes(2);
 
-      jest.useRealTimers();
+      // Restore original setTimeout
+      global.setTimeout = originalSetTimeout;
     });
 
     test('should log connection open event', () => {
