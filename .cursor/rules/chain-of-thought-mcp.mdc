@@ -2,7 +2,7 @@
 description: 
 globs: 
 alwaysApply: true
----
+---      
 # MCP Tools Usage Rule
 
 When helping users with task management, planning, and execution, prioritize the use of MCP (Master Control Program) Chain of Thought tools whenever possible.
