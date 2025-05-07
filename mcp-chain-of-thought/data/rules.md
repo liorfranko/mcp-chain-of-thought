@@ -1,8 +1,8 @@
-# Development Guidelines for Shrimp Task Manager
+# Development Guidelines for Chain of Thought MCP
 
 ## Project Overview
 
-- **Version**: 1.0.13
+- **Version**: 1.0.1
 - **Purpose**: MCP-compatible task management system for AI agents
 - **Core Features**:
   - Task planning and analysis
