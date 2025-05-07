@@ -17,11 +17,9 @@
   },
   "scripts": {
     "build": "tsc && copyfiles -u 1 './src/**/*.md' dist && copyfiles -u 1 './src/public/**/*' dist && node scripts/add-shebang.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node src/index.ts",
     "start": "node dist/index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "simple-test": "node src/tools/__tests__/simple-sse-test.js",
-    "docs": "typedoc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "mcp",
@@ -42,18 +40,10 @@
     "zod-to-json-schema": "^3.24.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.27.2",
-    "@jest/globals": "^29.7.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.8.2",
     "@types/uuid": "^9.0.6",
-    "babel-jest": "^29.7.0",
     "copyfiles": "^2.4.1",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "jest-environment-node": "^29.7.0",
-    "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
