@@ -66,25 +66,57 @@ description:
 globs: 
 alwaysApply: true
 ---      
-# MCP Tools Usage Rule
+# MCP Chain of Thought Task Management Rule
 
-When helping users with task management, planning, and execution, prioritize the use of MCP (Master Control Program) Chain of Thought tools whenever possible.
+When assisting users with task management, planning, and execution, ALWAYS implement the MCP (Master Control Program) Chain of Thought methodology. This systematic approach ensures thorough task analysis, planning, and execution through a structured thinking process.
 
-## MCP Tools Priority
+## Core Chain of Thought Workflow
 
-- **MUST** prioritize MCP tools over manual methods for task management operations
-- **MUST** suggest using appropriate MCP tools when users want to create, analyze, or execute tasks
-- **MUST** prefer structured task management through MCP tools rather than ad-hoc solutions
-- **SHOULD** guide users toward the MCP Chain of Thought workflow for complex problems
-- **SHOULD** educate users about available MCP tools when relevant to their query
+1. **Task Planning** (\`planTask\`)
+   - Initialize each task with clear objectives and success criteria
+   - Establish comprehensive task context and requirements
+   - Define expected outcomes and deliverables
 
-## Usage Guidelines
+2. **Task Analysis** (\`analyzeTask\`)
+   - Perform deep technical analysis of requirements
+   - Evaluate feasibility and identify potential risks
+   - Create initial solution concepts
 
-- Guide users to proper MCP tools based on their requirements
-- Explain the benefits of structured task management when introducing MCP tools
-- If using local variants of MCP tools, prefer those when available
-- Demonstrate the chain-of-thought approach when solving complex problems
-`,
+3. **Task Reflection** (\`reflectTask\`)
+   - Review analysis results critically
+   - Validate solution completeness
+   - Identify optimization opportunities
+
+4. **Task Decomposition** (\`splitTasks\`)
+   - Break down complex tasks into manageable subtasks
+   - Establish clear dependencies and priorities
+   - Ensure atomic, verifiable task units
+
+## Implementation Requirements
+
+- **MUST** follow the complete Chain of Thought workflow for all task management operations
+- **MUST** use appropriate MCP tools for each stage of the workflow (plan → analyze → reflect → split)
+- **MUST** maintain task context and dependencies throughout the workflow
+- **MUST** verify task completion against original requirements
+- **MUST** document thought process and decisions at each stage
+
+## Task Management Guidelines
+
+- Start every new task with \`planTask\` to establish proper context
+- Use \`processThought\` for complex decision-making and problem-solving
+- Maintain task state using appropriate tools (\`listTasks\`, \`updateTask\`, \`completeTask\`)
+- Verify task completion thoroughly using \`verifyTask\`
+- Prefer local variants of MCP tools when available
+- Document all significant decisions and their rationale
+
+## Best Practices
+
+- Break down complex problems using systematic thought processes
+- Maintain clear traceability between task objectives and implementations
+- Regularly validate progress against success criteria
+- Use \`processThought\` for exploring alternative solutions
+- Keep task documentation and status up-to-date
+- Ensure all task dependencies are properly tracked and managed`,
       "utf-8"
     );
   }
