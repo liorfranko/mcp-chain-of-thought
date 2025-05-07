@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": "6671ed34-9026-4f3d-a865-d2f230cdd081",
+      "name": "Translate entire docs/index.html to English",
+      "description": "Scan the complete `docs/index.html` file. Identify all Chinese text segments (comments, tags, attribute values). Translate segments to English, **except** for `data-i18n*` attribute values that look like keys (e.g., `word.word`). Apply edits, preserving HTML structure.",
+      "status": "Completed",
+      "dependencies": [],
+      "createdAt": "2025-05-05T09:29:56.766Z",
+      "updatedAt": "2025-05-05T09:31:28.824Z",
+      "relatedFiles": [
+        {
+          "path": "docs/index.html",
+          "type": "TO_MODIFY",
+          "description": "File to be fully translated."
+        }
+      ],
+      "implementationGuide": "```pseudocode\n// Uses conceptual functions: read_file, find_chinese_segments_with_context, looks_like_i18n_key, translate, prepare_edits\n\nfull_content = read_file(\"docs/index.html\")\nedits = []\n\nfor line_num, line_text in enumerate(full_content, start=1):\n  modified_line = line_text\n  offset = 0\n  segments = find_chinese_segments_with_context(line_text) // includes context info\n\n  for segment in segments:\n    should_translate = True\n    # Check if it's a data-i18n attribute value that looks like a key\n    if segment.context == 'ATTRIBUTE_VALUE' and segment.attribute_name.startswith('data-i18n') and looks_like_i18n_key(segment.text):\n      should_translate = False\n\n    if should_translate:\n      translated = translate(segment.text)\n      if translated != segment.text:\n        # Apply translation to the line string, minding the offset\n        start = segment.start_index + offset\n        end = segment.end_index + offset\n        modified_line = modified_line[:start] + translated + modified_line[end:]\n        offset += len(translated) - len(segment.text)\n\n  if modified_line != line_text:\n    # Record the necessary info for edit_file tool\n    edits.append({line: line_num, new_content: modified_line})\n\nif edits:\n  prepare_edits(\"docs/index.html\", edits) // Use edit_file tool\n```",
+      "verificationCriteria": "No Chinese characters remain in `docs/index.html` (excluding intentionally preserved `data-i18n*` keys). Translation is accurate and idiomatic. HTML structure is preserved and valid.",
+      "analysisResult": "Translate the entire `docs/index.html` file from Chinese to English, covering comments, tags, and attributes. Critically, avoid translating `data-i18n*` attribute values that appear to be keys. Ensure HTML validity and accurate, idiomatic translation. Verify no Chinese characters remain (excluding preserved keys).",
+      "completedAt": "2025-05-05T09:31:28.821Z",
+      "summary": "Translate entire docs/index.html to English has been successfully completed. This task involved Scan the complete `docs/index.html` file. Identify all Chinese text segments (comments, tags, attribute values). Translate segments to English, except ..."
+    }
+  ]
+}

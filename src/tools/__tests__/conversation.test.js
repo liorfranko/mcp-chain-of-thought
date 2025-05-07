@@ -1,47 +1,5 @@
 import { jest } from '@jest/globals';
-import { TaskStatus } from '../../types/index.js';
-
-// Define the functions being tested (these would normally be imported)
-function compareConversations(conversations1, conversations2) {
-  if (!conversations1 && !conversations2) return true;
-  if (!conversations1) return !conversations2.length;
-  if (!conversations2) return !conversations1.length;
-  if (conversations1.length !== conversations2.length) return false;
-  
-  for (let i = 0; i < conversations1.length; i++) {
-    // Deep check each property - content comparison is the issue, so make sure to check it properly
-    if (conversations1[i].content !== conversations2[i].content) return false;
-    if (conversations1[i].role !== conversations2[i].role) return false;
-    
-    // Check timestamp if available
-    if (conversations1[i].timestamp !== conversations2[i].timestamp) return false;
-  }
-  
-  return true;
-}
-
-function updateTaskConversations(taskId, conversations) {
-  const task = global.tasks.find(t => t.id === taskId);
-  if (task) {
-    task.conversations = conversations;
-  }
-  
-  if (global.isDetailedMode && global.selectedTaskId === taskId) {
-    const detailConversationsElement = document.getElementById('detail-conversations');
-    if (detailConversationsElement) {
-      detailConversationsElement.innerHTML = '';
-      conversations.forEach(conversation => {
-        const item = document.createElement('div');
-        item.className = 'conversation-item';
-        const content = document.createElement('div');
-        content.className = 'conversation-content';
-        content.textContent = conversation.content;
-        item.appendChild(content);
-        detailConversationsElement.appendChild(item);
-      });
-    }
-  }
-}
+import { Task } from '../../types';
 
 describe('Conversation Functionality', () => {
   let mockTask;
@@ -78,13 +36,9 @@ describe('Conversation Functionality', () => {
     });
 
     test('should return false for different conversation content', () => {
-      // Create a copy of the conversations
-      const modifiedConversations = JSON.parse(JSON.stringify(mockConversations));
-      // Modify one property
+      const modifiedConversations = [...mockConversations];
       modifiedConversations[0].content = 'Modified message';
-      // Call the function
       const result = compareConversations(mockConversations, modifiedConversations);
-      // The result should be false since we modified the content
       expect(result).toBe(false);
     });
 

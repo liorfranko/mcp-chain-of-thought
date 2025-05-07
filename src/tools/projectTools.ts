@@ -1,11 +1,6 @@
 import { z } from "zod";
 import { getInitProjectRulesPrompt } from "../prompts/index.js";
-import { 
-  getRulesFilePath, 
-  ensureRulesFileExists,
-  getMcpChainOfThoughtRulesFilePath,
-  ensureMcpChainOfThoughtRulesFileExists
-} from "../utils/pathUtils.js";
+import { getRulesFilePath, ensureRulesFileExists } from "../utils/pathUtils.js";
 
 // Define schema
 export const initProjectRulesSchema = z.object({});
@@ -22,19 +17,15 @@ export async function initProjectRules() {
     // Ensure rules.md file exists in the DATA_DIR directory
     await ensureRulesFileExists();
 
-    // Ensure MCP chain of thought rules file exists
-    await ensureMcpChainOfThoughtRulesFileExists();
-
-    // Output the paths to the rules files to help users find them
+    // Output the path to the rules file to help users find it
     const rulesPath = getRulesFilePath();
-    const mcpRulesPath = getMcpChainOfThoughtRulesFilePath();
 
     // Return success response
     return {
       content: [
         {
           type: "text" as const,
-          text: promptContent + `\n\nRules file will be located at: ${rulesPath}\nMCP Chain of Thought rules file created at: ${mcpRulesPath}`,
+          text: promptContent + `\n\nRules file will be located at: ${rulesPath}`,
         },
       ],
     };

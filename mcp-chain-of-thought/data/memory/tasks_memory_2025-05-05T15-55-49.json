@@ -1,0 +1,85 @@
+{
+  "tasks": [
+    {
+      "id": "3b18eafd-e9a2-4e10-8776-210fa34b716f",
+      "name": "Create test data directory structure",
+      "description": "Create the directory structure for storing test data files in the project. This includes creating the directory src/tools/__tests__/data/ if it doesn't exist.",
+      "status": "Completed",
+      "dependencies": [],
+      "createdAt": "2025-05-05T14:26:39.381Z",
+      "updatedAt": "2025-05-05T14:31:42.965Z",
+      "implementationGuide": "1. Check if src/tools/__tests__ exists, create if not\n2. Create data subdirectory\n3. Ensure proper permissions are set",
+      "verificationCriteria": "Directory src/tools/__tests__/data/ exists and is writable",
+      "completedAt": "2025-05-05T14:31:42.964Z",
+      "summary": "The required directory structure (src/tools/__tests__/data/) already exists in the project, meeting all task requirements. The directory is properly set up for storing test data files."
+    },
+    {
+      "id": "7bd59637-38cf-4886-91b2-9d307032cc83",
+      "name": "Create basic task test data",
+      "description": "Create the initial tasks.json file with basic test cases including a simple pending task and a medium complexity in-progress task. This establishes the file structure and basic test coverage.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "3b18eafd-e9a2-4e10-8776-210fa34b716f"
+        }
+      ],
+      "createdAt": "2025-05-05T14:26:39.381Z",
+      "updatedAt": "2025-05-05T14:32:28.162Z",
+      "implementationGuide": "Create tasks.json with:\n1. Simple pending task with only required fields\n2. Medium complexity in-progress task with 2 dependencies\n3. Use proper UUID generation\n4. Use ISO date strings for timestamps",
+      "verificationCriteria": "1. Valid JSON file created\n2. Matches Task interface structure\n3. Contains specified test cases\n4. All required fields present",
+      "completedAt": "2025-05-05T14:32:28.160Z",
+      "summary": "The tasks.json file already exists with comprehensive test data that meets all requirements. It includes a simple pending task with minimal fields, a medium complexity in-progress task with dependencies, proper UUID formatting, and ISO date strings for timestamps. The file structure and content provide excellent test coverage for basic task management functionality."
+    },
+    {
+      "id": "d4b57ae9-7190-4f11-9c4f-29821e8fb442",
+      "name": "Add complex task test cases",
+      "description": "Add more complex test cases to tasks.json including a high complexity completed task and a blocked task. This tests advanced features and edge cases.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "7bd59637-38cf-4886-91b2-9d307032cc83"
+        }
+      ],
+      "createdAt": "2025-05-05T14:26:39.381Z",
+      "updatedAt": "2025-05-05T14:34:41.014Z",
+      "implementationGuide": "Add to tasks.json:\n1. High complexity completed task with 5 dependencies\n2. Blocked task with dependency relationships\n3. Ensure proper completion data for completed task\n4. Include related files with line numbers",
+      "verificationCriteria": "1. New test cases added correctly\n2. Valid dependency relationships\n3. Proper completion data present\n4. Related files properly structured",
+      "completedAt": "2025-05-05T14:34:41.010Z",
+      "summary": "The tasks.json file already contains comprehensive complex test cases that meet all requirements. It includes a high complexity completed task with 5 dependencies, proper completion data, and related files with line numbers, as well as a blocked task with appropriate dependency relationships and status information."
+    },
+    {
+      "id": "5ddd699b-8875-4af6-bc67-182281180dbf",
+      "name": "Add edge case test data",
+      "description": "Add edge case test data including maximum length fields and special characters to test UI handling of extreme cases.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "d4b57ae9-7190-4f11-9c4f-29821e8fb442"
+        }
+      ],
+      "createdAt": "2025-05-05T14:26:39.381Z",
+      "updatedAt": "2025-05-05T14:44:26.677Z",
+      "implementationGuide": "Add to tasks.json:\n1. Task with 2000 char description\n2. Task with 1000 char notes\n3. Task with 10 dependencies\n4. Task with special characters (Unicode, HTML, markdown)\n5. Task with all optional fields populated",
+      "verificationCriteria": "1. Maximum length fields present\n2. Special characters properly escaped\n3. All optional fields included\n4. JSON remains valid",
+      "completedAt": "2025-05-05T14:44:26.675Z",
+      "summary": "Successfully added comprehensive edge case test data including maximum length fields, special characters, HTML injection attempts, Unicode support, and all optional fields. The test data has been properly escaped and formatted to maintain JSON validity."
+    },
+    {
+      "id": "d4c3cdcc-2cfb-4224-98f4-cd48a1a174fe",
+      "name": "Validate test data integrity",
+      "description": "Perform comprehensive validation of the test data to ensure it meets all requirements and maintains data integrity.",
+      "status": "Completed",
+      "dependencies": [
+        {
+          "taskId": "5ddd699b-8875-4af6-bc67-182281180dbf"
+        }
+      ],
+      "createdAt": "2025-05-05T14:26:39.381Z",
+      "updatedAt": "2025-05-05T14:45:49.584Z",
+      "implementationGuide": "1. Validate JSON schema\n2. Check for circular dependencies\n3. Verify all timestamps are valid\n4. Ensure all file paths are valid\n5. Verify all enums use correct values",
+      "verificationCriteria": "1. No JSON validation errors\n2. No circular dependencies\n3. All timestamps in correct format\n4. All file paths valid\n5. All enum values valid",
+      "completedAt": "2025-05-05T14:45:49.581Z",
+      "summary": "Successfully validated test data integrity. Confirmed JSON schema validity, absence of circular dependencies, correct timestamp formats (ISO 8601), valid file paths following project structure, and proper enum values for status and file types. All validation criteria were met with no issues found."
+    }
+  ]
+}
